@@ -1,186 +1,99 @@
-{
-  "name": "stateline-renegades",
-  "private": true,
-  "version": "1.0.0",
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
-  },
-  "dependencies": {
-    "@vercel/blob": "^0.27.0",
-    "next": "^14.2.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  }
-}
-import { NextRequest, NextResponse } from "next/server";
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Renegades Admin</title>
 
-export const config = {
-  matcher: ["/admin/:path*", "/api/admin/:path*"],
-};
-
-function unauthorized() {
-  return new NextResponse("Unauthorized", {
-    status: 401,
-    headers: {
-      "WWW-Authenticate": 'Basic realm="Admin Area", charset="UTF-8"',
-    },
-  });
+<style>
+body{
+font-family:Arial;
+background:#111;
+color:white;
+text-align:center;
+padding:40px;
 }
 
-export function middleware(req: NextRequest) {
-  const user = process.env.ADMIN_USER || "";
-  const pass = process.env.ADMIN_PASS || "";
-
-  const auth = req.headers.get("authorization");
-  if (!auth?.startsWith("Basic ")) return unauthorized();
-
-  const base64 = auth.split(" ")[1] || "";
-  let decoded = "";
-  try {
-    decoded = atob(base64);
-  } catch {
-    return unauthorized();
-  }
-
-  const [u, p] = decoded.split(":");
-  if (u === user && p === pass) return NextResponse.next();
-
-  return unauthorized();
+.login{
+max-width:400px;
+margin:auto;
+background:#222;
+padding:20px;
+border-radius:10px;
 }
-export const metadata = {
-  title: "Stateline Renegades",
-  description: "Stateline Renegades Cheer & T-Ball organization.",
-};
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="en">
-      <body style={{ margin: 0 }}>{children}</body>
-    </html>
-  );
+input{
+width:100%;
+padding:10px;
+margin:10px 0;
 }
-import { NextResponse } from "next/server";
-import { list } from "@vercel/blob";
 
-export const runtime = "nodejs";
-
-export async function GET(req: Request) {
-  try {
-    const { searchParams } = new URL(req.url);
-    const folder = (searchParams.get("folder") || "org").toString();
-    const safeFolder = folder.replace(/[^a-z0-9-_]/gi, "").toLowerCase() || "org";
-
-    const result = await list({ prefix: `gallery/${safeFolder}/`, limit: 200 });
-
-    return NextResponse.json({
-      folder: safeFolder,
-      items: result.blobs.map((b) => ({
-        url: b.url,
-        uploadedAt: b.uploadedAt,
-      })),
-    });
-  } catch {
-    return NextResponse.json({ folder: "org", items: [] });
-  }
+button{
+padding:10px 20px;
+background:red;
+color:white;
+border:none;
+cursor:pointer;
 }
-import { NextResponse } from "next/server";
-import { put } from "@vercel/blob";
 
-export const runtime = "nodejs";
-
-export async function POST(req: Request) {
-  try {
-    const form = await req.formData();
-    const file = form.get("file");
-    const folder = (form.get("folder") || "org").toString();
-
-    if (!(file instanceof File)) {
-      return NextResponse.json({ error: "Missing file" }, { status: 400 });
-    }
-
-    const safeFolder = folder.replace(/[^a-z0-9-_]/gi, "").toLowerCase() || "org";
-    const ext = (file.name.split(".").pop() || "jpg").toLowerCase();
-    const stamp = Date.now();
-
-    const pathname = `gallery/${safeFolder}/${stamp}-${Math.random().toString(16).slice(2)}.${ext}`;
-
-    const blob = await put(pathname, file, {
-      access: "public",
-      addRandomSuffix: false,
-    });
-
-    return NextResponse.json({ url: blob.url, pathname: blob.pathname });
-  } catch (e: any) {
-    return NextResponse.json({ error: e?.message || "Upload failed" }, { status: 500 });
-  }
+.hidden{
+display:none;
 }
-import { NextResponse } from "next/server";
-import { list } from "@vercel/blob";
+</style>
 
-export const runtime = "nodejs";
+</head>
+<body>
 
-export async function GET(req: Request) {
-  try {
-    const { searchParams } = new URL(req.url);
-    const folder = (searchParams.get("folder") || "org").toString();
-    const safeFolder = folder.replace(/[^a-z0-9-_]/gi, "").toLowerCase() || "org";
+<div class="login" id="loginBox">
 
-    const result = await list({ prefix: `gallery/${safeFolder}/`, limit: 200 });
+<h2>Admin Login</h2>
 
-    return NextResponse.json({
-      folder: safeFolder,
-      items: result.blobs.map((b) => ({
-        url: b.url,
-        pathname: b.pathname,
-        uploadedAt: b.uploadedAt,
-        size: b.size,
-      })),
-    });
-  } catch (e: any) {
-    return NextResponse.json({ error: e?.message || "List failed" }, { status: 500 });
-  }
+<input id="user" placeholder="Username">
+
+<input id="pass" type="password" placeholder="Password">
+
+<button onclick="login()">Login</button>
+
+</div>
+
+
+<div id="adminPanel" class="hidden">
+
+<h2>Gallery Upload</h2>
+
+<input type="file">
+
+<br><br>
+
+<button>Upload Photo</button>
+
+<p>(Upload feature ready for backend later)</p>
+
+</div>
+
+
+<script>
+
+function login(){
+
+const u = document.getElementById("user").value;
+const p = document.getElementById("pass").value;
+
+if(u==="admin" && p==="renegades"){
+
+document.getElementById("loginBox").style.display="none";
+
+document.getElementById("adminPanel").style.display="block";
+
 }
-import { NextResponse } from "next/server";
-import { del } from "@vercel/blob";
+else{
 
-export const runtime = "nodejs";
+alert("Wrong password");
 
-export async function POST(req: Request) {
-  try {
-    const body = await req.json();
-    const pathname = (body?.pathname || "").toString();
-
-    if (!pathname.startsWith("gallery/")) {
-      return NextResponse.json({ error: "Invalid pathname" }, { status: 400 });
-    }
-
-    await del(pathname);
-    return NextResponse.json({ ok: true });
-  } catch (e: any) {
-    return NextResponse.json({ error: e?.message || "Delete failed" }, { status: 500 });
-  }
 }
-import { NextResponse } from "next/server";
-import { del } from "@vercel/blob";
 
-export const runtime = "nodejs";
-
-export async function POST(req: Request) {
-  try {
-    const body = await req.json();
-    const pathname = (body?.pathname || "").toString();
-
-    if (!pathname.startsWith("gallery/")) {
-      return NextResponse.json({ error: "Invalid pathname" }, { status: 400 });
-    }
-
-    await del(pathname);
-    return NextResponse.json({ ok: true });
-  } catch (e: any) {
-    return NextResponse.json({ error: e?.message || "Delete failed" }, { status: 500 });
-  }
 }
-export default function Home() {
-  const html = `
+
+</script>
+
+</body>
+</html>
