@@ -1,30 +1,175 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Stateline Renegades</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stateline Renegades</title>
 
-    <!-- Basic SEO -->
-    <meta name="description" content="Stateline Renegades - Youth sports and cheer community. Updates, registration, and team info." />
-    <meta name="robots" content="index,follow" />
-    <link rel="canonical" href="https://statelinerenegades.com/" />
+  <!-- Google Search Console: replace the content value with your real code -->
+  <meta name="google-site-verification" content="PASTE_YOUR_CODE_HERE" />
 
-    <!-- Open Graph / Social -->
-    <meta property="og:title" content="Stateline Renegades" />
-    <meta property="og:description" content="Youth sports and cheer community. Updates, registration, and team info." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://statelinerenegades.com/" />
-    <!-- If you add an image later, set og:image to a full URL -->
+  <style>
+    :root{
+      --pink:#f7a7c6;
+      --green:#0b3d2e;
+      --black:#0b0b0e;
+      --card:#12121a;
+      --text:#f5f5f7;
+      --muted:#c8c8d0;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(900px 500px at 20% 10%, rgba(247,167,198,.18), transparent 60%),
+                  radial-gradient(900px 500px at 90% 20%, rgba(11,61,46,.22), transparent 60%),
+                  var(--black);
+      color:var(--text);
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+    }
+    .wrap{max-width:980px;width:100%}
+    .hero{
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:22px;
+      padding:28px;
+      box-shadow: 0 18px 40px rgba(0,0,0,.35);
+    }
+    .top{
+      display:flex;
+      gap:18px;
+      align-items:center;
+      flex-wrap:wrap;
+      justify-content:space-between;
+    }
+    .brand{
+      display:flex;
+      gap:14px;
+      align-items:center;
+    }
+    .logo{
+      width:54px;height:54px;border-radius:14px;
+      background: linear-gradient(135deg, var(--pink), #ffffff 35%, #1aa37a 70%, var(--green));
+      box-shadow: 0 10px 18px rgba(0,0,0,.25);
+    }
+    h1{margin:0;font-size:34px;letter-spacing:.3px}
+    .tag{margin:6px 0 0;color:var(--muted)}
+    .btns{display:flex;gap:10px;flex-wrap:wrap}
+    a.btn{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:11px 14px;border-radius:14px;
+      background: rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.14);
+      color:var(--text);text-decoration:none;font-weight:600;
+    }
+    a.btn.primary{
+      background: linear-gradient(135deg, rgba(247,167,198,.95), rgba(11,61,46,.95));
+      border:0;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:16px;
+      margin-top:18px;
+    }
+    @media (max-width:860px){ .grid{grid-template-columns:1fr} }
+    .card{
+      background: rgba(18,18,26,.78);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:18px;
+      padding:18px;
+    }
+    .card h2{margin:0 0 10px;font-size:18px}
+    .list{margin:0;padding-left:18px;color:var(--muted);line-height:1.7}
+    .contact{
+      display:grid;gap:10px;margin-top:10px
+    }
+    .pill{
+      display:flex;justify-content:space-between;gap:12px;
+      padding:12px 14px;border-radius:14px;
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      color:var(--text);
+    }
+    .pill span{color:var(--muted)}
+    footer{margin-top:14px;color:rgba(255,255,255,.5);font-size:12px;text-align:center}
+  </style>
+</head>
 
-    <!-- Google Search Console verification
-         Replace YOUR_VERIFICATION_CODE_HERE with the code Google gives you. -->
-    <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE_HERE" />
+<body>
+  <div class="wrap">
+    <div class="hero">
+      <div class="top">
+        <div class="brand">
+          <div class="logo" aria-hidden="true"></div>
+          <div>
+            <h1>Stateline Renegades</h1>
+            <div class="tag">Official website • Cheer • Community • Competition</div>
+          </div>
+        </div>
 
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+        <div class="btns">
+          <a class="btn primary" href="#contact">Contact Us</a>
+          <a class="btn" href="#about">About</a>
+          <a class="btn" href="#join">Join</a>
+        </div>
+      </div>
+
+      <div class="grid">
+        <section class="card" id="about">
+          <h2>About the Renegades</h2>
+          <p style="margin:0;color:var(--muted);line-height:1.7">
+            Welcome to the Stateline Renegades! We’re building confident athletes through teamwork, discipline,
+            and a whole lot of heart.
+          </p>
+
+          <div style="height:10px"></div>
+
+          <h2 id="join">How to Join</h2>
+          <ul class="list">
+            <li>Ages: 3–14</li>
+            <li>Practice starts in May</li>
+            <li>Limited travel</li>
+            <li>Message us to register</li>
+          </ul>
+        </section>
+
+        <aside class="card" id="contact">
+          <h2>Contact</h2>
+          <div class="contact">
+            <div class="pill">
+              <div><strong>Coach Celia</strong><br><span>Phone</span></div>
+              <div><a class="btn" style="padding:8px 10px;border-radius:12px" href="tel:19153529033">Call</a></div>
+            </div>
+            <div class="pill">
+              <div><strong>Coach Andy</strong><br><span>Phone</span></div>
+              <div><a class="btn" style="padding:8px 10px;border-radius:12px" href="tel:19154720190">Call</a></div>
+            </div>
+          </div>
+
+          <div style="height:12px"></div>
+
+          <h2>Quick Links</h2>
+          <ul class="list">
+            <li><a href="#" style="color:var(--pink);text-decoration:none">Registration Form (add link)</a></li>
+            <li><a href="#" style="color:var(--pink);text-decoration:none">Instagram (add link)</a></li>
+            <li><a href="#" style="color:var(--pink);text-decoration:none">Facebook (add link)</a></li>
+          </ul>
+        </aside>
+      </div>
+
+      <footer>
+        © <span id="year"></span> Stateline Renegades. All rights reserved.
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
 </html>
