@@ -1,758 +1,943 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Stateline Renegades</title>
-  <meta name="description" content="Stateline Renegades Cheer & T-Ball — Programs, registration, info, and sponsors." />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stateline Renegades | Cheer & T-Ball</title>
+  <meta name="description" content="Stateline Renegades organization site: cheer programs + T-Ball, registration, sponsors, and galleries." />
   <style>
     :root{
-      --bg:#07080b;
-      --panel:#0f1218;
-      --panel2:#0b0d12;
-      --text:#e9eef9;
-      --muted:#aab3c5;
-      --line:rgba(255,255,255,.10);
+      --bg:#07070b;
+      --panel:#0e0f16;
+      --panel2:#0b0c12;
+      --text:#f4f4fb;
+      --muted:#b9b9d2;
+      --stroke:rgba(255,255,255,.10);
+      --shadow: 0 18px 60px rgba(0,0,0,.55);
 
-      --red:#e11d48;
-      --red2:#ff3b67;
-      --pink:#ff5ca8;
-      --green:#2bd576;
-      --dg:#0f8a4b;
-      --teal:#28d3c6;
-      --purple:#a855f7;
-      --silver:#c9d2e3;
-      --gold:#f7d06f;
+      /* Accent palette (organization vibe) */
+      --accent:#7c5cff;
+      --accent2:#23d5ab;
+      --pink:#ff5aa5;
+      --green:#2bd47d;
 
-      --shadow: 0 20px 60px rgba(0,0,0,.45);
-      --radius: 18px;
-      --radius2: 26px;
-      --max: 1120px;
+      /* Team colors */
+      --riotA:#1d6b4d;   /* dark green */
+      --riotB:#ff77b7;   /* light pink */
+      --karmaA:#2ed6d3;  /* teal */
+      --karmaB:#ff77b7;  /* light pink */
+      --anarchyA:#d80e2c;/* metallic red (approx) */
+      --anarchyB:#0c0c10;/* black */
+      --mayhemA:#7b46ff; /* purple */
+      --mayhemB:#0c0c10; /* black */
+      --tballA:#d80e2c;  /* red */
+      --tballB:#0c0c10;  /* black */
+
+      --radius:18px;
+      --radius2:26px;
+      --max:1200px;
     }
 
     *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      background:
-        radial-gradient(1200px 700px at 20% 0%, rgba(225,29,72,.25), transparent 55%),
-        radial-gradient(1000px 650px at 85% 10%, rgba(40,211,198,.18), transparent 55%),
-        radial-gradient(900px 600px at 70% 90%, rgba(168,85,247,.14), transparent 55%),
-        linear-gradient(180deg, #05060a 0%, #07080b 50%, #05060a 100%);
-      color:var(--text);
-      overflow-x:hidden;
-    }
-
-    a{color:inherit; text-decoration:none}
-    .wrap{max-width:var(--max); margin:0 auto; padding:0 18px}
-    .pill{display:inline-flex; gap:10px; align-items:center; padding:8px 12px; border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,.03); color:var(--muted); font-size:13px}
-    .dot{width:8px; height:8px; border-radius:999px; background:var(--green); box-shadow:0 0 18px rgba(43,213,118,.6)}
-    .muted{color:var(--muted)}
-    .small{font-size:13px}
-    .tight{line-height:1.2}
-    .spacer{height:26px}
-    .grid{display:grid; gap:14px}
-
-    /* NAV */
-    .nav{
-      position:sticky; top:0; z-index:50;
+    html,body{margin:0;padding:0;background:radial-gradient(1200px 700px at 20% -10%, rgba(124,92,255,.25), transparent 60%),
+                                radial-gradient(900px 600px at 85% 10%, rgba(35,213,171,.18), transparent 55%),
+                                radial-gradient(1100px 650px at 60% 110%, rgba(255,90,165,.10), transparent 55%),
+                                var(--bg);
+              color:var(--text); font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;}
+    a{color:inherit}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 18px;}
+    .chip{display:inline-flex; gap:10px; align-items:center; padding:8px 12px; border:1px solid var(--stroke); border-radius:999px; background:rgba(255,255,255,.04)}
+    .dot{width:10px;height:10px;border-radius:999px;background:var(--accent2); box-shadow:0 0 18px rgba(35,213,171,.55)}
+    header{
+      position:sticky; top:0; z-index:20;
+      background:rgba(7,7,11,.70);
       backdrop-filter: blur(14px);
-      background: rgba(7,8,11,.55);
-      border-bottom: 1px solid var(--line);
+      border-bottom: 1px solid rgba(255,255,255,.07);
     }
-    .navin{
+    .nav{
       display:flex; align-items:center; justify-content:space-between;
       padding:12px 0;
-    }
-    .brand{
-      display:flex; align-items:center; gap:10px;
-      font-weight:800; letter-spacing:.4px;
-    }
-    .brand .mark{
-      width:34px; height:34px; border-radius:12px;
-      background:
-        radial-gradient(circle at 30% 30%, rgba(255,255,255,.20), transparent 55%),
-        linear-gradient(135deg, rgba(225,29,72,.95), rgba(168,85,247,.85));
-      box-shadow: 0 12px 35px rgba(225,29,72,.25);
-      border:1px solid rgba(255,255,255,.16);
-    }
-    .links{display:flex; gap:16px; align-items:center; flex-wrap:wrap; justify-content:flex-end}
-    .links a{
-      color:var(--muted); font-weight:650; font-size:14px;
-      padding:8px 10px; border-radius:12px;
-      border:1px solid transparent;
-    }
-    .links a:hover{color:var(--text); border-color: var(--line); background: rgba(255,255,255,.03)}
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center; gap:10px;
-      padding:12px 14px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.04);
-      color:var(--text);
-      font-weight:800;
-      box-shadow: 0 10px 30px rgba(0,0,0,.25);
-      cursor:pointer;
-      user-select:none;
-    }
-    .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.06)}
-    .btn:active{transform: translateY(0px)}
-    .btn.primary{
-      border-color: rgba(225,29,72,.55);
-      background: linear-gradient(135deg, rgba(225,29,72,.95), rgba(255,92,168,.85));
-      box-shadow: 0 18px 45px rgba(225,29,72,.22);
-    }
-    .btn.primary:hover{filter:brightness(1.05)}
-    .btn.green{
-      border-color: rgba(43,213,118,.50);
-      background: linear-gradient(135deg, rgba(43,213,118,.90), rgba(15,138,75,.90));
-      box-shadow: 0 18px 45px rgba(43,213,118,.16);
-    }
-    .btn.teal{
-      border-color: rgba(40,211,198,.55);
-      background: linear-gradient(135deg, rgba(40,211,198,.95), rgba(60,255,236,.55));
-      box-shadow: 0 18px 45px rgba(40,211,198,.14);
-      color:#041014;
-    }
-    .btn.purple{
-      border-color: rgba(168,85,247,.55);
-      background: linear-gradient(135deg, rgba(168,85,247,.95), rgba(225,29,72,.35));
-      box-shadow: 0 18px 45px rgba(168,85,247,.14);
-    }
-    .btn.ghost{
-      border-color: rgba(255,255,255,.14);
-      background: rgba(255,255,255,.03);
-    }
-
-    /* HERO */
-    header.hero{padding:28px 0 6px}
-    .heroCard{
-      border:1px solid var(--line);
-      border-radius: var(--radius2);
-      background:
-        radial-gradient(900px 500px at 20% 10%, rgba(225,29,72,.18), transparent 60%),
-        radial-gradient(800px 500px at 90% 20%, rgba(40,211,198,.12), transparent 55%),
-        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-      box-shadow: var(--shadow);
-      overflow:hidden;
-      position:relative;
-    }
-    .heroInner{
-      padding:26px 18px 18px;
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap:16px;
-      align-items:stretch;
-    }
-    @media (max-width: 920px){
-      .heroInner{grid-template-columns: 1fr; }
-      .links{display:none}
-    }
-    .h1{
-      font-size: clamp(30px, 3.6vw, 48px);
-      line-height:1.06;
-      letter-spacing:.2px;
-      margin:10px 0 10px;
-      font-weight:900;
-    }
-    .lead{
-      color: var(--muted);
-      font-size: 16px;
-      line-height:1.55;
-      margin:0 0 16px;
-      max-width: 62ch;
-    }
-    .heroBtns{display:flex; gap:10px; flex-wrap:wrap}
-    .heroRight{
-      border-left:1px solid var(--line);
-      padding-left:16px;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-    }
-    @media (max-width: 920px){
-      .heroRight{border-left:none; padding-left:0; border-top:1px solid var(--line); padding-top:16px}
-    }
-    .kpiRow{display:grid; grid-template-columns: 1fr 1fr; gap:10px}
-    .kpi{
-      border:1px solid var(--line);
-      border-radius: 16px;
-      background: rgba(0,0,0,.25);
-      padding:12px;
-    }
-    .kpi .big{font-size:22px; font-weight:900}
-    .kpi .lbl{font-size:12px; color:var(--muted); margin-top:4px}
-    .quick{
-      border:1px solid var(--line);
-      border-radius: 16px;
-      background: rgba(0,0,0,.20);
-      padding:12px;
-    }
-    .quick h3{margin:0 0 8px; font-size:14px; color:var(--muted); font-weight:900; letter-spacing:.3px}
-    .quick .ql{display:flex; flex-wrap:wrap; gap:8px}
-    .chip{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:8px 10px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.03);
-      font-weight:800;
-      font-size:13px;
-    }
-
-    /* SECTIONS */
-    section{padding:18px 0}
-    .secHead{
-      display:flex; align-items:flex-end; justify-content:space-between; gap:12px; flex-wrap:wrap;
-      margin: 12px 0 10px;
-    }
-    .secHead h2{
-      margin:0;
-      font-size: 20px;
-      letter-spacing:.2px;
-      font-weight:950;
-    }
-    .secHead p{margin:0; color:var(--muted)}
-
-    .cards{
-      display:grid;
-      grid-template-columns: repeat(12, 1fr);
       gap:14px;
     }
+    .brand{
+      display:flex; align-items:center; gap:12px; text-decoration:none;
+      font-weight:900; letter-spacing:.3px;
+    }
+    .brand .mark{
+      width:40px;height:40px;border-radius:14px;
+      background:linear-gradient(135deg, rgba(124,92,255,.9), rgba(35,213,171,.75));
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow: 0 14px 40px rgba(0,0,0,.55);
+      display:grid; place-items:center;
+      font-weight:1000;
+    }
+    .brand small{display:block; font-weight:600; color:var(--muted); letter-spacing:0}
+    .links{display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:flex-end}
+    .links a{
+      text-decoration:none; color:var(--muted);
+      padding:10px 12px; border-radius:999px;
+      border:1px solid transparent;
+    }
+    .links a:hover{color:var(--text); border-color: rgba(255,255,255,.10); background:rgba(255,255,255,.04)}
+    .cta{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:10px 14px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background:linear-gradient(135deg, rgba(124,92,255,.9), rgba(255,90,165,.7));
+      box-shadow: 0 14px 40px rgba(0,0,0,.55);
+      text-decoration:none; font-weight:800;
+    }
+
+    /* Hero */
+    .hero{padding:34px 0 10px}
+    .heroGrid{
+      display:grid; gap:18px;
+      grid-template-columns: 1.1fr .9fr;
+      align-items:stretch;
+    }
+    @media (max-width: 920px){ .heroGrid{grid-template-columns:1fr} }
     .card{
-      grid-column: span 6;
-      border:1px solid var(--line);
-      border-radius: var(--radius);
-      background: linear-gradient(180deg, rgba(255,255,255,.035), rgba(0,0,0,.20));
-      box-shadow: 0 18px 45px rgba(0,0,0,.28);
+      border:1px solid rgba(255,255,255,.10);
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
       overflow:hidden;
+    }
+    .heroLeft{padding:22px}
+    h1{margin:10px 0 8px; font-size: clamp(32px, 4.3vw, 54px); line-height:1.03;}
+    .sub{color:var(--muted); font-size: 15px; line-height:1.55; margin: 0 0 16px}
+    .heroBtns{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:12px 14px; border-radius: 14px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+      text-decoration:none; font-weight:800;
+      min-width: 180px;
+    }
+    .btn:hover{background:rgba(255,255,255,.07)}
+    .btn.primary{background:linear-gradient(135deg, rgba(35,213,171,.95), rgba(124,92,255,.75)); border-color: rgba(255,255,255,.12)}
+    .btn.pink{background:linear-gradient(135deg, rgba(255,90,165,.95), rgba(124,92,255,.55))}
+    .btn.red{background:linear-gradient(135deg, rgba(216,14,44,.95), rgba(124,92,255,.45))}
+    .btn small{font-weight:700; opacity:.9}
+
+    .heroRight{
       position:relative;
+      display:flex;
+      flex-direction:column;
     }
-    @media (max-width: 860px){
-      .card{grid-column: span 12;}
+    .heroMedia{
+      padding:18px;
+      background: radial-gradient(600px 240px at 20% 10%, rgba(255,90,165,.14), transparent 60%),
+                  radial-gradient(600px 240px at 80% 30%, rgba(35,213,171,.12), transparent 60%),
+                  rgba(255,255,255,.02);
+      border-bottom:1px solid rgba(255,255,255,.08);
     }
-    .cardIn{padding:16px}
-    .tag{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:6px 10px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background: rgba(0,0,0,.25);
-      color:var(--muted);
-      font-size:12px;
-      font-weight:900;
-      letter-spacing:.25px;
+    .mock{
+      border-radius: 22px;
+      border:1px solid rgba(255,255,255,.10);
+      background: linear-gradient(180deg, rgba(11,12,18,.95), rgba(14,15,22,.85));
+      padding:16px;
+      box-shadow: 0 22px 70px rgba(0,0,0,.65);
+      min-height: 240px;
+      display:flex;
+      flex-direction:column;
+      gap:14px;
     }
-    .titleRow{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:10px; flex-wrap:wrap}
-    .titleRow h3{margin:0; font-size:18px; font-weight:950}
-    .colors{display:flex; gap:6px; align-items:center; flex-wrap:wrap}
-    .sw{width:12px; height:12px; border-radius:4px; border:1px solid rgba(255,255,255,.22)}
-    .meta{margin:8px 0 12px; color:var(--muted); line-height:1.5}
-    .btnRow{display:flex; gap:10px; flex-wrap:wrap}
-    .hr{height:1px; background: var(--line); margin:14px 0}
-
-    /* LOGO STRIP */
-    .logos{
-      display:grid; grid-template-columns: repeat(12, 1fr); gap:14px;
+    .mockTop{display:flex; align-items:center; justify-content:space-between; gap:12px}
+    .pill{padding:7px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.10);color:var(--muted); background:rgba(255,255,255,.03); font-size:12px}
+    .mockBody{
+      display:grid; grid-template-columns: 1fr 1fr; gap:12px;
+      align-items:stretch;
     }
-    .logoBox{
-      grid-column: span 4;
-      border:1px solid var(--line);
-      border-radius: var(--radius);
-      background: rgba(255,255,255,.03);
-      padding:14px;
-      display:flex; gap:12px; align-items:center;
-      overflow:hidden;
-    }
-    @media (max-width: 860px){ .logoBox{grid-column: span 12;} }
-    .logoImg{
-      width:54px; height:54px; border-radius:16px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(0,0,0,.25);
-      object-fit:cover;
-      flex:0 0 auto;
-    }
-    .logoTxt b{display:block; font-size:14px}
-    .logoTxt span{color:var(--muted); font-size:12px}
-
-    /* FOOTER */
-    footer{
-      padding:26px 0 40px;
-      border-top:1px solid var(--line);
-      margin-top:18px;
-      color:var(--muted);
-    }
-
-    /* Admin */
-    .adminBox{
-      display:none;
-      border:1px dashed rgba(255,255,255,.25);
-      background: rgba(0,0,0,.25);
+    @media (max-width: 420px){ .mockBody{grid-template-columns:1fr} }
+    .mini{
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
       border-radius: 16px;
       padding:12px;
     }
-    .adminBox.show{display:block;}
-    .adminRow{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px}
-    input[type="number"]{
-      width:100px;
-      padding:10px 10px;
-      border-radius: 12px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.03);
-      color: var(--text);
-      font-weight:800;
+    .mini h3{margin:0 0 8px; font-size:13px}
+    .mini p{margin:0; color:var(--muted); font-size:12.5px; line-height:1.35}
+    .heroFoot{
+      padding:14px 18px;
+      display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between;
     }
+    .statRow{display:flex; gap:10px; flex-wrap:wrap}
+    .stat{
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
+      border-radius: 14px;
+      padding:10px 12px;
+      min-width: 160px;
+    }
+    .stat b{display:block; font-size:16px}
+    .stat span{display:block; color:var(--muted); font-size:12px; margin-top:2px}
+
+    /* Sections */
+    section{padding:26px 0}
+    .titleRow{
+      display:flex; align-items:flex-end; justify-content:space-between; gap:14px;
+      margin-bottom:12px;
+    }
+    h2{margin:0; font-size:22px}
+    .hint{color:var(--muted); font-size:13px; margin:0}
+    .grid{display:grid; gap:14px; grid-template-columns: repeat(12, 1fr)}
+    .col-4{grid-column: span 4}
+    .col-6{grid-column: span 6}
+    .col-8{grid-column: span 8}
+    .col-12{grid-column: span 12}
+    @media (max-width: 980px){ .col-4,.col-6,.col-8{grid-column:span 12} }
+
+    .program{
+      padding:16px;
+      border-radius: var(--radius);
+      border:1px solid rgba(255,255,255,.10);
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      box-shadow: 0 18px 60px rgba(0,0,0,.45);
+      position:relative;
+      overflow:hidden;
+      min-height: 210px;
+    }
+    .program::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(460px 240px at 20% 10%, var(--glowA), transparent 60%),
+                  radial-gradient(460px 240px at 80% 40%, var(--glowB), transparent 60%);
+      opacity:.32;
+      pointer-events:none;
+    }
+    .programTop{position:relative; display:flex; gap:12px; align-items:center; justify-content:space-between; margin-bottom:10px}
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:7px 10px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(0,0,0,.18);
+      font-weight:900; letter-spacing:.2px; font-size:12px;
+    }
+    .logo{
+      width:56px;height:56px;border-radius:16px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+      overflow:hidden;
+      display:grid; place-items:center;
+      position:relative;
+      flex:0 0 auto;
+    }
+    .logo img{width:100%;height:100%;object-fit:cover; display:block}
+    .program h3{position:relative; margin:0 0 8px; font-size:18px}
+    .program ul{position:relative; margin:0; padding-left:18px; color:var(--muted); line-height:1.5; font-size:13px}
+    .programActions{position:relative; display:flex; flex-wrap:wrap; gap:10px; margin-top:12px}
+    .pillBtn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:10px 12px; border-radius: 14px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(0,0,0,.16);
+      text-decoration:none; font-weight:900; font-size:13px;
+    }
+    .pillBtn:hover{background:rgba(255,255,255,.06)}
+    .pillBtn.cash{border-color: rgba(35,213,171,.35)}
+    .pillBtn.reg{border-color: rgba(124,92,255,.35)}
+    .pillBtn.sponsor{border-color: rgba(255,90,165,.35)}
+    .pillBtn.order{border-color: rgba(216,14,44,.35)}
+
+    /* Registration / Baseball cards */
+    .panel{
+      border:1px solid rgba(255,255,255,.10);
+      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.02));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      padding:16px;
+    }
+    .panel h3{margin:0 0 8px}
+    .panel p{margin:0 0 12px; color:var(--muted); font-size:13px; line-height:1.45}
+    .row{display:flex; flex-wrap:wrap; gap:10px; align-items:center}
+    .spacer{height:10px}
+
+    /* Gallery */
+    .tabs{
+      display:flex; flex-wrap:wrap; gap:10px;
+      padding:10px; border-radius: var(--radius2);
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
+    }
+    .tab{
+      cursor:pointer;
+      padding:10px 12px; border-radius: 14px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(0,0,0,.12);
+      color:var(--muted);
+      font-weight:900; font-size:13px;
+      user-select:none;
+    }
+    .tab.active{
+      background:linear-gradient(135deg, rgba(124,92,255,.85), rgba(35,213,171,.55));
+      color:var(--text);
+      border-color: rgba(255,255,255,.14);
+    }
+
+    .galleryGrid{
+      display:grid; gap:12px;
+      grid-template-columns: repeat(4, 1fr);
+      margin-top:12px;
+    }
+    @media (max-width: 980px){ .galleryGrid{grid-template-columns: repeat(2, 1fr)} }
+    @media (max-width: 480px){ .galleryGrid{grid-template-columns: 1fr} }
+    .shot{
+      border-radius: 18px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
+      overflow:hidden;
+      position:relative;
+      min-height: 180px;
+    }
+    .shot img{width:100%; height:100%; object-fit:cover; display:block}
+    .shot .rm{
+      position:absolute; top:10px; right:10px;
+      border:1px solid rgba(255,255,255,.16);
+      background:rgba(0,0,0,.45);
+      color:var(--text);
+      border-radius: 12px;
+      padding:8px 10px;
+      cursor:pointer;
+      font-weight:900;
+    }
+    .shot .rm:hover{background:rgba(0,0,0,.65)}
+    .uploadBox{
+      display:flex; flex-wrap:wrap; gap:10px; align-items:center;
+      margin-top:12px;
+      padding:12px;
+      border-radius: var(--radius2);
+      border:1px dashed rgba(255,255,255,.18);
+      background:rgba(255,255,255,.02);
+    }
+    select,input[type="file"]{
+      color:var(--text);
+      background:rgba(0,0,0,.22);
+      border:1px solid rgba(255,255,255,.14);
+      border-radius: 14px;
+      padding:10px 12px;
+    }
+    .small{font-size:12px; color:var(--muted); margin:0}
+    footer{padding:26px 0 42px; color:var(--muted)}
+    footer a{color:var(--text)}
+    .twoCol{
+      display:grid; grid-template-columns: 1fr 1fr; gap:14px;
+    }
+    @media (max-width: 980px){ .twoCol{grid-template-columns:1fr} }
+
+    .note{
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
+      border-radius: 18px;
+      padding:12px;
+      color:var(--muted);
+      font-size:12.5px;
+      line-height:1.45;
+    }
+    code.inline{background:rgba(0,0,0,.25); padding:2px 6px; border:1px solid rgba(255,255,255,.10); border-radius:8px; color:var(--text)}
   </style>
 </head>
 
 <body>
-  <div class="nav">
-    <div class="wrap navin">
-      <div class="brand">
-        <div class="mark" aria-hidden="true"></div>
-        <div>
-          <div class="tight">Stateline Renegades</div>
-          <div class="small muted">Cheer & T-Ball</div>
-        </div>
-      </div>
-
-      <div class="links" aria-label="site links">
-        <a href="#cheer">Cheer Programs</a>
-        <a href="#tball">T-Ball</a>
-        <a href="#orders">Baseball Order Forms</a>
-        <a href="#sponsors">Sponsors</a>
-      </div>
-
-      <a class="btn primary" href="#register">Register Now</a>
-    </div>
-  </div>
-
-  <header class="hero">
+  <header>
     <div class="wrap">
-      <div class="heroCard">
-        <div class="heroInner">
+      <div class="nav">
+        <a class="brand" href="#top">
+          <div class="mark">SR</div>
           <div>
-            <span class="pill"><span class="dot"></span> Registration & team info in one place</span>
-            <h1 class="h1">Build confidence. Build skills. <br/>Join the Renegades.</h1>
-            <p class="lead">
-              Cheer and T-Ball programs for multiple ages and levels — from first-time athletes to full travel teams.
-              Use the quick buttons to register, pay, or contact sponsors.
-            </p>
-
-            <div class="heroBtns" id="register">
-              <a class="btn teal" href="https://form.jotform.com/260336801253046" target="_blank" rel="noopener">Cheer Registration (Karma + Riot)</a>
-              <a class="btn green" href="https://form.jotform.com/260086521920149" target="_blank" rel="noopener">T-Ball Registration</a>
-              <a class="btn ghost" href="#orders">Baseball Order Forms</a>
-              <a class="btn purple" href="#sponsors">Sponsor Us</a>
-            </div>
-
-            <div class="spacer"></div>
-
-            <div class="logos" aria-label="logos">
-              <!-- Replace the src="" with your real image URLs (GitHub “raw” links work great) -->
-              <div class="logoBox">
-                <img class="logoImg" id="logo-riot" alt="Riot logo" src="" />
-                <div class="logoTxt"><b>Riot</b><span>Limited & Non-Travel</span></div>
-              </div>
-              <div class="logoBox">
-                <img class="logoImg" id="logo-karma" alt="Karma logo" src="" />
-                <div class="logoTxt"><b>Karma</b><span>Non-Travel (Ages 3–5)</span></div>
-              </div>
-              <div class="logoBox">
-                <img class="logoImg" id="logo-tball" alt="T-Ball logo" src="" />
-                <div class="logoTxt"><b>T-Ball</b><span>Baseball / T-Ball</span></div>
-              </div>
-            </div>
+            Stateline Renegades<br/>
+            <small>Cheer & T-Ball Organization</small>
           </div>
-
-          <aside class="heroRight">
-            <div class="kpiRow">
-              <div class="kpi">
-                <div class="big" id="spotsLeft">15</div>
-                <div class="lbl">T-Ball spots remaining (max 15)</div>
-              </div>
-              <div class="kpi">
-                <div class="big">4</div>
-                <div class="lbl">Cheer Programs</div>
-              </div>
-            </div>
-
-            <div class="quick">
-              <h3>Quick Links</h3>
-              <div class="ql">
-                <a class="chip" href="#cheer">Cheer</a>
-                <a class="chip" href="#tball">T-Ball</a>
-                <a class="chip" href="https://cash.app/$statelinerenegades" target="_blank" rel="noopener">$statelinerenegades</a>
-                <a class="chip" href="https://cash.app/$renegadesbb" target="_blank" rel="noopener">$renegadesbb</a>
-              </div>
-            </div>
-
-            <div class="adminBox" id="adminBox">
-              <b>Admin: update T-Ball spots</b>
-              <div class="small muted">Open site with <code>?admin=1</code> to see this box.</div>
-              <div class="adminRow">
-                <button class="btn ghost" id="minus1">-1 spot</button>
-                <button class="btn ghost" id="plus1">+1 spot</button>
-                <input type="number" id="setTo" min="0" max="15" value="15" />
-                <button class="btn ghost" id="setBtn">Set</button>
-                <button class="btn ghost" id="resetBtn">Reset to 15</button>
-              </div>
-            </div>
-
-          </aside>
-        </div>
+        </a>
+        <nav class="links">
+          <a href="#programs">Programs</a>
+          <a href="#register">Register</a>
+          <a href="#baseball">Baseball</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#sponsors" class="cta">Sponsors</a>
+        </nav>
       </div>
     </div>
   </header>
 
-  <main>
-    <section id="cheer">
-      <div class="wrap">
-        <div class="secHead">
-          <div>
-            <h2>Cheer Programs</h2>
-            <p>Choose your level — full travel, limited travel, or non-travel.</p>
+  <main id="top">
+    <div class="wrap hero">
+      <div class="heroGrid">
+        <div class="card heroLeft">
+          <span class="chip"><span class="dot"></span><b>Now enrolling</b> <span style="color:var(--muted)">Cheer + T-Ball</span></span>
+          <h1>One organization. <br/>Multiple programs. <br/>One family.</h1>
+          <p class="sub">
+            Welcome to the Stateline Renegades — where athletes grow in confidence, discipline, and teamwork.
+            Explore our cheer teams and T-Ball program, register online, and support our athletes through sponsorships.
+          </p>
+          <div class="heroBtns">
+            <a class="btn primary" href="#register">Register Now <small>Cheer & T-Ball</small></a>
+            <a class="btn pink" href="#programs">View Programs</a>
+            <a class="btn red" href="#sponsors">Become a Sponsor</a>
           </div>
-          <a class="btn primary" href="https://form.jotform.com/260336801253046" target="_blank" rel="noopener">Register (Karma + Riot)</a>
         </div>
 
-        <div class="cards">
-          <!-- ANARCHY -->
-          <div class="card">
-            <div class="cardIn">
-              <span class="tag">FULL TRAVEL • Ages 6–18</span>
-              <div class="titleRow">
-                <h3>Anarchy</h3>
-                <div class="colors" aria-label="Anarchy colors">
-                  <span class="sw" style="background:var(--red)"></span>
-                  <span class="sw" style="background:#000"></span>
-                  <span class="small muted">Metallic Red • Black</span>
+        <div class="card heroRight">
+          <div class="heroMedia">
+            <div class="mock">
+              <div class="mockTop">
+                <div class="pill">Flo-style layout • fast • mobile friendly</div>
+                <div class="pill">One-file site</div>
+              </div>
+              <div class="mockBody">
+                <div class="mini">
+                  <h3>Cheer Programs</h3>
+                  <p>Anarchy • Blessed Mayhem • Riot • Karma</p>
+                </div>
+                <div class="mini">
+                  <h3>T-Ball</h3>
+                  <p>15 spots tracker + registration</p>
+                </div>
+                <div class="mini">
+                  <h3>Payments</h3>
+                  <p>CashApp buttons per team</p>
+                </div>
+                <div class="mini">
+                  <h3>Gallery</h3>
+                  <p>Organization + team sub-galleries</p>
                 </div>
               </div>
-              <p class="meta">
-                High-energy full travel program for athletes ready for the next level.
-              </p>
-              <div class="btnRow">
-                <a class="btn ghost" href="https://cash.app/$renegadescheerteam" target="_blank" rel="noopener">Cash App: $renegadescheerteam</a>
+            </div>
+          </div>
+          <div class="heroFoot">
+            <div class="statRow">
+              <div class="stat">
+                <b id="spotsLeftHero">15</b>
+                <span>T-Ball spots remaining</span>
+              </div>
+              <div class="stat">
+                <b>4</b>
+                <span>Cheer teams</span>
+              </div>
+            </div>
+            <a class="btn" href="#baseball" style="min-width:auto">Baseball Links</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Programs -->
+    <section id="programs">
+      <div class="wrap">
+        <div class="titleRow">
+          <div>
+            <h2>Programs</h2>
+            <p class="hint">Tap a team to register or pay. Add your logos by pasting image links in the code (instructions below).</p>
+          </div>
+        </div>
+
+        <div class="grid">
+          <!-- ANARCHY -->
+          <div class="col-6">
+            <div class="program" style="--glowA: rgba(216,14,44,.65); --glowB: rgba(255,255,255,.10);">
+              <div class="programTop">
+                <span class="badge">Full Travel • Ages 6–18</span>
+                <div class="logo" title="Anarchy logo">
+                  <img id="logo-anarchy" alt="Anarchy logo" src="" />
+                </div>
+              </div>
+              <h3>Anarchy</h3>
+              <ul>
+                <li>Colors: Metallic Red & Black</li>
+                <li>Competitive, full travel season</li>
+                <li>High energy, strong skill building</li>
+              </ul>
+              <div class="programActions">
+                <a class="pillBtn cash" href="https://cash.app/$renegadescheerteam" target="_blank" rel="noreferrer">CashApp: $renegadescheerteam</a>
+                <a class="pillBtn sponsor" href="#sponsors">Sponsor Anarchy</a>
               </div>
             </div>
           </div>
 
-         <!-- BLESSED MAYHEM -->
-<div class="card">
-  <div class="cardIn">
-    <span class="tag">FULL TRAVEL • Ages 6–12</span>
-    <div class="titleRow">
-      <h3>Blessed Mayhem</h3>
-      <div class="colors" aria-label="Blessed Mayhem colors">
-        <span class="sw" style="background:#000"></span>
-        <span class="sw" style="background:var(--purple)"></span>
-        <span class="small muted">Black • Purple</span>
-      </div>
-    </div>
-             <p class="meta">
-  Full travel team for ages 6–12 — competitive training, strong team culture, and big performance energy.
-</p>
-              <div class="btnRow">
-                <a class="btn ghost" href="https://cash.app/$renegadescheerteam" target="_blank" rel="noopener">Cash App: $renegadescheerteam</a>
+          <!-- BLESSED MAYHEM -->
+          <div class="col-6">
+            <div class="program" style="--glowA: rgba(123,70,255,.60); --glowB: rgba(0,0,0,.30);">
+              <div class="programTop">
+                <span class="badge">Full Travel • Ages 6–12</span>
+                <div class="logo" title="Blessed Mayhem logo">
+                  <img id="logo-mayhem" alt="Blessed Mayhem logo" src="" />
+                </div>
+              </div>
+              <h3>Blessed Mayhem</h3>
+              <ul>
+                <li>Colors: Black & Purple</li>
+                <li>Competitive, full travel season</li>
+                <li>Confidence + performance focus</li>
+              </ul>
+              <div class="programActions">
+                <a class="pillBtn cash" href="https://cash.app/$renegadescheerteam" target="_blank" rel="noreferrer">CashApp: $renegadescheerteam</a>
+                <a class="pillBtn sponsor" href="#sponsors">Sponsor Mayhem</a>
               </div>
             </div>
           </div>
 
           <!-- RIOT -->
-          <div class="card">
-            <div class="cardIn">
-              <span class="tag">LIMITED / NON-TRAVEL • Ages 5–14</span>
-              <div class="titleRow">
-                <h3>Riot</h3>
-                <div class="colors" aria-label="Riot colors">
-                  <span class="sw" style="background:var(--dg)"></span>
-                  <span class="sw" style="background:var(--pink)"></span>
-                  <span class="small muted">Dark Green • Light Pink</span>
+          <div class="col-6">
+            <div class="program" style="--glowA: rgba(43,212,125,.50); --glowB: rgba(255,119,183,.45);">
+              <div class="programTop">
+                <span class="badge">Limited + Non-Travel • Ages 5–14</span>
+                <div class="logo" title="Riot logo">
+                  <img id="logo-riot" alt="Riot logo" src="" />
                 </div>
               </div>
-              <p class="meta">
-                Perfect for athletes who want performance + growth with limited travel options.
-              </p>
-              <div class="btnRow">
-                <a class="btn teal" href="https://form.jotform.com/260336801253046" target="_blank" rel="noopener">Register Riot</a>
-                <a class="btn ghost" href="https://cash.app/$statelinerenegades" target="_blank" rel="noopener">Cash App: $statelinerenegades</a>
+              <h3>Riot</h3>
+              <ul>
+                <li>Colors: Dark Green & Light Pink</li>
+                <li>Limited travel + non-travel options</li>
+                <li>Perfect for building strong fundamentals</li>
+              </ul>
+              <div class="programActions">
+                <a class="pillBtn reg" href="https://form.jotform.com/260336801253046" target="_blank" rel="noreferrer">Register (Riot)</a>
+                <a class="pillBtn cash" href="https://cash.app/$statelinerenegades" target="_blank" rel="noreferrer">CashApp: $statelinerenegades</a>
               </div>
             </div>
           </div>
 
           <!-- KARMA -->
-          <div class="card">
-            <div class="cardIn">
-              <span class="tag">NON-TRAVEL • Ages 3–5</span>
-              <div class="titleRow">
-                <h3>Karma</h3>
-                <div class="colors" aria-label="Karma colors">
-                  <span class="sw" style="background:var(--teal)"></span>
-                  <span class="sw" style="background:var(--pink)"></span>
-                  <span class="small muted">Teal • Light Pink</span>
+          <div class="col-6">
+            <div class="program" style="--glowA: rgba(46,214,211,.55); --glowB: rgba(255,119,183,.45);">
+              <div class="programTop">
+                <span class="badge">Non-Travel • Ages 3–5</span>
+                <div class="logo" title="Karma logo">
+                  <img id="logo-karma" alt="Karma logo" src="" />
                 </div>
               </div>
-              <p class="meta">
-                Intro program for littles — confidence, basics, fun, and teamwork.
-              </p>
-              <div class="btnRow">
-                <a class="btn teal" href="https://form.jotform.com/260336801253046" target="_blank" rel="noopener">Register Karma</a>
-                <a class="btn ghost" href="https://cash.app/$statelinerenegades" target="_blank" rel="noopener">Cash App: $statelinerenegades</a>
+              <h3>Karma</h3>
+              <ul>
+                <li>Colors: Teal & Light Pink</li>
+                <li>Non-travel team (beginner friendly)</li>
+                <li>Fun, confidence, and teamwork for little ones</li>
+              </ul>
+              <div class="programActions">
+                <a class="pillBtn reg" href="https://form.jotform.com/260336801253046" target="_blank" rel="noreferrer">Register (Karma)</a>
+                <a class="pillBtn cash" href="https://cash.app/$statelinerenegades" target="_blank" rel="noreferrer">CashApp: $statelinerenegades</a>
               </div>
             </div>
           </div>
 
+          <!-- T-BALL -->
+          <div class="col-12">
+            <div class="program" style="--glowA: rgba(216,14,44,.55); --glowB: rgba(0,0,0,.35); min-height:auto;">
+              <div class="programTop">
+                <span class="badge">T-Ball • Colors Red & Black</span>
+                <div class="logo" title="T-Ball logo">
+                  <img id="logo-tball" alt="T-Ball logo" src="" />
+                </div>
+              </div>
+              <h3>Renegades T-Ball</h3>
+              <ul>
+                <li>Colors: Red & Black</li>
+                <li>Spots are limited — reserve your athlete’s spot below.</li>
+              </ul>
+              <div class="programActions">
+                <a class="pillBtn reg" href="https://form.jotform.com/260086521920149" target="_blank" rel="noreferrer">Register (T-Ball)</a>
+                <a class="pillBtn cash" href="https://cash.app/$renegadesbb" target="_blank" rel="noreferrer">CashApp: $renegadesbb</a>
+                <a class="pillBtn sponsor" href="#sponsors">Sponsor T-Ball</a>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="spacer"></div>
-
-        <div class="secHead">
-          <div>
-            <h2>Extra Logos</h2>
-            <p>Drop your image links in the code (instructions below).</p>
-          </div>
+        <div class="note">
+          <b>Logo note:</b> This site is ready for your logos. You’ll paste your image links into the <code class="inline">LOGO_URLS</code> section in the script below.
+          If you don’t paste links, the logo boxes stay blank.
         </div>
-
-        <div class="logos">
-          <div class="logoBox">
-            <img class="logoImg" id="logo-anarchy" alt="Anarchy logo" src="" />
-            <div class="logoTxt"><b>Anarchy Logo</b><span>Upload + paste URL</span></div>
-          </div>
-          <div class="logoBox">
-            <img class="logoImg" id="logo-mayhem" alt="Blessed Mayhem logo" src="" />
-            <div class="logoTxt"><b>Blessed Mayhem</b><span>Upload + paste URL</span></div>
-          </div>
-          
       </div>
     </section>
 
-    <section id="tball">
+    <!-- Register -->
+    <section id="register">
       <div class="wrap">
-        <div class="secHead">
+        <div class="titleRow">
           <div>
-            <h2>T-Ball Program</h2>
-            <p>Red & Black • Spots are limited (max 15).</p>
+            <h2>Register</h2>
+            <p class="hint">Fast links for families — Cheer + T-Ball.</p>
           </div>
-          <a class="btn green" href="https://form.jotform.com/260086521920149" target="_blank" rel="noopener">Register T-Ball</a>
         </div>
 
-        <div class="cards">
-          <div class="card" style="grid-column: span 12;">
-            <div class="cardIn">
-              <span class="tag">T-BALL • Red & Black</span>
-              <div class="titleRow">
-                <h3>Renegades T-Ball</h3>
-                <div class="colors" aria-label="T-Ball colors">
-                  <span class="sw" style="background:var(--red)"></span>
-                  <span class="sw" style="background:#000"></span>
-                  <span class="small muted">Red • Black</span>
-                </div>
+        <div class="twoCol">
+          <div class="panel">
+            <h3>Cheer Registration</h3>
+            <p>Use this form for <b>Karma</b> and <b>Riot</b>.</p>
+            <div class="row">
+              <a class="btn primary" href="https://form.jotform.com/260336801253046" target="_blank" rel="noreferrer">Register: Karma / Riot</a>
+              <a class="btn" href="#programs">See Teams</a>
+            </div>
+          </div>
+
+          <div class="panel">
+            <h3>T-Ball Registration</h3>
+            <p>Spots are limited. Current remaining spots:</p>
+            <div class="row" style="gap:12px">
+              <div class="stat" style="min-width:220px">
+                <b id="spotsLeft">15</b>
+                <span>Spots remaining (max 15)</span>
               </div>
-
-              <p class="meta">
-                Register using the official form. Spots remaining show at the top of this site.
-                After each confirmed registration, update the counter (admin view).
-              </p>
-
-              <div class="btnRow">
-                <a class="btn green" href="https://form.jotform.com/260086521920149" target="_blank" rel="noopener">T-Ball Registration</a>
-                <a class="btn ghost" href="https://cash.app/$renegadesbb" target="_blank" rel="noopener">Cash App: $renegadesbb</a>
-              </div>
-
-              <div class="hr"></div>
-
-              <div class="small muted">
-                Tip: To update spots manually, open your site like:
-                <b>statelinerenegades.com/?admin=1</b>
-              </div>
+              <a class="btn red" href="https://form.jotform.com/260086521920149" target="_blank" rel="noreferrer">Register: T-Ball</a>
+            </div>
+            <div class="spacer"></div>
+            <div class="note">
+              <b>About the counter:</b> On a static website, we can’t automatically detect Jotform submissions without an API/webhook.
+              So this site includes a simple “admin update” button below. Use it after each completed registration to keep spots accurate.
+            </div>
+            <div class="row" style="margin-top:10px">
+              <button class="btn" id="adminDecBtn" type="button">Admin: −1 spot</button>
+              <button class="btn" id="adminResetBtn" type="button">Admin: Reset to 15</button>
             </div>
           </div>
         </div>
-
       </div>
     </section>
 
-    <section id="orders">
+    <!-- Baseball -->
+    <section id="baseball">
       <div class="wrap">
-        <div class="secHead">
+        <div class="titleRow">
           <div>
-            <h2>Baseball Order Forms</h2>
-            <p>Links from your image — players, parents/family, and coaches.</p>
+            <h2>Baseball</h2>
+            <p class="hint">Order forms + registration link.</p>
           </div>
         </div>
 
-        <div class="cards">
-          <div class="card">
-            <div class="cardIn">
-              <span class="tag">ORDER FORM</span>
-              <div class="titleRow"><h3>Players Order Form</h3></div>
-              <p class="meta">Use this form for player orders.</p>
-              <div class="btnRow">
-                <a class="btn primary" href="https://form.jotform.com/260125057825050" target="_blank" rel="noopener">Open Players Form</a>
+        <div class="grid">
+          <div class="col-6">
+            <div class="panel">
+              <h3>Baseball Order Forms</h3>
+              <p>Use the correct form below:</p>
+              <div class="row">
+                <a class="pillBtn order" href="https://form.jotform.com/260125057825050" target="_blank" rel="noreferrer">Players Order Form</a>
+                <a class="pillBtn order" href="https://form.jotform.com/260124714767054" target="_blank" rel="noreferrer">Parent/Family Order Form</a>
+                <a class="pillBtn order" href="https://form.jotform.com/260125031204033" target="_blank" rel="noreferrer">Coach Order Form</a>
               </div>
             </div>
           </div>
 
-          <div class="card">
-            <div class="cardIn">
-              <span class="tag">ORDER FORM</span>
-              <div class="titleRow"><h3>Parent / Family Order Form</h3></div>
-              <p class="meta">Use this form for parent/family orders.</p>
-              <div class="btnRow">
-                <a class="btn primary" href="https://form.jotform.com/260124714767054" target="_blank" rel="noopener">Open Parent/Family Form</a>
+          <div class="col-6">
+            <div class="panel">
+              <h3>Baseball Registration (T-Ball)</h3>
+              <p>Register your athlete here. Spots remaining are tracked on this site.</p>
+              <div class="row">
+                <a class="btn red" href="https://form.jotform.com/260086521920149" target="_blank" rel="noreferrer">Register T-Ball</a>
+                <a class="btn" href="https://cash.app/$renegadesbb" target="_blank" rel="noreferrer">Pay: $renegadesbb</a>
               </div>
             </div>
           </div>
-
-          <div class="card" style="grid-column: span 12;">
-            <div class="cardIn">
-              <span class="tag">ORDER FORM</span>
-              <div class="titleRow"><h3>Coach Order Form</h3></div>
-              <p class="meta">Use this form for coach orders.</p>
-              <div class="btnRow">
-                <a class="btn primary" href="https://form.jotform.com/260125031204033" target="_blank" rel="noopener">Open Coach Form</a>
-              </div>
-            </div>
-          </div>
-
         </div>
+
       </div>
     </section>
 
+    <!-- Gallery -->
+    <section id="gallery">
+      <div class="wrap">
+        <div class="titleRow">
+          <div>
+            <h2>Gallery</h2>
+            <p class="hint">Organization gallery + team galleries. Easy upload saves on your device/browser.</p>
+          </div>
+        </div>
+
+        <div class="tabs" id="galleryTabs"></div>
+
+        <div class="uploadBox">
+          <b>Upload photos:</b>
+          <select id="galleryTarget">
+            <option value="org">Organization (Main)</option>
+            <option value="riot">Riot</option>
+            <option value="karma">Karma</option>
+            <option value="anarchy">Anarchy</option>
+            <option value="mayhem">Blessed Mayhem</option>
+            <option value="tball">T-Ball</option>
+          </select>
+          <input id="galleryFiles" type="file" accept="image/*" multiple />
+          <button class="btn" id="uploadBtn" type="button">Add to Gallery</button>
+          <button class="btn" id="clearGalleryBtn" type="button">Clear Current Gallery</button>
+          <p class="small">
+            Tip: This upload works without any accounts, but it saves to <b>this device/browser only</b>.
+            If you want “uploads everyone can see”, you’ll need a storage service (Cloudinary / Google Drive / etc.).
+          </p>
+        </div>
+
+        <div class="galleryGrid" id="galleryGrid"></div>
+      </div>
+    </section>
+
+    <!-- Sponsors -->
     <section id="sponsors">
       <div class="wrap">
-        <div class="secHead">
+        <div class="titleRow">
           <div>
             <h2>Sponsors</h2>
-            <p>Support our athletes — donations help with facilities, gear, travel, and competition costs.</p>
+            <p class="hint">Support our athletes with sponsorships or donations.</p>
           </div>
         </div>
 
-        <div class="cards">
-          <div class="card" style="grid-column: span 12;">
-            <div class="cardIn">
-              <span class="tag">SPONSORSHIP</span>
-              <div class="titleRow">
-                <h3>Become a Sponsor</h3>
-              </div>
-
-              <p class="meta">
-                We love partnering with local businesses who believe in building confident kids and strong communities.
-                Click below to contact us about sponsorship options.
-              </p>
-
-              <div class="btnRow">
-                <a class="btn purple" href="mailto:statelinerenegades@gmail.com?subject=Sponsor%20the%20Stateline%20Renegades">Sponsor Inquiry Email</a>
-                <a class="btn ghost" href="#register">Registration Links</a>
-              </div>
-
-              <div class="hr"></div>
-
-              <div class="small muted">
-                Cash App links:
-                <br/>• Karma & Riot: <a href="https://cash.app/$statelinerenegades" target="_blank" rel="noopener"><b>$statelinerenegades</b></a>
-                <br/>• T-Ball: <a href="https://cash.app/$renegadesbb" target="_blank" rel="noopener"><b>$renegadesbb</b></a>
-                <br/>• Anarchy: <a href="https://cash.app/$renegadescheerteam" target="_blank" rel="noopener"><b>$renegadescheerteam</b></a>
-              </div>
-            </div>
+        <div class="panel">
+          <h3>Become a Sponsor</h3>
+          <p>
+            Your sponsorship helps cover facility rentals, equipment, uniforms, travel fees, and competition costs.
+            We’d love to feature your business and thank you publicly!
+          </p>
+          <div class="row">
+            <a class="btn pink" id="sponsorBtn" href="mailto:statelinerenegades@gmail.com?subject=Stateline%20Renegades%20Sponsorship%20Request&body=Hi%20Stateline%20Renegades%20Team%2C%0A%0AI%27m%20interested%20in%20becoming%20a%20sponsor.%20Please%20send%20me%20your%20sponsorship%20packages%20and%20details.%0A%0AThank%20you%2C" target="_blank" rel="noreferrer">
+              Sponsor Inquiry (Email)
+            </a>
+            <a class="btn" href="#programs">Sponsor a Team</a>
+          </div>
+          <div class="spacer"></div>
+          <div class="note">
+            Want a real sponsor form button instead of email? Send me your sponsor form link (Jotform/Google Form)
+            and I’ll plug it in.
           </div>
         </div>
-
       </div>
     </section>
+
+    <footer>
+      <div class="wrap">
+        <div class="twoCol">
+          <div class="note">
+            <b>How to add your logos (fast):</b><br/>
+            1) Upload logo images to GitHub (Add file → Upload).<br/>
+            2) Open the image → copy the <b>RAW</b> link.<br/>
+            3) Paste that link into the <code class="inline">LOGO_URLS</code> section in the script below.<br/>
+          </div>
+          <div class="note">
+            <b>Need the gallery to work for everyone?</b><br/>
+            This version stores uploads on the viewer’s device. If you want parents to upload and everyone sees it,
+            we can connect a real upload service (Cloudinary widget is the easiest).
+          </div>
+        </div>
+        <p style="margin-top:14px">
+          © <span id="year"></span> Stateline Renegades • Built for mobile • One-file site
+        </p>
+      </div>
+    </footer>
   </main>
 
-  <footer>
-    <div class="wrap">
-      <div style="display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap">
-        <div>
-          <b style="color:var(--text)">Stateline Renegades</b>
-          <div class="small">Cheer & T-Ball • All rights reserved</div>
-        </div>
-        <div class="small">
-          Built for fast mobile viewing • Update T-Ball spots via <b>?admin=1</b>
-        </div>
-      </div>
-    </div>
-  </footer>
-
   <script>
-    /**
-     * LOGOS (IMPORTANT)
-     * 1) Upload your logos/images to GitHub (as individual image files)
-     * 2) Copy each file’s “raw” URL
-     * 3) Paste into the URLs below
-     */
+    /***************************************************************
+     * 1) PASTE YOUR LOGO IMAGE LINKS HERE (RAW GitHub links work best)
+     ***************************************************************/
     const LOGO_URLS = {
-      riot:   "", // paste Riot logo URL
-      karma:  "", // paste Karma logo URL
-      anarchy:"", // paste Anarchy logo URL
-      mayhem: "", // paste Blessed Mayhem logo URL
-      tball:  ""  // paste T-Ball logo URL
+      riot:   "", // paste link
+      karma:  "", // paste link
+      anarchy:"", // paste link
+      mayhem: "", // paste link
+      tball:  ""  // paste link
     };
 
     // Apply logo URLs if provided
     function setLogo(id, url){
       const el = document.getElementById(id);
       if(!el) return;
-      if(url && typeof url === "string" && url.trim().length > 5){
+      if(url && url.trim()){
         el.src = url.trim();
-      }else{
-        // fallback: show a nice gradient placeholder
-        el.style.background = "linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.02))";
+      } else {
+        // If no logo, show a simple fallback letter
+        el.removeAttribute("src");
+        el.style.display = "none";
+        const box = el.parentElement;
+        box.textContent = (id.includes("riot") ? "R" :
+                          id.includes("karma") ? "K" :
+                          id.includes("anarchy") ? "A" :
+                          id.includes("mayhem") ? "BM" :
+                          id.includes("tball") ? "TB" : "SR");
+        box.style.fontWeight = "1000";
+        box.style.color = "rgba(255,255,255,.85)";
       }
     }
     setLogo("logo-riot", LOGO_URLS.riot);
     setLogo("logo-karma", LOGO_URLS.karma);
     setLogo("logo-anarchy", LOGO_URLS.anarchy);
-    setLogo("logo-poison", LOGO_URLS.poison);
     setLogo("logo-mayhem", LOGO_URLS.mayhem);
     setLogo("logo-tball", LOGO_URLS.tball);
 
-    /**
-     * T-BALL SPOTS COUNTER (one-file safe version)
-     * - Stores number in localStorage for admin updates
-     * - Show admin box only when ?admin=1 is present
-     */
+    /***************************************************************
+     * 2) T-BALL SPOTS COUNTER (static-site friendly)
+     *    Stored in localStorage so it persists on your device.
+     ***************************************************************/
+    const SPOTS_KEY = "sr_tball_spots";
     const MAX_SPOTS = 15;
-    const KEY = "tball_spots_left_v1";
 
     function getSpots(){
-      const v = localStorage.getItem(KEY);
+      const v = localStorage.getItem(SPOTS_KEY);
       const n = v === null ? MAX_SPOTS : parseInt(v, 10);
-      if(Number.isNaN(n)) return MAX_SPOTS;
-      return Math.max(0, Math.min(MAX_SPOTS, n));
+      return Number.isFinite(n) ? Math.max(0, Math.min(MAX_SPOTS, n)) : MAX_SPOTS;
     }
     function setSpots(n){
       const safe = Math.max(0, Math.min(MAX_SPOTS, n));
-      localStorage.setItem(KEY, String(safe));
+      localStorage.setItem(SPOTS_KEY, String(safe));
       renderSpots();
     }
     function renderSpots(){
       const n = getSpots();
-      document.getElementById("spotsLeft").textContent = String(n);
-      const setTo = document.getElementById("setTo");
-      if(setTo) setTo.value = String(n);
+      const a = document.getElementById("spotsLeft");
+      const b = document.getElementById("spotsLeftHero");
+      if(a) a.textContent = n;
+      if(b) b.textContent = n;
+    }
+    renderSpots();
+
+    document.getElementById("adminDecBtn")?.addEventListener("click", () => {
+      setSpots(getSpots() - 1);
+      alert("Updated: Spots decreased by 1.");
+    });
+    document.getElementById("adminResetBtn")?.addEventListener("click", () => {
+      if(confirm("Reset spots back to 15?")){
+        setSpots(MAX_SPOTS);
+      }
+    });
+
+    /***************************************************************
+     * 3) GALLERY (no-backend local storage version)
+     *    Stores images as Data URLs in localStorage.
+     ***************************************************************/
+    const G_KEY = "sr_gallery_v1";
+    const CATEGORIES = [
+      { key:"org", label:"Organization" },
+      { key:"riot", label:"Riot" },
+      { key:"karma", label:"Karma" },
+      { key:"anarchy", label:"Anarchy" },
+      { key:"mayhem", label:"Blessed Mayhem" },
+      { key:"tball", label:"T-Ball" }
+    ];
+
+    let activeGallery = "org";
+
+    function loadGallery(){
+      try{
+        const raw = localStorage.getItem(G_KEY);
+        const data = raw ? JSON.parse(raw) : {};
+        // ensure arrays exist
+        for(const c of CATEGORIES){
+          if(!Array.isArray(data[c.key])) data[c.key] = [];
+        }
+        return data;
+      }catch{
+        const empty = {};
+        for(const c of CATEGORIES) empty[c.key] = [];
+        return empty;
+      }
     }
 
-    // Admin mode?
-    const params = new URLSearchParams(location.search);
-    const isAdmin = params.get("admin") === "1";
-    const adminBox = document.getElementById("adminBox");
-    if(isAdmin) adminBox.classList.add("show");
+    function saveGallery(data){
+      localStorage.setItem(G_KEY, JSON.stringify(data));
+    }
 
-    // Hook up buttons
-    document.getElementById("minus1").addEventListener("click", ()=> setSpots(getSpots()-1));
-    document.getElementById("plus1").addEventListener("click", ()=> setSpots(getSpots()+1));
-    document.getElementById("setBtn").addEventListener("click", ()=>{
-      const n = parseInt(document.getElementById("setTo").value, 10);
-      if(!Number.isNaN(n)) setSpots(n);
+    function renderTabs(){
+      const tabs = document.getElementById("galleryTabs");
+      tabs.innerHTML = "";
+      for(const c of CATEGORIES){
+        const t = document.createElement("div");
+        t.className = "tab" + (c.key === activeGallery ? " active" : "");
+        t.textContent = c.label;
+        t.addEventListener("click", () => {
+          activeGallery = c.key;
+          renderTabs();
+          renderGallery();
+        });
+        tabs.appendChild(t);
+      }
+    }
+
+    function renderGallery(){
+      const grid = document.getElementById("galleryGrid");
+      const data = loadGallery();
+      const arr = data[activeGallery] || [];
+      grid.innerHTML = "";
+
+      if(arr.length === 0){
+        const empty = document.createElement("div");
+        empty.className = "note";
+        empty.style.gridColumn = "1 / -1";
+        empty.innerHTML = "<b>No photos yet.</b><br/>Use the upload box above to add photos to this gallery.";
+        grid.appendChild(empty);
+        return;
+      }
+
+      arr.forEach((src, idx) => {
+        const card = document.createElement("div");
+        card.className = "shot";
+        const img = document.createElement("img");
+        img.src = src;
+        img.alt = "Gallery photo";
+
+        const rm = document.createElement("button");
+        rm.className = "rm";
+        rm.type = "button";
+        rm.textContent = "Remove";
+        rm.addEventListener("click", () => {
+          const data2 = loadGallery();
+          data2[activeGallery].splice(idx, 1);
+          saveGallery(data2);
+          renderGallery();
+        });
+
+        card.appendChild(img);
+        card.appendChild(rm);
+        grid.appendChild(card);
+      });
+    }
+
+    async function filesToDataUrls(fileList){
+      const files = Array.from(fileList || []);
+      const out = [];
+      for(const f of files){
+        const url = await new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result);
+          reader.onerror = reject;
+          reader.readAsDataURL(f);
+        });
+        out.push(url);
+      }
+      return out;
+    }
+
+    document.getElementById("uploadBtn")?.addEventListener("click", async () => {
+      const target = document.getElementById("galleryTarget").value;
+      const input = document.getElementById("galleryFiles");
+      if(!input.files || input.files.length === 0){
+        alert("Choose at least one photo first.");
+        return;
+      }
+      const urls = await filesToDataUrls(input.files);
+
+      const data = loadGallery();
+      data[target] = data[target].concat(urls);
+      saveGallery(data);
+
+      // switch to that gallery tab
+      activeGallery = target;
+      renderTabs();
+      renderGallery();
+
+      // reset file input
+      input.value = "";
+      alert("Added to gallery!");
     });
-    document.getElementById("resetBtn").addEventListener("click", ()=> setSpots(MAX_SPOTS));
 
-    renderSpots();
+    document.getElementById("clearGalleryBtn")?.addEventListener("click", () => {
+      if(!confirm("Clear ALL photos in the current gallery tab?")) return;
+      const data = loadGallery();
+      data[activeGallery] = [];
+      saveGallery(data);
+      renderGallery();
+    });
+
+    renderTabs();
+    renderGallery();
+
+    // Footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
