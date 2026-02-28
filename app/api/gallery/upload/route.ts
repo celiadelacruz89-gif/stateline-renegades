@@ -20,7 +20,7 @@ export async function POST(req: Request) {
     const pathname = `gallery/${safeFolder}/${stamp}-${rand}.${ext}`;
 
     const blob = await put(pathname, file, {
-      access: "public",
+      access: "private",
       addRandomSuffix: false
     });
 
