@@ -14,7 +14,7 @@ async function readSpots(): Promise<{ max: number; remaining: number; updatedAt:
   if (!res.blobs || res.blobs.length === 0) {
     const init = { max: MAX_SPOTS, remaining: MAX_SPOTS, updatedAt: new Date().toISOString() };
     await put(KEY, JSON.stringify(init), {
-      access: "public",
+      access: "private",
       contentType: "application/json",
       addRandomSuffix: false
     });
