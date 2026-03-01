@@ -67,7 +67,7 @@ const TEAMS: Array<{
     colors: "Black + Purple",
     ages: "Ages 6–12",
     travel: "Full Travel",
-    logo: "/logos/mayhem.png",
+    logo: "/logos/blessedmayhem.png",
     cashapp: { handle: "$renegadescheerteam", label: "Pay Anarchy/Mayhem" },
     badge: "Cheer",
   },
