@@ -60,7 +60,7 @@ export default function Admin() {
       const res = await fetch("/api/tball-spots", { cache: "no-store" });
       const out = await safeJson(res);
       if (!out.ok) throw new Error(out.text || "Unable to load spots");
-      const v = Number(out.json?.spotsRemaining);
+      const v = Number(out.json?.spots);
       if (!Number.isNaN(v)) {
         setSpots(v);
         setSpotsInput(String(v));
