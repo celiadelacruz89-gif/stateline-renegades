@@ -2,7 +2,7 @@
 
 export type Contact = {
   name: string;
-  phone: string;
+  phone: string; // keep as "915-xxx-xxxx" for display
 };
 
 export type Team = {
@@ -10,31 +10,28 @@ export type Team = {
   name: string;
   ages: string;
   colors: string;
-  logo: string; // path from /public
-  cashApp: string;
+  logo: string; // path in /public (example: "/logos/karma.png")
+  cashApp?: string;
   registration?: string;
+  contacts: Contact[];
 };
 
-export const SITE = {
-  orgName: "Stateline Renegades",
+export const org = {
+  name: "Stateline Renegades",
   tagline: "Cheer • Baseball • Community • Family",
+  // Forms / Links
+  sponsorForm: "https://form.jotform.com/celiadelacruz89/sponsorship-application-form",
+  karmaRiotRegistration: "https://form.jotform.com/260336801253046",
+  tballRegistration: "https://form.jotform.com/260086521920149",
+  // T-Ball Merch Links (from your screenshot)
+  tballMerch: {
+    players: "https://form.jotform.com/260125057825050",
+    parentFamily: "https://form.jotform.com/260124714767054",
+    coach: "https://form.jotform.com/260125031204033",
+  },
 };
 
-export const contacts = {
-  riotKarma: [
-    { name: "Coach Celia", phone: "915-352-9033" },
-    { name: "Coach Andy", phone: "915-472-0190" },
-  ] satisfies Contact[],
-
-  anarchy: [{ name: "Team mom Jennifer", phone: "915-803-9442" }] satisfies Contact[],
-
-  tball: [
-    { name: "Coach Rudy", phone: "915-352-9504" },
-    { name: "Team mom Linette", phone: "915-497-0213" },
-  ] satisfies Contact[],
-};
-
-export const TEAMS: Team[] = [
+export const teams: Team[] = [
   {
     id: "karma",
     name: "Karma Renegades",
@@ -42,7 +39,11 @@ export const TEAMS: Team[] = [
     colors: "Teal & Light Pink",
     logo: "/logos/karma.png",
     cashApp: "$statelinerenegades",
-    registration: "https://form.jotform.com/260336801253046",
+    registration: org.karmaRiotRegistration,
+    contacts: [
+      { name: "Coach Celia", phone: "915-352-9033" },
+      { name: "Coach Andy", phone: "915-472-0190" },
+    ],
   },
   {
     id: "riot",
@@ -51,7 +52,11 @@ export const TEAMS: Team[] = [
     colors: "Dark Green & Light Pink",
     logo: "/logos/riot.png",
     cashApp: "$statelinerenegades",
-    registration: "https://form.jotform.com/260336801253046",
+    registration: org.karmaRiotRegistration,
+    contacts: [
+      { name: "Coach Celia", phone: "915-352-9033" },
+      { name: "Coach Andy", phone: "915-472-0190" },
+    ],
   },
   {
     id: "anarchy",
@@ -60,6 +65,7 @@ export const TEAMS: Team[] = [
     colors: "Metallic Red & Black",
     logo: "/logos/anarchy.png",
     cashApp: "$renegadescheerteam",
+    contacts: [{ name: "Team mom Jennifer", phone: "915-803-9442" }],
   },
   {
     id: "tball",
@@ -68,17 +74,13 @@ export const TEAMS: Team[] = [
     colors: "Red & Black",
     logo: "/logos/tball.png",
     cashApp: "$RenegadesBB",
-    registration: "https://form.jotform.com/260086521920149",
+    registration: org.tballRegistration,
+    contacts: [
+      { name: "Coach Rudy", phone: "915-352-9504" },
+      { name: "Team mom Linette", phone: "915-497-0213" },
+    ],
   },
 ];
 
-export const LINKS = {
-  karmaRiotRegistration: "https://form.jotform.com/260336801253046",
-  sponsorship: "https://form.jotform.com/celiadelacruz89/sponsorship-application-form",
-  tballRegistration: "https://form.jotform.com/260086521920149",
-  tballMerch: {
-    players: "https://form.jotform.com/260125057825050",
-    parentFamily: "https://form.jotform.com/260124714767054",
-    coach: "https://form.jotform.com/260125031204033",
-  },
-};
+// ✅ Compatibility exports (fixes your build errors no matter which import name pages use)
+export const TEAMS = teams;
