@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { teamLabel } from "../../lib/utils";
+import { teamLabel } from "../../../app/lib/utils";
 
 async function getItems(team: string) {
   const qs = new URLSearchParams({ folder: team }).toString();
