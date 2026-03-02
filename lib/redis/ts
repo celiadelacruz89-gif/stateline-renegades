@@ -1,1 +1,27 @@
+import { NextResponse } from "next/server";
+import { kv } from "@vercel/kv";
 
+const KEY = "tball_spots_remaining";
+const DEFAULT_SPOTS = 15;
+
+export async function GET() {
+  const spots = (await kv.get<number>(KEY)) ?? DEFAULT_SPOTS;
+  return NextResponse.json({ spots });
+}
+
+export async function POST(req: Request) {
+  try {
+    const body = await req.json();
+    const num = Number(body.spots);
+
+    // Accept only whole numbers 0–15
+    if (!Number.isFinite(num) || !Number.isInteger(num) || num < 0 || num > 15) {
+      return NextResponse.json({ error: "Invalid number" }, { status: 400 });
+    }
+
+    await kv.set(KEY, num);
+    return NextResponse.json({ success: true, spots: num });
+  } catch {
+    return NextResponse.json({ error: "Invalid request" }, { status: 400 });
+  }
+}
