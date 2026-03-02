@@ -1,201 +1,101 @@
-export const dynamic = "force-dynamic";
+// app/page.tsx
+import TeamCard from "./components/TeamCard";
+import SponsorCarousel from "./components/SponsorCarousel";
+import { site, teams, sponsorLogos } from "./lib/data";
 
-function SponsorCarousel() {
-  // Put real sponsor names here anytime
-  const sponsors = [
-    "Sponsor Name",
-    "Sponsor Name",
-    "Sponsor Name",
-    "Sponsor Name",
-    "Sponsor Name",
-    "Sponsor Name",
-  ];
-
-  // Duplicate list so it loops smoothly
-  const loop = [...sponsors, ...sponsors];
-
+export default function HomePage() {
   return (
-    <div className="carousel">
-      <div className="track" aria-label="Sponsor logos scrolling">
-        {loop.map((s, i) => (
-          <div className="logo" key={`${s}-${i}`}>
-            {s}
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
+    <main className="mx-auto max-w-6xl px-5 py-10">
+      {/* Header */}
+      <header className="mb-10">
+        <div className="text-3xl font-extrabold tracking-tight">
+          {site.orgName}
+        </div>
+        <div className="mt-2 text-white/70">{site.tagline}</div>
 
-function AnimatedNumber({ value }: { value: number }) {
-  // Simple “pop” animation via key
-  return <span key={value} className="statBig">{value}</span>;
-}
+        <div className="mt-5 rounded-2xl border border-white/10 bg-white/5 p-5">
+          <div className="text-sm font-semibold text-white/80">CashApp</div>
+          <div className="mt-1 text-2xl font-bold">{site.cashApp.handle}</div>
+          <div className="mt-1 text-sm text-white/70">{site.cashApp.note}</div>
 
-export default async function Home() {
-  // Read spots from API (uses your existing /api/tball-spots)
-  let spots = 15;
-  try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL ?? ""}/api/tball-spots`, {
-      cache: "no-store",
-    });
-    if (res.ok) {
-      const data = await res.json();
-      const n = Number(data?.spots);
-      if (Number.isFinite(n)) spots = n;
-    }
-  } catch {}
+          <div className="mt-4 flex flex-wrap gap-2">
+            <a
+              href={`https://cash.app/${site.cashApp.handle.replace("$", "")}`}
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-xl bg-white/10 px-3 py-2 text-sm hover:bg-white/15"
+            >
+              Donate via CashApp
+            </a>
 
-  return (
-    <>
-      <div className="topbar">
-        <div className="container">
-          <div className="brandRow">
-            <div className="badge">STATELINE RENEGADES</div>
-            <div className="badge">ELITE MODE</div>
-            <div style={{ marginLeft: "auto" }} className="badge">
-              Admin: /admin
-            </div>
+            {site.sponsorFormUrl ? (
+              <a
+                href={site.sponsorFormUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-xl bg-white/10 px-3 py-2 text-sm hover:bg-white/15"
+              >
+                Sponsor Form
+              </a>
+            ) : null}
+
+            {site.sponsorPacketUrl ? (
+              <a
+                href={site.sponsorPacketUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-xl bg-white/10 px-3 py-2 text-sm hover:bg-white/15"
+              >
+                Sponsor Packet
+              </a>
+            ) : null}
           </div>
         </div>
-      </div>
+      </header>
 
-      <div className="container hero">
-        <div className="heroGrid">
-          <div className="card panelGlow">
-            <div className="cardInner">
-              <div className="kicker">All programs • Cheer + T-Ball</div>
-              <h1 className="h1">Built Like a Pro Organization.</h1>
-              <p className="sub">
-                Official home of Stateline Renegades. Sponsors, photos, and real-time T-Ball
-                spot availability—designed with a premium sports-site feel.
-              </p>
-
-              <div className="pills">
-                <div className="pill">Riot • Karma • Anarchy • Mayhem</div>
-                <div className="pill">Fundraising Goal: $5,000</div>
-                <div className="pill">Sponsor Showcase</div>
-              </div>
-
-              <div className="btnRow">
-                <a className="btn btnPrimary" href="#tball">
-                  View T-Ball Spots
-                </a>
-                <a className="btn btnGold" href="#sponsors">
-                  Become a Sponsor
-                </a>
-                <a className="btn" href="/admin">
-                  Admin Controls
-                </a>
-              </div>
-
-              <hr className="hr" />
-
-              <div className="grid3">
-                <div className="card" style={{ boxShadow: "none" }}>
-                  <div className="cardInner">
-                    <div className="kicker">Primary Contacts</div>
-                    <div style={{ fontWeight: 900, marginTop: 6 }}>Riot + Karma</div>
-                    <div className="muted">Coach Celia • 915-352-9033</div>
-                    <div className="muted">Coach Andy • 915-472-0190</div>
-                  </div>
-                </div>
-
-                <div className="card" style={{ boxShadow: "none" }}>
-                  <div className="cardInner">
-                    <div className="kicker">Primary Contacts</div>
-                    <div style={{ fontWeight: 900, marginTop: 6 }}>Anarchy + Mayhem</div>
-                    <div className="muted">Jennifer Billesbach • 915-803-9442</div>
-                  </div>
-                </div>
-
-                <div className="card" style={{ boxShadow: "none" }}>
-                  <div className="cardInner">
-                    <div className="kicker">Media</div>
-                    <div style={{ fontWeight: 900, marginTop: 6 }}>Photos + Highlights</div>
-                    <div className="muted">
-                      Upload & manage galleries in <b>/admin</b>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="card">
-            <div className="cardInner">
-              <div id="tball" className="sectionTitle">T-Ball Spots Remaining</div>
-              <div className="muted" style={{ marginBottom: 10 }}>
-                Live number pulled from your database/API.
-              </div>
-
-              <div className="card" style={{ boxShadow: "none" }}>
-                <div className="cardInner">
-                  <AnimatedNumber value={spots} />
-                  <div className="muted" style={{ marginTop: 6 }}>
-                    spots currently available
-                  </div>
-                  <div style={{ marginTop: 14 }} className="pill">
-                    Update in Admin → T-Ball Spots
-                  </div>
-                </div>
-              </div>
-
-              <hr className="hr" />
-
-              <div className="sectionTitle" id="sponsors">Sponsor Highlights</div>
-              <div className="muted" style={{ marginBottom: 10 }}>
-                Your sponsor logos will scroll here (carousel).
-              </div>
-              <SponsorCarousel />
-
-              <div className="muted" style={{ marginTop: 12, fontSize: 12 }}>
-                Want real logos instead of text boxes? Tell me your sponsor list and I’ll wire it
-                to images (uploadable in Admin).
-              </div>
-            </div>
-          </div>
+      {/* Teams */}
+      <section className="mb-10">
+        <div className="mb-4 text-xl font-bold">Teams & Programs</div>
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {teams.map((t) => (
+            <TeamCard key={t.id} team={t} />
+          ))}
         </div>
+      </section>
 
-        <div style={{ height: 14 }} />
+      {/* Sponsors */}
+      <section className="mb-10">
+        <SponsorCarousel items={sponsorLogos} />
+      </section>
 
-        <div className="grid3">
-          <div className="card">
-            <div className="cardInner">
-              <div className="kicker">Brand</div>
-              <div className="sectionTitle">Professional Sports Look</div>
-              <div className="muted">
-                Elite gradients, glow panels, premium typography, and clean layout.
-              </div>
+      {/* Contact */}
+      <section className="rounded-2xl border border-white/10 bg-white/5 p-6">
+        <div className="text-xl font-bold">Contact</div>
+
+        <div className="mt-3 grid gap-2 text-white/80">
+          {site.contacts.map((c) => (
+            <div key={c.phone} className="flex flex-wrap items-center gap-2">
+              <span className="font-semibold">{c.name}:</span>
+              <a className="underline" href={`tel:${c.phone.replace(/[^0-9]/g, "")}`}>
+                {c.phone}
+              </a>
             </div>
-          </div>
+          ))}
 
-          <div className="card">
-            <div className="cardInner">
-              <div className="kicker">Fundraising</div>
-              <div className="sectionTitle">$5,000 Program Goal</div>
-              <div className="muted">
-                Sponsor carousel + spotlight area makes your page feel official and high value.
-              </div>
+          {site.email ? (
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="font-semibold">Email:</span>
+              <a className="underline" href={`mailto:${site.email}`}>
+                {site.email}
+              </a>
             </div>
-          </div>
+          ) : null}
 
-          <div className="card">
-            <div className="cardInner">
-              <div className="kicker">Admin</div>
-              <div className="sectionTitle">Simple Updates</div>
-              <div className="muted">
-                Keep using <b>/admin</b> for spots + photos.
-              </div>
-            </div>
-          </div>
+          {site.locationLine ? (
+            <div className="text-white/70">{site.locationLine}</div>
+          ) : null}
         </div>
-
-        <div style={{ height: 28 }} />
-        <div className="muted" style={{ fontSize: 12 }}>
-          © {new Date().getFullYear()} Stateline Renegades
-        </div>
-      </div>
-    </>
+      </section>
+    </main>
   );
 }
