@@ -1,4 +1,4 @@
-// app/components/TeamCard.tsx
+// app/Components/TeamCard.tsx
 import Image from "next/image";
 import type { Team } from "../lib/data";
 
@@ -9,47 +9,42 @@ export default function TeamCard({ team }: { team: Team }) {
         <div className="relative h-14 w-14 overflow-hidden rounded-xl bg-black/20">
           <Image
             src={team.logo}
-            alt={team.name}
+            alt={`${team.name} logo`}
             fill
             className="object-contain p-2"
             sizes="56px"
+            priority={false}
           />
         </div>
 
         <div className="min-w-0">
           <div className="text-lg font-semibold leading-tight">{team.name}</div>
           <div className="text-sm text-white/70">
-            {team.ages ? `${team.ages} • ` : ""}{team.colors ?? ""}
+            {team.ages} • {team.colors}
           </div>
         </div>
       </div>
 
-      {team.description ? (
-        <p className="mt-3 text-sm text-white/75">{team.description}</p>
-      ) : null}
+      <div className="mt-4 grid gap-2 text-sm">
+        <div className="flex items-center justify-between rounded-xl bg-black/20 px-3 py-2">
+          <span className="text-white/70">CashApp</span>
+          <span className="font-semibold">{team.cashApp}</span>
+        </div>
 
-      <div className="mt-4 flex flex-wrap gap-2">
-        {team.registrationUrl ? (
+        {team.registration ? (
           <a
-            href={team.registrationUrl}
+            href={team.registration}
             target="_blank"
             rel="noreferrer"
-            className="rounded-xl bg-white/10 px-3 py-2 text-sm hover:bg-white/15"
+            className="rounded-xl bg-white px-3 py-2 text-center font-semibold text-black hover:opacity-90"
           >
-            Register
+            Registration Form
           </a>
-        ) : null}
-
-        {team.fundraiserUrl ? (
-          <a
-            href={team.fundraiserUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="rounded-xl bg-white/10 px-3 py-2 text-sm hover:bg-white/15"
-          >
-            Fundraiser
-          </a>
-        ) : null}
+        ) : (
+          <div className="rounded-xl bg-black/20 px-3 py-2 text-center text-white/70">
+            Registration link coming soon
+          </div>
+        )}
       </div>
     </div>
   );
