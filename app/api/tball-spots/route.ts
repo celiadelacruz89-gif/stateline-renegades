@@ -1,23 +1,32 @@
 import { NextResponse } from "next/server";
-import { put, list } from "@vercel/blob";
+import redis from "@/lib/redis";
 
-export const runtime = "nodejs";
+const KEY = "tball:spots";
+const DEFAULT_SPOTS = 15;
 
-const FILE = "tball-spots.json";
-const MAX = 15;
+export async function GET() {
+  const val = await redis.get(KEY);
+  const spots = val ? Number(val) : DEFAULT_SPOTS;
 
-async function getCurrent() {
-  try {
-    const result = await list({ prefix: "config/" });
-    const file = result.blobs.find(b => b.pathname === "config/" + FILE);
-    if (!file) return MAX;
-    const res = await fetch(file.url, { cache: "no-store" });
-    if (!res.ok) return MAX;
-    const data = await res.json();
-    return Number(data.spots ?? MAX);
-  } catch {
-    return MAX;
+  // If empty or invalid, initialize it once
+  if (!Number.isFinite(spots)) {
+    await redis.set(KEY, String(DEFAULT_SPOTS));
+    return NextResponse.json({ spots: DEFAULT_SPOTS });
   }
+
+  return NextResponse.json({ spots });
+}
+
+export async function POST(req: Request) {
+  const body = await req.json().catch(() => null);
+  const spots = Number(body?.spots);
+
+  if (!Number.isFinite(spots) || spots < 0 || spots > 99) {
+    return NextResponse.json({ error: "Invalid number" }, { status: 400 });
+  }
+
+  await redis.set(KEY, String(spots));
+  return NextResponse.json({ ok: true, spots });
 }
 
 export async function GET() {
