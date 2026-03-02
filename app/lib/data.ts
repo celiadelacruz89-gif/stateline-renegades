@@ -4,20 +4,39 @@ export const site = {
   orgName: "Stateline Renegades",
   tagline: "Cheer • Baseball • Community • Family",
 
-  contacts: [
-    { name: "Celia", phone: "915-352-9033" },
-    { name: "Rudy", phone: "915-352-9504" },
+  contacts: [riot/karma
+    { name: "Coach Celia", phone: "915-352-9033" },
+    { name: "Coach Andy", phone: "915-472-0190" },
   ],
+       contacts: [t-ball
+    { name: "Coach Rudy", phone: "915-352-9504" },
+    { name: "team Mom Linette", phone: "915-497-0213" },
+  ],
+contacts: [Anarchy
+    { name: "team Mom Jennifer", phone: "915-803-9442" },
+  ]
 
   sponsorFormUrl:
     "https://form.jotform.com/celiadelacruz89/sponsorship-application-form",
 };
+// ----------------------
+// TEAM TYPE
+// ----------------------
 
+export type Team = {
+  id: string;
+  name: string;
+  ages: string;
+  colors: string;
+  logo: string;
+  cashApp: string;
+  registration: string;
+};
 // --------------------
 // TEAM DATA
 // --------------------
 
-export const teams = [
+export const teams: Team[] = [
   {
     id: "karma",
     name: "Karma Renegades",
