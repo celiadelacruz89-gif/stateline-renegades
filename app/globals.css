@@ -1,0 +1,20 @@
+body {
+  margin: 0;
+}
+
+.carousel {
+  display: flex;
+  gap: 40px;
+  overflow: hidden;
+  animation: scroll 20s linear infinite;
+}
+
+.carousel img {
+  height: 80px;
+  filter: brightness(1.1);
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
