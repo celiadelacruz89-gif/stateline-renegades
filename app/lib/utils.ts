@@ -1,11 +1,17 @@
-export function teamLabel(key: string) {
-  switch (key) {
-    case "org": return "Organization";
-    case "riot": return "Riot";
-    case "karma": return "Karma";
-    case "anarchy": return "Anarchy";
-    case "blessedmayhem": return "Blessed Mayhem";
-    case "tball": return "T‑Ball";
-    default: return key;
-  }
+// app/lib/utils.ts
+import { teams, type Team } from "./data";
+
+export function teamLabel(id: string) {
+  const t = teams.find((x) => x.id === id);
+  return t ? t.name : id;
+}
+
+export function getTeam(id: string): Team | undefined {
+  return teams.find((x) => x.id === id);
+}
+
+// Small helper so your UI can show clickable phone links
+export function phoneHref(phone: string) {
+  const digits = phone.replace(/[^\d]/g, "");
+  return `tel:${digits}`;
 }
