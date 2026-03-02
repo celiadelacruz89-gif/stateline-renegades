@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { TEAMS } from "../lib/data";
+import { teams as TEAMS } from "../../lib/data";
 
 export default function GalleryHome() {
   return (
