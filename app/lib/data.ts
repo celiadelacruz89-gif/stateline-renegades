@@ -34,7 +34,7 @@ export const contacts = {
   ] satisfies Contact[],
 };
 
-export const teams: Team[] = [
+export const TEAMS: Team[] = [
   {
     id: "karma",
     name: "Karma Renegades",
