@@ -1,161 +1,223 @@
 // app/page.tsx
-import TeamCard from "./Components/TeamCard";
-import { LINKS, SITE, contacts, teams } from "./lib/data";
+import Image from "next/image";
+import Link from "next/link";
+import { org, teams } from "./lib/data";
+import { phoneHref } from "./lib/utils";
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-black via-[#0b0b14] to-black text-white">
-      <div className="mx-auto max-w-6xl px-4 py-10">
-        {/* HERO */}
-        <header className="rounded-3xl border border-white/10 bg-white/5 p-8 shadow-sm">
-          <h1 className="text-3xl font-extrabold tracking-tight">{SITE.orgName}</h1>
-          <p className="mt-2 text-white/70">{SITE.tagline}</p>
-
-          <div className="mt-6 flex flex-wrap gap-3">
-            <a
-              href={LINKS.karmaRiotRegistration}
-              target="_blank"
-              rel="noreferrer"
-              className="rounded-xl bg-white px-4 py-2 font-semibold text-black hover:opacity-90"
-            >
-              Karma/Riot Registration
-            </a>
-
-            <a
-              href={LINKS.tballRegistration}
-              target="_blank"
-              rel="noreferrer"
-              className="rounded-xl bg-white/10 px-4 py-2 font-semibold text-white hover:bg-white/15"
-            >
-              T-Ball Registration
-            </a>
-
-            <a
-              href={LINKS.sponsorship}
-              target="_blank"
-              rel="noreferrer"
-              className="rounded-xl bg-white/10 px-4 py-2 font-semibold text-white hover:bg-white/15"
-            >
-              Sponsorship Application
-            </a>
+    <div>
+      {/* Top Nav */}
+      <nav>
+        <div className="wrap navInner">
+          <div className="brand">
+            <div className="brandMark" />
+            <div className="brandText">
+              <b>{org.name}</b> <span>{org.tagline}</span>
+            </div>
           </div>
-        </header>
 
-        {/* TEAMS */}
-        <section className="mt-10">
-          <h2 className="text-2xl font-bold">Teams</h2>
-          <p className="mt-1 text-white/70">Team info, CashApp, and registration links.</p>
+          <div className="navLinks">
+            <Link className="btn ghost" href="/gallery">
+              Gallery
+            </Link>
+            <Link className="btn" href="/admin">
+              Admin Controls
+            </Link>
+          </div>
+        </div>
+      </nav>
 
-          <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {/* Hero */}
+      <div className="wrap section">
+        <div className="card hero">
+          <div>
+            <h1 style={{ marginTop: 0, marginBottom: 8 }}>{org.name}</h1>
+            <p style={{ marginTop: 0, opacity: 0.9 }}>
+              {org.tagline}. Registration, CashApp, contacts, sponsor form, and
+              T-Ball merch — all in one place.
+            </p>
+
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginTop: 14 }}>
+              <a className="btn" href={org.sponsorForm} target="_blank">
+                Sponsor Application
+              </a>
+              <a className="btn ghost" href={org.karmaRiotRegistration} target="_blank">
+                Karma/Riot Registration
+              </a>
+              <a className="btn ghost" href={org.tballRegistration} target="_blank">
+                T-Ball Registration
+              </a>
+              <Link className="btn ghost" href="/gallery">
+                View Gallery
+              </Link>
+            </div>
+          </div>
+
+          <div className="heroLogos">
             {teams.map((t) => (
-              <TeamCard key={t.id} team={t} />
+              <div key={t.id} className="logoPill">
+                <Image
+                  src={t.logo}
+                  alt={t.name}
+                  width={46}
+                  height={46}
+                  style={{ borderRadius: 12 }}
+                />
+                <div>
+                  <div style={{ fontWeight: 700 }}>{t.name}</div>
+                  <div style={{ fontSize: 12, opacity: 0.85 }}>{t.colors}</div>
+                </div>
+              </div>
             ))}
           </div>
-        </section>
+        </div>
 
-        {/* T-BALL MERCH */}
-        <section className="mt-10 rounded-3xl border border-white/10 bg-white/5 p-6">
-          <h2 className="text-2xl font-bold">T-Ball Merch Order Forms</h2>
-          <p className="mt-1 text-white/70">Copy/paste ready links from your image.</p>
-
-          <div className="mt-4 grid gap-3 sm:grid-cols-3">
-            <a
-              href={LINKS.tballMerch.players}
-              target="_blank"
-              rel="noreferrer"
-              className="rounded-xl bg-white px-4 py-3 text-center font-semibold text-black hover:opacity-90"
-            >
-              Players Order Form
-            </a>
-            <a
-              href={LINKS.tballMerch.parentFamily}
-              target="_blank"
-              rel="noreferrer"
-              className="rounded-xl bg-white/10 px-4 py-3 text-center font-semibold text-white hover:bg-white/15"
-            >
-              Parent/Family Order Form
-            </a>
-            <a
-              href={LINKS.tballMerch.coach}
-              target="_blank"
-              rel="noreferrer"
-              className="rounded-xl bg-white/10 px-4 py-3 text-center font-semibold text-white hover:bg-white/15"
-            >
-              Coach Order Form
-            </a>
+        {/* Teams */}
+        <div className="sectionTitle" style={{ marginTop: 18 }}>
+          <div>
+            <h2>Teams</h2>
+            <p>Tap a button to register, donate, or contact a coach/team mom.</p>
           </div>
-        </section>
+        </div>
 
-        {/* CONTACTS */}
-        <section className="mt-10 grid gap-4 lg:grid-cols-3">
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-6">
-            <h3 className="text-xl font-bold">Riot / Karma Contacts</h3>
-            <div className="mt-3 space-y-2">
-              {contacts.riotKarma.map((c) => (
-                <div key={c.phone} className="rounded-xl bg-black/20 px-3 py-2">
-                  <div className="font-semibold">{c.name}</div>
-                  <div className="text-white/70">{c.phone}</div>
+        <div className="grid2">
+          {teams.map((t) => (
+            <div key={t.id} className="card programCard">
+              <div className="programTop">
+                <div>
+                  <h3 style={{ margin: 0 }}>{t.name}</h3>
+                  <p style={{ margin: "6px 0 0 0", opacity: 0.9 }}>
+                    {t.ages} • {t.colors}
+                  </p>
                 </div>
-              ))}
+                <Image
+                  src={t.logo}
+                  alt={t.name}
+                  width={62}
+                  height={62}
+                  style={{ borderRadius: 16 }}
+                />
+              </div>
+
+              <div className="programActions">
+                {t.registration ? (
+                  <a className="btn" href={t.registration} target="_blank">
+                    Register
+                  </a>
+                ) : (
+                  <span className="pill subtle">Registration link coming soon</span>
+                )}
+
+                {t.cashApp ? (
+                  <button
+                    className="btn ghost"
+                    onClick={() => navigator.clipboard.writeText(t.cashApp!)}
+                    title="Copy CashApp"
+                  >
+                    Copy CashApp
+                  </button>
+                ) : (
+                  <span className="pill subtle">CashApp coming soon</span>
+                )}
+
+                <Link className="btn ghost" href={`/gallery/${t.id}`}>
+                  Photos
+                </Link>
+              </div>
+
+              <div className="divider" />
+
+              <div>
+                <div style={{ fontWeight: 700, marginBottom: 8 }}>Contacts</div>
+                <ul style={{ margin: 0, paddingLeft: 18 }}>
+                  {t.contacts.map((c) => (
+                    <li key={`${t.id}-${c.name}-${c.phone}`}>
+                      <b>{c.name}</b>{" "}
+                      <a
+                        href={phoneHref(c.phone)}
+                        style={{ textDecoration: "underline" }}
+                      >
+                        {c.phone}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+
+                {t.cashApp ? (
+                  <p style={{ marginTop: 12, marginBottom: 0 }}>
+                    <b>CashApp:</b> {t.cashApp}
+                  </p>
+                ) : null}
+              </div>
+
+              {t.id === "tball" ? (
+                <>
+                  <div className="divider" />
+                  <div>
+                    <div style={{ fontWeight: 700, marginBottom: 8 }}>T-Ball Merch</div>
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
+                      <a className="btn ghost" href={org.tballMerch.players} target="_blank">
+                        Players Order Form
+                      </a>
+                      <a
+                        className="btn ghost"
+                        href={org.tballMerch.parentFamily}
+                        target="_blank"
+                      >
+                        Parent/Family Order Form
+                      </a>
+                      <a className="btn ghost" href={org.tballMerch.coach} target="_blank">
+                        Coach Order Form
+                      </a>
+                    </div>
+                  </div>
+                </>
+              ) : null}
+            </div>
+          ))}
+        </div>
+
+        {/* Sponsor + Quick Donate */}
+        <div className="card" style={{ padding: 18, marginTop: 18 }}>
+          <div className="sectionTitle" style={{ margin: 0 }}>
+            <div>
+              <h2 style={{ marginTop: 0 }}>Sponsors & Donations</h2>
+              <p style={{ marginBottom: 0 }}>
+                Support our kids with sponsorships and donations. Thank you for helping
+                the Stateline Renegades grow.
+              </p>
             </div>
           </div>
 
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-6">
-            <h3 className="text-xl font-bold">Anarchy Contact</h3>
-            <div className="mt-3 space-y-2">
-              {contacts.anarchy.map((c) => (
-                <div key={c.phone} className="rounded-xl bg-black/20 px-3 py-2">
-                  <div className="font-semibold">{c.name}</div>
-                  <div className="text-white/70">{c.phone}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-6">
-            <h3 className="text-xl font-bold">T-Ball Contacts</h3>
-            <div className="mt-3 space-y-2">
-              {contacts.tball.map((c) => (
-                <div key={c.phone} className="rounded-xl bg-black/20 px-3 py-2">
-                  <div className="font-semibold">{c.name}</div>
-                  <div className="text-white/70">{c.phone}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* QUICK LINKS */}
-        <section className="mt-10 rounded-3xl border border-white/10 bg-white/5 p-6">
-          <h2 className="text-2xl font-bold">Quick Links</h2>
-          <div className="mt-4 grid gap-3 sm:grid-cols-3">
-            <a
-              href={LINKS.karmaRiotRegistration}
-              target="_blank"
-              rel="noreferrer"
-              className="rounded-xl bg-black/20 px-4 py-3 text-center font-semibold hover:bg-black/30"
-            >
-              Karma/Riot Registration
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginTop: 12 }}>
+            <a className="btn" href={org.sponsorForm} target="_blank">
+              Sponsor Application Form
             </a>
-            <a
-              href={LINKS.tballRegistration}
-              target="_blank"
-              rel="noreferrer"
-              className="rounded-xl bg-black/20 px-4 py-3 text-center font-semibold hover:bg-black/30"
+            <button
+              className="btn ghost"
+              onClick={() => navigator.clipboard.writeText("$statelinerenegades")}
+              title="Copy CashApp"
             >
-              T-Ball Registration
-            </a>
-            <a
-              href={LINKS.sponsorship}
-              target="_blank"
-              rel="noreferrer"
-              className="rounded-xl bg-black/20 px-4 py-3 text-center font-semibold hover:bg-black/30"
+              Copy $statelinerenegades (Karma/Riot)
+            </button>
+            <button
+              className="btn ghost"
+              onClick={() => navigator.clipboard.writeText("$RenegadesBB")}
+              title="Copy CashApp"
             >
-              Sponsorship Form
-            </a>
+              Copy $RenegadesBB (T-Ball)
+            </button>
+            <button
+              className="btn ghost"
+              onClick={() => navigator.clipboard.writeText("$renegadescheerteam")}
+              title="Copy CashApp"
+            >
+              Copy $renegadescheerteam (Anarchy)
+            </button>
           </div>
-        </section>
+        </div>
       </div>
-    </main>
+    </div>
   );
 }
