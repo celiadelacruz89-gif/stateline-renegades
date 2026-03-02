@@ -127,7 +127,7 @@ export default function Admin() {
       const res = await fetch("/api/tball-spots", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ spotsRemaining: n }),
+        body: JSON.stringify({ spots: n }),
       });
       const out = await safeJson(res);
       if (!out.ok) throw new Error(out.json?.error || out.text || "Save failed");
