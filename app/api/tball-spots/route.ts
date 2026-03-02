@@ -1,57 +1,74 @@
 import { NextResponse } from "next/server";
-import redis from "@/lib/redis";
+import { createClient } from "redis";
+
+export const runtime = "nodejs";
 
 const KEY = "tball:spots";
 const DEFAULT_SPOTS = 15;
 
-export async function GET() {
-  const val = await redis.get(KEY);
-  const spots = val ? Number(val) : DEFAULT_SPOTS;
-
-  // If empty or invalid, initialize it once
-  if (!Number.isFinite(spots)) {
-    await redis.set(KEY, String(DEFAULT_SPOTS));
-    return NextResponse.json({ spots: DEFAULT_SPOTS });
-  }
-
-  return NextResponse.json({ spots });
+// Uses REDIS_URL (you already have it in Vercel env vars)
+function redisClient() {
+  const url = process.env.REDIS_URL;
+  if (!url) throw new Error("Missing REDIS_URL environment variable");
+  return createClient({ url });
 }
 
-export async function POST(req: Request) {
-  const body = await req.json().catch(() => null);
-  const spots = Number(body?.spots);
-
-  if (!Number.isFinite(spots) || spots < 0 || spots > 99) {
-    return NextResponse.json({ error: "Invalid number" }, { status: 400 });
+async function getCurrentSpots(): Promise<number> {
+  const redis = redisClient();
+  await redis.connect();
+  try {
+    const val = await redis.get(KEY);
+    const n = val ? Number(val) : DEFAULT_SPOTS;
+    if (!Number.isFinite(n)) {
+      await redis.set(KEY, String(DEFAULT_SPOTS));
+      return DEFAULT_SPOTS;
+    }
+    // initialize if key didn't exist
+    if (val == null) await redis.set(KEY, String(n));
+    return n;
+  } finally {
+    await redis.disconnect();
   }
+}
 
-  await redis.set(KEY, String(spots));
-  return NextResponse.json({ ok: true, spots });
+async function setSpots(n: number): Promise<number> {
+  const redis = redisClient();
+  await redis.connect();
+  try {
+    await redis.set(KEY, String(n));
+    return n;
+  } finally {
+    await redis.disconnect();
+  }
 }
 
 export async function GET() {
   try {
-    const spots = await getCurrent();
-    return NextResponse.json({ spots });
+    const spots = await getCurrentSpots();
+    return NextResponse.json({ spots }, { headers: { "Cache-Control": "no-store" } });
   } catch (e: any) {
-    return NextResponse.json({ error: e.message }, { status: 500 });
+    return NextResponse.json(
+      { error: e?.message || "Unable to load spots" },
+      { status: 500, headers: { "Cache-Control": "no-store" } }
+    );
   }
 }
 
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
-    const spots = Number(body.spots);
-    if (Number.isNaN(spots)) return NextResponse.json({ error: "Invalid number" }, { status: 400 });
+    const body = await req.json().catch(() => ({} as any));
 
-    await put("config/" + FILE, JSON.stringify({ spots }), {
-      access: "public",
-      contentType: "application/json",
-      addRandomSuffix: false,
-    });
+    // accept either "spots" OR "spotsRemaining" (your admin code used spotsRemaining earlier)
+    const raw = body?.spots ?? body?.spotsRemaining;
+    const n = Number(raw);
 
-    return NextResponse.json({ ok: true });
+    if (!Number.isFinite(n) || n < 0 || n > 999) {
+      return NextResponse.json({ error: "Invalid number" }, { status: 400 });
+    }
+
+    const spots = await setSpots(n);
+    return NextResponse.json({ ok: true, spots }, { headers: { "Cache-Control": "no-store" } });
   } catch (e: any) {
-    return NextResponse.json({ error: e.message }, { status: 500 });
+    return NextResponse.json({ error: e?.message || "Save failed" }, { status: 500 });
   }
 }
