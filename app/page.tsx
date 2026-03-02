@@ -1,103 +1,201 @@
-"use client";
+export const dynamic = "force-dynamic";
 
-import { useEffect, useState } from "react";
+function SponsorCarousel() {
+  // Put real sponsor names here anytime
+  const sponsors = [
+    "Sponsor Name",
+    "Sponsor Name",
+    "Sponsor Name",
+    "Sponsor Name",
+    "Sponsor Name",
+    "Sponsor Name",
+  ];
 
-export default function Page() {
-  const [spots, setSpots] = useState(0);
-  const [animated, setAnimated] = useState(0);
-
-  useEffect(() => {
-    fetch("/api/tball-spots", { cache: "no-store" })
-      .then(res => res.json())
-      .then(data => setSpots(data.spots || 0));
-  }, []);
-
-  // Animated counter effect
-  useEffect(() => {
-    let start = 0;
-    const duration = 800;
-    const step = spots / (duration / 16);
-
-    const interval = setInterval(() => {
-      start += step;
-      if (start >= spots) {
-        start = spots;
-        clearInterval(interval);
-      }
-      setAnimated(Math.floor(start));
-    }, 16);
-
-    return () => clearInterval(interval);
-  }, [spots]);
+  // Duplicate list so it loops smoothly
+  const loop = [...sponsors, ...sponsors];
 
   return (
-    <main style={styles.page}>
-      <section style={styles.hero}>
-        <h1 style={styles.title}>STATELINE RENEGADES</h1>
-        <p style={styles.subtitle}>Elite Youth Athletics</p>
-      </section>
-
-      <section style={styles.counterSection}>
-        <h2 style={styles.counterLabel}>T-Ball Spots Remaining</h2>
-        <div style={styles.counter}>{animated}</div>
-      </section>
-
-      <section style={styles.sponsors}>
-        <h3 style={styles.sectionTitle}>Our Sponsors</h3>
-        <div className="carousel">
-          <img src="/sponsors/sponsor1.png" />
-          <img src="/sponsors/sponsor2.png" />
-          <img src="/sponsors/sponsor3.png" />
-        </div>
-      </section>
-    </main>
+    <div className="carousel">
+      <div className="track" aria-label="Sponsor logos scrolling">
+        {loop.map((s, i) => (
+          <div className="logo" key={`${s}-${i}`}>
+            {s}
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
 
-const styles = {
-  page: {
-    background: "linear-gradient(135deg,#0f0f0f,#1a0028)",
-    color: "white",
-    minHeight: "100vh",
-    fontFamily: "sans-serif",
-    paddingBottom: 80
-  },
-  hero: {
-    textAlign: "center" as const,
-    padding: "100px 20px",
-    background:
-      "radial-gradient(circle at center,#6b00b6 0%,#0f0f0f 70%)"
-  },
-  title: {
-    fontSize: 56,
-    fontWeight: 900,
-    letterSpacing: 2
-  },
-  subtitle: {
-    fontSize: 20,
-    opacity: 0.8
-  },
-  counterSection: {
-    textAlign: "center" as const,
-    marginTop: 60
-  },
-  counterLabel: {
-    fontSize: 22,
-    opacity: 0.7
-  },
-  counter: {
-    fontSize: 100,
-    fontWeight: 900,
-    background: "linear-gradient(90deg,#ff00cc,#6b00ff)",
-    WebkitBackgroundClip: "text",
-    WebkitTextFillColor: "transparent"
-  },
-  sponsors: {
-    marginTop: 100,
-    textAlign: "center" as const
-  },
-  sectionTitle: {
-    fontSize: 26,
-    marginBottom: 20
-  }
-};
+function AnimatedNumber({ value }: { value: number }) {
+  // Simple “pop” animation via key
+  return <span key={value} className="statBig">{value}</span>;
+}
+
+export default async function Home() {
+  // Read spots from API (uses your existing /api/tball-spots)
+  let spots = 15;
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL ?? ""}/api/tball-spots`, {
+      cache: "no-store",
+    });
+    if (res.ok) {
+      const data = await res.json();
+      const n = Number(data?.spots);
+      if (Number.isFinite(n)) spots = n;
+    }
+  } catch {}
+
+  return (
+    <>
+      <div className="topbar">
+        <div className="container">
+          <div className="brandRow">
+            <div className="badge">STATELINE RENEGADES</div>
+            <div className="badge">ELITE MODE</div>
+            <div style={{ marginLeft: "auto" }} className="badge">
+              Admin: /admin
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="container hero">
+        <div className="heroGrid">
+          <div className="card panelGlow">
+            <div className="cardInner">
+              <div className="kicker">All programs • Cheer + T-Ball</div>
+              <h1 className="h1">Built Like a Pro Organization.</h1>
+              <p className="sub">
+                Official home of Stateline Renegades. Sponsors, photos, and real-time T-Ball
+                spot availability—designed with a premium sports-site feel.
+              </p>
+
+              <div className="pills">
+                <div className="pill">Riot • Karma • Anarchy • Mayhem</div>
+                <div className="pill">Fundraising Goal: $5,000</div>
+                <div className="pill">Sponsor Showcase</div>
+              </div>
+
+              <div className="btnRow">
+                <a className="btn btnPrimary" href="#tball">
+                  View T-Ball Spots
+                </a>
+                <a className="btn btnGold" href="#sponsors">
+                  Become a Sponsor
+                </a>
+                <a className="btn" href="/admin">
+                  Admin Controls
+                </a>
+              </div>
+
+              <hr className="hr" />
+
+              <div className="grid3">
+                <div className="card" style={{ boxShadow: "none" }}>
+                  <div className="cardInner">
+                    <div className="kicker">Primary Contacts</div>
+                    <div style={{ fontWeight: 900, marginTop: 6 }}>Riot + Karma</div>
+                    <div className="muted">Coach Celia • 915-352-9033</div>
+                    <div className="muted">Coach Andy • 915-472-0190</div>
+                  </div>
+                </div>
+
+                <div className="card" style={{ boxShadow: "none" }}>
+                  <div className="cardInner">
+                    <div className="kicker">Primary Contacts</div>
+                    <div style={{ fontWeight: 900, marginTop: 6 }}>Anarchy + Mayhem</div>
+                    <div className="muted">Jennifer Billesbach • 915-803-9442</div>
+                  </div>
+                </div>
+
+                <div className="card" style={{ boxShadow: "none" }}>
+                  <div className="cardInner">
+                    <div className="kicker">Media</div>
+                    <div style={{ fontWeight: 900, marginTop: 6 }}>Photos + Highlights</div>
+                    <div className="muted">
+                      Upload & manage galleries in <b>/admin</b>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="card">
+            <div className="cardInner">
+              <div id="tball" className="sectionTitle">T-Ball Spots Remaining</div>
+              <div className="muted" style={{ marginBottom: 10 }}>
+                Live number pulled from your database/API.
+              </div>
+
+              <div className="card" style={{ boxShadow: "none" }}>
+                <div className="cardInner">
+                  <AnimatedNumber value={spots} />
+                  <div className="muted" style={{ marginTop: 6 }}>
+                    spots currently available
+                  </div>
+                  <div style={{ marginTop: 14 }} className="pill">
+                    Update in Admin → T-Ball Spots
+                  </div>
+                </div>
+              </div>
+
+              <hr className="hr" />
+
+              <div className="sectionTitle" id="sponsors">Sponsor Highlights</div>
+              <div className="muted" style={{ marginBottom: 10 }}>
+                Your sponsor logos will scroll here (carousel).
+              </div>
+              <SponsorCarousel />
+
+              <div className="muted" style={{ marginTop: 12, fontSize: 12 }}>
+                Want real logos instead of text boxes? Tell me your sponsor list and I’ll wire it
+                to images (uploadable in Admin).
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style={{ height: 14 }} />
+
+        <div className="grid3">
+          <div className="card">
+            <div className="cardInner">
+              <div className="kicker">Brand</div>
+              <div className="sectionTitle">Professional Sports Look</div>
+              <div className="muted">
+                Elite gradients, glow panels, premium typography, and clean layout.
+              </div>
+            </div>
+          </div>
+
+          <div className="card">
+            <div className="cardInner">
+              <div className="kicker">Fundraising</div>
+              <div className="sectionTitle">$5,000 Program Goal</div>
+              <div className="muted">
+                Sponsor carousel + spotlight area makes your page feel official and high value.
+              </div>
+            </div>
+          </div>
+
+          <div className="card">
+            <div className="cardInner">
+              <div className="kicker">Admin</div>
+              <div className="sectionTitle">Simple Updates</div>
+              <div className="muted">
+                Keep using <b>/admin</b> for spots + photos.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style={{ height: 28 }} />
+        <div className="muted" style={{ fontSize: 12 }}>
+          © {new Date().getFullYear()} Stateline Renegades
+        </div>
+      </div>
+    </>
+  );
+}
