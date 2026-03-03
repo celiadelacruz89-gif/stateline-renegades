@@ -1,69 +1,26 @@
-"use client";
+import { NextResponse } from "next/server";
+import { put } from "@vercel/blob";
 
-import { useState, useEffect } from "react";
+export const dynamic = "force-dynamic";
 
-export default function AdminPage() {
+export async function POST(req: Request) {
+  const form = await req.formData();
 
-  const [spots, setSpots] = useState(0);
-  const [newSpots, setNewSpots] = useState("");
+  const file = form.get("file") as File | null;
+  const folder = (form.get("folder") as string | null) ?? "sponsors";
+  const team = (form.get("team") as string | null) ?? "org";
 
-  useEffect(() => {
-    fetch("/api/tball-spots")
-      .then(res => res.json())
-      .then(data => setSpots(data.spots));
-  }, []);
+  if (!file) return NextResponse.json({ error: "No file uploaded" }, { status: 400 });
 
-  async function save() {
+  // sponsors -> sponsors/filename
+  // gallery  -> gallery/{team}/filename
+  const cleanName = file.name.replace(/\s+/g, "-");
+  const pathname = folder === "gallery" ? `gallery/${team}/${cleanName}` : `sponsors/${cleanName}`;
 
-    await fetch("/api/tball-spots", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        spots: Number(newSpots),
-      }),
-    });
+  const blob = await put(pathname, file, {
+    access: "public",
+    addRandomSuffix: true,
+  });
 
-    setSpots(Number(newSpots));
-    setNewSpots("");
-  }
-
-  return (
-
-    <div style={{
-      padding: 40,
-      color: "white"
-    }}>
-
-      <h1>Admin Controls</h1>
-
-      <h2>T-Ball Spots Remaining: {spots}</h2>
-
-      <input
-        value={newSpots}
-        onChange={(e) => setNewSpots(e.target.value)}
-        placeholder="Enter number"
-        style={{
-          padding: 10,
-          color: "black"
-        }}
-      />
-
-      <br /><br />
-
-      <button onClick={save}
-        style={{
-          padding: 10,
-          background: "hotpink",
-          border: "none",
-          color: "white"
-        }}>
-        Save
-      </button>
-
-    </div>
-
-  );
-
+  return NextResponse.json({ url: blob.url, pathname: blob.pathname });
 }
