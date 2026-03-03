@@ -1,5 +1,9 @@
 "use client";
 
+import SponsorShowcase from "./components/SponsorShowcase";
+import { sponsors, org, teams } from "./lib/data";
+<SponsorShowcase sponsors={sponsors} sponsorForm={org.sponsorForm} />
+
 import Image from "next/image";
 import Link from "next/link";
 import { org, teams } from "./lib/data";
