@@ -25,6 +25,16 @@ async function listTeamImages(teamId: string) {
   }
 }
 
+async function getMedia(team: string) {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL || ""}/api/gallery-media?team=${team}`, {
+    cache: "no-store",
+  }).catch(() => null);
+
+  if (!res || !res.ok) return [];
+  const data = await res.json();
+  return data.items || [];
+}
+
 export default async function TeamGalleryPage({
   params,
 }: {
