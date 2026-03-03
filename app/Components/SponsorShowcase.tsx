@@ -1,36 +1,36 @@
 "use client";
+
 import Image from "next/image";
-import Link from "next/link";
 
-type SponsorItem = { name: string; url: string };
+export type Sponsor = {
+  name: string;
+  logo: string; // "/sponsors/file.png" OR https://... (Blob)
+  href?: string;
+};
 
-async function getSponsors(): Promise<SponsorItem[]> {
-  // Pulls from API (which lists blob uploads in /sponsors/)
-  const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL ?? ""}/api/sponsors`, {
-    cache: "no-store",
-  }).catch(() => null);
+export default function SponsorShowcase({
+  sponsors,
+  sponsorForm,
+}: {
+  sponsors: Sponsor[];
+  sponsorForm: string;
+}) {
+  if (!sponsors?.length) return null;
 
-  if (!res || !res.ok) return [];
-  return res.json();
-}
-
-export default async function SponsorShowcase() {
-  const sponsors = await getSponsors();
-  if (!sponsors.length) return null;
-
-  // duplicate list so the marquee loops smoothly
+  // Duplicate for seamless marquee
   const loop = [...sponsors, ...sponsors];
 
   return (
-    <div className="sponsorWrap">
+    <section className="sponsorWrap">
       <div className="sponsorHeader">
         <div>
-          <h2>Our Sponsors</h2>
-          <p>Thank you for supporting the Stateline Renegades.</p>
+          <h2>Sponsor Highlights</h2>
+          <p>Thank you to our sponsors — tap a logo to learn more.</p>
         </div>
-        <Link className="sponsorCta" href="/admin">
-          + Upload Sponsor Logos
-        </Link>
+
+        <a className="sponsorCta" href={sponsorForm} target="_blank" rel="noreferrer">
+          Become a Sponsor →
+        </a>
       </div>
 
       <div className="sponsorRail">
@@ -38,16 +38,35 @@ export default async function SponsorShowcase() {
         <div className="sponsorFadeRight" />
 
         <div className="sponsorTrack">
-          {loop.map((s, i) => (
-            <div key={`${s.url}-${i}`} className="sponsorCard">
-              <div className="sponsorLogoBox">
-                <Image src={s.url} alt={s.name} fill style={{ objectFit: "contain" }} />
+          {loop.map((s, idx) => {
+            const Card = (
+              <div className="sponsorCard">
+                <div className="sponsorLogoBox">
+                  <Image
+                    src={s.logo}
+                    alt={s.name}
+                    fill
+                    sizes="210px"
+                    style={{ objectFit: "contain", padding: 10 }}
+                    priority={idx < 6}
+                  />
+                </div>
+                <div className="sponsorName">{s.name}</div>
               </div>
-              <div className="sponsorName">{s.name}</div>
-            </div>
-          ))}
+            );
+
+            return s.href ? (
+              <a key={`${s.name}-${idx}`} className="sponsorLink" href={s.href} target="_blank" rel="noreferrer">
+                {Card}
+              </a>
+            ) : (
+              <div key={`${s.name}-${idx}`} className="sponsorLink">
+                {Card}
+              </div>
+            );
+          })}
         </div>
       </div>
-    </div>
+    </section>
   );
 }
