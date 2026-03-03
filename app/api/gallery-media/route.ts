@@ -1,38 +1,41 @@
-// app/api/gallery-media/route.ts
 import { NextResponse } from "next/server";
 import { list } from "@vercel/blob";
 
-function guessTypeFromPath(pathname: string) {
-  const p = pathname.toLowerCase();
-  const isVideo = p.endsWith(".mp4") || p.endsWith(".mov") || p.endsWith(".webm") || p.endsWith(".m4v");
-  const isImage = p.endsWith(".jpg") || p.endsWith(".jpeg") || p.endsWith(".png") || p.endsWith(".webp") || p.endsWith(".gif");
+const ALLOWED_TEAMS = new Set(["org", "karma", "riot", "anarchy", "tball"]);
+
+function inferType(pathname: string) {
+  const lower = pathname.toLowerCase();
+  const isVideo = /\.(mp4|mov|webm|m4v)$/i.test(lower);
+  const isImage = /\.(jpg|jpeg|png|webp|gif)$/i.test(lower);
   return { isVideo, isImage };
 }
 
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
-  const team = (searchParams.get("team") || "").trim().toLowerCase();
+  const team = (searchParams.get("team") || "").toLowerCase();
 
-  if (!team) {
+  if (!ALLOWED_TEAMS.has(team)) {
     return NextResponse.json({ items: [] });
   }
 
-  // We store gallery files under: gallery/<team>/
   const prefix = `gallery/${team}/`;
 
-  const { blobs } = await list({ prefix });
+  const { blobs } = await list({ prefix, limit: 200 });
 
   const items = blobs
+    .slice()
     .sort((a, b) => (b.uploadedAt?.getTime?.() || 0) - (a.uploadedAt?.getTime?.() || 0))
     .map((b) => {
-      const { isVideo, isImage } = guessTypeFromPath(b.pathname);
+      const t = inferType(b.pathname);
       return {
         url: b.url,
         pathname: b.pathname,
-        isVideo,
-        isImage,
+        uploadedAt: b.uploadedAt ?? null,
+        size: b.size ?? null,
+        ...t,
       };
-    });
+    })
+    .filter((x) => x.isImage || x.isVideo);
 
   return NextResponse.json({ items });
 }
