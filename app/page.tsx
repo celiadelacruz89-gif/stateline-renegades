@@ -1,14 +1,11 @@
 "use client";
 
-import SponsorShowcase from "./components/SponsorShowcase";
-import { sponsors, org, teams } from "./lib/data";
-<SponsorShowcase sponsors={sponsors} sponsorForm={org.sponsorForm} />
-
 import Image from "next/image";
 import Link from "next/link";
-import { org, teams } from "./lib/data";
+
+import SponsorShowcase from "./components/SponsorShowcase";
+import { org, teams, sponsors } from "./lib/data";
 import { phoneHref } from "./lib/utils";
-import SponsorShowcase from "./Components/SponsorShowcase";
 
 export default function HomePage() {
   return (
@@ -40,8 +37,7 @@ export default function HomePage() {
           <div>
             <h1 style={{ marginTop: 0, marginBottom: 8 }}>{org.name}</h1>
             <p style={{ marginTop: 0, opacity: 0.9 }}>
-              {org.tagline}. Registration, CashApp, contacts, sponsor form, and T-Ball merch — all
-              in one place.
+              {org.tagline}. Registration, CashApp, contacts, sponsor form, and T-Ball merch — all in one place.
             </p>
 
             <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginTop: 14 }}>
@@ -166,7 +162,7 @@ export default function HomePage() {
         </div>
 
         {/* Sponsors carousel */}
-        <SponsorShowcase />
+        <SponsorShowcase sponsors={sponsors} sponsorForm={org.sponsorForm} />
 
         {/* Sponsor + Quick Donate */}
         <div className="card" style={{ padding: 18, marginTop: 18 }}>
@@ -174,8 +170,7 @@ export default function HomePage() {
             <div>
               <h2 style={{ marginTop: 0 }}>Sponsors & Donations</h2>
               <p style={{ marginBottom: 0 }}>
-                Support our kids with sponsorships and donations. Thank you for helping the Stateline
-                Renegades grow.
+                Support our kids with sponsorships and donations. Thank you for helping the Stateline Renegades grow.
               </p>
             </div>
           </div>
