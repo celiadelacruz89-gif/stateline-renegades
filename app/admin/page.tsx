@@ -1,5 +1,9 @@
 "use client";
 
+<Link className="btn" href="/admin/uploads">
+  Upload Photos/Videos
+</Link>
+
 import { useMemo, useState } from "react";
 import Link from "next/link";
 
