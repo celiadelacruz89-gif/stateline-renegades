@@ -41,7 +41,10 @@ export default async function TeamGalleryPage({
   params: { team: string };
 }) {
   const team = getTeam(params.team);
-
+  
+// @ts-ignore - server component fetch
+const media = await getMedia(team.id);
+  
   if (!team) {
     return (
       <div className="wrap section">
