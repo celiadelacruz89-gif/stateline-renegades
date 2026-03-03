@@ -90,7 +90,7 @@ export const sponsors = [
   { name: "JJ Premium Carne Seca", logo: "/sponsors/jj-premium-carne-seca.png" },
   { name: "HDR Logistic Services LLC", logo: "/sponsors/hdr-logistic-services.png" },
   { name: "R&M Courier Services Inc", logo: "/sponsors/rm-courier-services.png" },
-  { name: "Tire Ramz Shop and Repair", logo: "/sponsors/tire-ramz.png" },
+  { name: "Tire Ramz", logo: "/sponsors/tire-ramz.png" },
   { name: "JBS Customs", logo: "/sponsors/jbs-customs.png" },
   { name: "Pollo Asados El Rapido", logo: "/sponsors/pollo-asados-el-rapido.png" },
   { name: "ShaySlay Treats", logo: "/sponsors/shayslay-treats.png" },
