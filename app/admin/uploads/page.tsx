@@ -65,14 +65,19 @@ export default function AdminUploadsPage() {
           <label style={{ display: "flex", flexDirection: "column", gap: 6 }}>
             <span style={{ fontWeight: 700 }}>Team</span>
             <select
-              value={teamId}
-              onChange={(e) => setTeamId(e.target.value)}
-              style={{ padding: 10, borderRadius: 12 }}
+  value={teamId}
+  onChange={(e) => setTeamId(e.target.value)}
+  style={{ padding: 10, borderRadius: 12 }}
+>
+              <option value="org">Organisation</option>
+            </option>
+            </select>
             >
-              {teams.map((t) => (
-                <option key={t.id} value={t.id}>
-                  {t.name}
-                </option>
+              { <option value="org">Organization</option>
+  {teams.map((t) => (
+    <option key={t.id} value={t.id}>
+      {t.name}
+    </option>
               ))}
             </select>
           </label>
