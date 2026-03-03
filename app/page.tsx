@@ -17,7 +17,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="navLinks">
+          <div className="navorg">
             <Link className="btn ghost" href="/gallery">
               Gallery
             </Link>
