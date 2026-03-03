@@ -1,13 +1,9 @@
 "use client";
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
 
-// app/page.tsx
 import Image from "next/image";
 import Link from "next/link";
 import { org, teams, sponsors } from "./lib/data";
 import { phoneHref } from "./lib/utils";
-import SponsorShowcase from "./Components/SponsorShowcase";
 
 export default function HomePage() {
   return (
@@ -33,23 +29,41 @@ export default function HomePage() {
         </div>
       </nav>
 
+      {/* Hero */}
       <div className="wrap section">
-        {/* Hero */}
         <div className="card hero">
           <div>
             <h1 style={{ marginTop: 0, marginBottom: 8 }}>{org.name}</h1>
             <p style={{ marginTop: 0, opacity: 0.9 }}>
-              {org.tagline}. Registration, CashApp, contacts, sponsor form, and T-Ball merch — all in one place.
+              {org.tagline}. Registration, CashApp, contacts, sponsor form, and
+              T-Ball merch — all in one place.
             </p>
 
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginTop: 14 }}>
+            <div
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                gap: 10,
+                marginTop: 14,
+              }}
+            >
               <a className="btn" href={org.sponsorForm} target="_blank" rel="noreferrer">
                 Sponsor Application
               </a>
-              <a className="btn ghost" href={org.karmaRiotRegistration} target="_blank" rel="noreferrer">
+              <a
+                className="btn ghost"
+                href={org.karmaRiotRegistration}
+                target="_blank"
+                rel="noreferrer"
+              >
                 Karma/Riot Registration
               </a>
-              <a className="btn ghost" href={org.tballRegistration} target="_blank" rel="noreferrer">
+              <a
+                className="btn ghost"
+                href={org.tballRegistration}
+                target="_blank"
+                rel="noreferrer"
+              >
                 T-Ball Registration
               </a>
               <Link className="btn ghost" href="/gallery">
@@ -61,7 +75,13 @@ export default function HomePage() {
           <div className="heroLogos">
             {teams.map((t) => (
               <div key={t.id} className="logoPill">
-                <Image src={t.logo} alt={t.name} width={46} height={46} style={{ borderRadius: 12 }} />
+                <Image
+                  src={t.logo}
+                  alt={t.name}
+                  width={46}
+                  height={46}
+                  style={{ borderRadius: 12 }}
+                />
                 <div>
                   <div style={{ fontWeight: 700 }}>{t.name}</div>
                   <div style={{ fontSize: 12, opacity: 0.85 }}>{t.colors}</div>
@@ -89,7 +109,13 @@ export default function HomePage() {
                     {t.ages} • {t.colors}
                   </p>
                 </div>
-                <Image src={t.logo} alt={t.name} width={62} height={62} style={{ borderRadius: 16 }} />
+                <Image
+                  src={t.logo}
+                  alt={t.name}
+                  width={62}
+                  height={62}
+                  style={{ borderRadius: 16 }}
+                />
               </div>
 
               <div className="programActions">
@@ -163,13 +189,14 @@ export default function HomePage() {
           ))}
         </div>
 
-        {/* Sponsors + Donations */}
+        {/* Sponsors + Quick Donate */}
         <div className="card" style={{ padding: 18, marginTop: 18 }}>
           <div className="sectionTitle" style={{ margin: 0 }}>
             <div>
               <h2 style={{ marginTop: 0 }}>Sponsors & Donations</h2>
               <p style={{ marginBottom: 0 }}>
-                Support our kids with sponsorships and donations. Thank you for helping the Stateline Renegades grow.
+                Support our kids with sponsorships and donations. Thank you for helping
+                the Stateline Renegades grow.
               </p>
             </div>
           </div>
@@ -188,10 +215,52 @@ export default function HomePage() {
               Copy $renegadescheerteam (Anarchy)
             </button>
           </div>
+
+          {/* ELITE animated sponsor showcase */}
+          <SponsorShowcase />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SponsorShowcase() {
+  // duplicate list so marquee can loop smoothly
+  const list = [...sponsors, ...sponsors];
+
+  return (
+    <div className="sponsorWrap">
+      <div className="sponsorHeader">
+        <div>
+          <h2>💎 Sponsor Highlights</h2>
+          <p>Hover to pause. Add logos in <code>/public/sponsors</code>.</p>
         </div>
 
-        {/* ELITE Animated Sponsor Showcase */}
-        <SponsorShowcase sponsors={sponsors} sponsorFormUrl={org.sponsorForm} />
+        <a className="sponsorCta" href={org.sponsorForm} target="_blank" rel="noreferrer">
+          Become a Sponsor →
+        </a>
+      </div>
+
+      <div className="sponsorRail">
+        <div className="sponsorFadeLeft" />
+        <div className="sponsorFadeRight" />
+
+        <div className="sponsorTrack">
+          {list.map((s, idx) => (
+            <div key={`${s.name}-${idx}`} className="sponsorCard">
+              <div className="sponsorLogoBox">
+                <Image
+                  src={s.logo}
+                  alt={s.name}
+                  fill
+                  sizes="210px"
+                  style={{ objectFit: "contain", padding: 10 }}
+                />
+              </div>
+              <div className="sponsorName">{s.name}</div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
