@@ -86,12 +86,13 @@ export const teams: Team[] = [
 export const TEAMS = teams;
 // --- Sponsors (logos go in: /public/sponsors/...) ---
 export const sponsors = [
-  { name: "Mediano's", logo: "/sponsors/sponsor1.png" },
-  { name: "JJ Premium Carne Seca", logo: "/sponsors/sponsor2.png" },
-  { name: "HDR Logistics Services LLC", logo: "/sponsors/sponsor3.png" },
-    { name: "R&M Courier Services Inc.", logo: "/sponsors/sponsor4.png" },
-  { name: "Tire Rams Shop and Repair", logo: "/sponsors/sponsor5.png" },
-    { name: "JBS Customs", logo: "/sponsors/sponsor6.png" },
-  { name: "Pollos Asados El Rapido", logo: "/sponsors/sponsor7.png" },
-    { name: "ShaySlay Treats", logo: "/sponsors/sponsor8.png" },
+  { name: "Mediano's", logo: "/sponsors/medianos.png" },
+  { name: "JJ Premium Carne Seca", logo: "/sponsors/jj-premium-carne-seca.png" },
+  { name: "HDR Logistic Services LLC", logo: "/sponsors/hdr-logistic-services.png" },
+  { name: "R&M Courier Services Inc", logo: "/sponsors/rm-courier-services.png" },
+  { name: "Tire Ramz Shop and Repair", logo: "/sponsors/tire-ramz.png" },
+  { name: "JBS Customs", logo: "/sponsors/jbs-customs.png" },
+  { name: "Pollo Asados El Rapido", logo: "/sponsors/pollo-asados-el-rapido.png" },
+  { name: "ShaySlay Treats", logo: "/sponsors/shayslay-treats.png" },
+];
 ];
