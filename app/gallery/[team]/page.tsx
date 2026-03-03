@@ -1,10 +1,31 @@
 // app/gallery/[team]/page.tsx
 import Link from "next/link";
 import Image from "next/image";
+import path from "path";
+import { promises as fs } from "fs";
+
 import { getTeam, phoneHref } from "../../lib/utils";
 import { org } from "../../lib/data";
 
-export default function TeamGalleryPage({
+const IMAGE_EXTS = new Set([".jpg", ".jpeg", ".png", ".webp", ".gif"]);
+
+async function listTeamImages(teamId: string) {
+  // Reads from /public/gallery/<teamId>/
+  const dir = path.join(process.cwd(), "public", "gallery", teamId);
+
+  try {
+    const files = await fs.readdir(dir);
+    return files
+      .filter((f) => IMAGE_EXTS.has(path.extname(f).toLowerCase()))
+      .sort((a, b) => a.localeCompare(b))
+      .map((f) => `/gallery/${teamId}/${f}`); // public URL path
+  } catch {
+    // Folder doesn't exist yet (or no access in dev)
+    return [];
+  }
+}
+
+export default async function TeamGalleryPage({
   params,
 }: {
   params: { team: string };
@@ -22,6 +43,8 @@ export default function TeamGalleryPage({
       </div>
     );
   }
+
+  const images = await listTeamImages(team.id);
 
   return (
     <div>
@@ -69,24 +92,24 @@ export default function TeamGalleryPage({
 
           <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
             {team.registration ? (
-              <a className="btn" href={team.registration} target="_blank">
+              <a className="btn" href={team.registration} target="_blank" rel="noreferrer">
                 Register
               </a>
             ) : null}
 
-            <a className="btn ghost" href={org.sponsorForm} target="_blank">
+            <a className="btn ghost" href={org.sponsorForm} target="_blank" rel="noreferrer">
               Sponsor Form
             </a>
 
             {team.id === "tball" ? (
               <>
-                <a className="btn ghost" href={org.tballMerch.players} target="_blank">
+                <a className="btn ghost" href={org.tballMerch.players} target="_blank" rel="noreferrer">
                   Players Merch Form
                 </a>
-                <a className="btn ghost" href={org.tballMerch.parentFamily} target="_blank">
+                <a className="btn ghost" href={org.tballMerch.parentFamily} target="_blank" rel="noreferrer">
                   Parent/Family Merch Form
                 </a>
-                <a className="btn ghost" href={org.tballMerch.coach} target="_blank">
+                <a className="btn ghost" href={org.tballMerch.coach} target="_blank" rel="noreferrer">
                   Coach Merch Form
                 </a>
               </>
@@ -122,14 +145,43 @@ export default function TeamGalleryPage({
 
         <div className="card" style={{ padding: 16, marginTop: 18 }}>
           <h3 style={{ marginTop: 0 }}>Photos</h3>
+
           <p style={{ marginTop: 0 }}>
-            Put your photos into:
+            Upload images here:
             <br />
             <code>/public/gallery/{team.id}/</code>
           </p>
-          <p style={{ opacity: 0.85, marginBottom: 0 }}>
-            Once you upload images there, we can upgrade this page to auto-list them.
-          </p>
+
+          {images.length === 0 ? (
+            <p style={{ opacity: 0.85, marginBottom: 0 }}>
+              No images found yet. Add JPG/PNG/WebP files to that folder and redeploy.
+            </p>
+          ) : (
+            <div
+              style={{
+                marginTop: 12,
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+                gap: 12,
+              }}
+            >
+              {images.map((src) => (
+                <div
+                  key={src}
+                  className="card"
+                  style={{
+                    padding: 10,
+                    borderRadius: 16,
+                    overflow: "hidden",
+                  }}
+                >
+                  <div style={{ position: "relative", width: "100%", aspectRatio: "4/3" }}>
+                    <Image src={src} alt={`${team.name} photo`} fill style={{ objectFit: "cover" }} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>
