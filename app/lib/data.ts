@@ -1,5 +1,10 @@
 // app/lib/data.ts
 
+export const GALLERY_TEAMS = [
+  { id: "org", name: "Organization", colors: "Events • Banquets • Community" },
+  ...teams.map(t => ({ id: t.id, name: t.name, colors: t.colors })),
+] as const;
+
 export type Contact = {
   name: string;
   phone: string; // keep as "915-xxx-xxxx" for display
