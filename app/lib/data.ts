@@ -84,3 +84,9 @@ export const teams: Team[] = [
 
 // ✅ Compatibility exports (fixes your build errors no matter which import name pages use)
 export const TEAMS = teams;
+// --- Sponsors (logos go in: /public/sponsors/...) ---
+export const sponsors = [
+  { name: "Sponsor Name 1", logo: "/sponsors/sponsor1.png" },
+  { name: "Sponsor Name 2", logo: "/sponsors/sponsor2.png" },
+  { name: "Sponsor Name 3", logo: "/sponsors/sponsor3.png" },
+];
