@@ -2,7 +2,7 @@
 import { NextResponse } from "next/server";
 import { put } from "@vercel/blob";
 
-const ALLOWED_TEAMS = new Set(["karma", "riot", "anarchy", "tball"]);
+const ALLOWED_TEAMS = new Set(["karma", "riot", "anarchy", "tball", "org"]);
 
 export async function POST(req: Request) {
   try {
