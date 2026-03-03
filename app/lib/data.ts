@@ -95,4 +95,3 @@ export const sponsors = [
   { name: "Pollo Asados El Rapido", logo: "/sponsors/pollo-asados-el-rapido.png" },
   { name: "ShaySlay Treats", logo: "/sponsors/shayslay-treats.png" },
 ];
-];
