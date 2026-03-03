@@ -4,8 +4,8 @@ import Image from "next/image";
 
 export type Sponsor = {
   name: string;
-  logo: string; // path inside /public (example: "/sponsors/acme.png")
-  url?: string; // optional website link
+  logo: string; // path in /public, e.g. "/sponsors/acme.png"
+  url?: string; // optional click-through
 };
 
 export default function SponsorShowcase({
@@ -15,14 +15,15 @@ export default function SponsorShowcase({
   sponsors: Sponsor[];
   sponsorFormUrl: string;
 }) {
-  const loop = [...sponsors, ...sponsors]; // duplicates for smooth marquee
+  // duplicate list so marquee can loop seamlessly
+  const track = [...sponsors, ...sponsors];
 
   return (
-    <div className="sponsorWrap">
+    <section className="sponsorWrap">
       <div className="sponsorHeader">
         <div>
-          <h2>Elite Sponsor Highlights</h2>
-          <p>Hover to pause. Click a sponsor to visit their page (if provided).</p>
+          <h2>Sponsor Highlights</h2>
+          <p>Your sponsor logos scroll here (carousel). Hover to pause.</p>
         </div>
 
         <a className="sponsorCta" href={sponsorFormUrl} target="_blank" rel="noreferrer">
@@ -35,17 +36,16 @@ export default function SponsorShowcase({
         <div className="sponsorFadeRight" />
 
         <div className="sponsorTrack">
-          {loop.map((s, i) => {
-            const card = (
+          {track.map((s, i) => {
+            const Card = (
               <div className="sponsorCard">
                 <div className="sponsorLogoBox">
                   <Image
                     src={s.logo}
                     alt={s.name}
                     fill
-                    style={{ objectFit: "contain" }}
                     sizes="210px"
-                    priority={i < 6}
+                    style={{ objectFit: "contain", padding: 10 }}
                   />
                 </div>
                 <div className="sponsorName">{s.name}</div>
@@ -53,15 +53,22 @@ export default function SponsorShowcase({
             );
 
             return s.url ? (
-              <a key={`${s.name}-${i}`} className="sponsorLink" href={s.url} target="_blank" rel="noreferrer">
-                {card}
+              <a
+                key={`${s.name}-${i}`}
+                className="sponsorLink"
+                href={s.url}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={s.name}
+              >
+                {Card}
               </a>
             ) : (
-              <div key={`${s.name}-${i}`}>{card}</div>
+              <div key={`${s.name}-${i}`}>{Card}</div>
             );
           })}
         </div>
       </div>
-    </div>
+    </section>
   );
 }
