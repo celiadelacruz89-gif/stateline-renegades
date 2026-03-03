@@ -4,31 +4,35 @@ import Image from "next/image";
 
 export type Sponsor = {
   name: string;
-  logo: string; // "/sponsors/file.png" OR https://... (Blob)
+  logo: string; // example: "/sponsors/logo.png"
   href?: string;
 };
 
-export default function SponsorShowcase({
-  sponsors,
-  sponsorForm,
-}: {
+interface Props {
   sponsors: Sponsor[];
   sponsorForm: string;
-}) {
-  if (!sponsors?.length) return null;
+}
 
-  // Duplicate for seamless marquee
+export default function SponsorShowcase({ sponsors, sponsorForm }: Props) {
+  if (!sponsors || sponsors.length === 0) return null;
+
+  // Duplicate list for smooth infinite scroll
   const loop = [...sponsors, ...sponsors];
 
   return (
     <section className="sponsorWrap">
       <div className="sponsorHeader">
         <div>
-          <h2>Sponsor Highlights</h2>
-          <p>Thank you to our sponsors — tap a logo to learn more.</p>
+          <h2>Our Sponsors</h2>
+          <p>We proudly thank the businesses that support our athletes.</p>
         </div>
 
-        <a className="sponsorCta" href={sponsorForm} target="_blank" rel="noreferrer">
+        <a
+          className="sponsorCta"
+          href={sponsorForm}
+          target="_blank"
+          rel="noreferrer"
+        >
           Become a Sponsor →
         </a>
       </div>
@@ -38,7 +42,7 @@ export default function SponsorShowcase({
         <div className="sponsorFadeRight" />
 
         <div className="sponsorTrack">
-          {loop.map((s, idx) => {
+          {loop.map((s, index) => {
             const Card = (
               <div className="sponsorCard">
                 <div className="sponsorLogoBox">
@@ -48,7 +52,7 @@ export default function SponsorShowcase({
                     fill
                     sizes="210px"
                     style={{ objectFit: "contain", padding: 10 }}
-                    priority={idx < 6}
+                    priority={index < sponsors.length}
                   />
                 </div>
                 <div className="sponsorName">{s.name}</div>
@@ -56,11 +60,17 @@ export default function SponsorShowcase({
             );
 
             return s.href ? (
-              <a key={`${s.name}-${idx}`} className="sponsorLink" href={s.href} target="_blank" rel="noreferrer">
+              <a
+                key={`${s.name}-${index}`}
+                href={s.href}
+                target="_blank"
+                rel="noreferrer"
+                className="sponsorLink"
+              >
                 {Card}
               </a>
             ) : (
-              <div key={`${s.name}-${idx}`} className="sponsorLink">
+              <div key={`${s.name}-${index}`} className="sponsorLink">
                 {Card}
               </div>
             );
