@@ -1,26 +1,38 @@
+// app/api/upload/route.ts
 import { NextResponse } from "next/server";
 import { put } from "@vercel/blob";
 
-export const dynamic = "force-dynamic";
+const ALLOWED_TEAMS = new Set(["karma", "riot", "anarchy", "tball"]);
 
 export async function POST(req: Request) {
-  const form = await req.formData();
+  try {
+    const form = await req.formData();
+    const file = form.get("file") as File | null;
+    const team = String(form.get("team") || "").trim();
 
-  const file = form.get("file") as File | null;
-  const folder = (form.get("folder") as string | null) ?? "sponsors";
-  const team = (form.get("team") as string | null) ?? "org";
+    if (!file) return NextResponse.json({ error: "Missing file" }, { status: 400 });
+    if (!ALLOWED_TEAMS.has(team)) {
+      return NextResponse.json({ error: "Invalid team" }, { status: 400 });
+    }
 
-  if (!file) return NextResponse.json({ error: "No file uploaded" }, { status: 400 });
+    const safeName = (file.name || "upload")
+      .toLowerCase()
+      .replace(/\s+/g, "-")
+      .replace(/[^a-z0-9.\-_]/g, "");
 
-  // sponsors -> sponsors/filename
-  // gallery  -> gallery/{team}/filename
-  const cleanName = file.name.replace(/\s+/g, "-");
-  const pathname = folder === "gallery" ? `gallery/${team}/${cleanName}` : `sponsors/${cleanName}`;
+    const pathname = `gallery/${team}/${Date.now()}-${safeName}`;
 
-  const blob = await put(pathname, file, {
-    access: "public",
-    addRandomSuffix: true,
-  });
+    const blob = await put(pathname, file, {
+      access: "public",
+      contentType: file.type || undefined,
+    });
 
-  return NextResponse.json({ url: blob.url, pathname: blob.pathname });
+    return NextResponse.json({
+      url: blob.url,
+      pathname: blob.pathname,
+      contentType: file.type || undefined,
+    });
+  } catch (err: any) {
+    return NextResponse.json({ error: err?.message || "Upload failed" }, { status: 500 });
+  }
 }
