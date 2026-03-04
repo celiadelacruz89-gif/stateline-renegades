@@ -1,6 +1,10 @@
 // app/admin/page.tsx
 "use client";
 
+<Link className="btn" href="/admin/uploads">
+  Upload Photos/Videos
+</Link>
+
 import Link from "next/link";
 
 export default function AdminPage() {
