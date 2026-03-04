@@ -28,7 +28,7 @@ function getOrgTeam(teamId: string) {
       name: "Organization",
       ages: "Events • Banquets • Community",
       colors: "All Teams",
-      logo: "/logos/blessedmayhem.png",
+      logo: "/logos/mayhem.png",
       cashApp: "",
       registration: "",
       contacts: [],
