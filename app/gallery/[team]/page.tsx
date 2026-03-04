@@ -1,32 +1,18 @@
-// app/gallery/[team]/page.tsx
 import Link from "next/link";
 import Image from "next/image";
-import path from "path";
-import { promises as fs } from "fs";
-
 import { getTeam, phoneHref } from "../../lib/utils";
 import { org } from "../../lib/data";
 
-const IMAGE_EXTS = new Set([".jpg", ".jpeg", ".png", ".webp", ".gif"]);
+type MediaItem = {
+  url: string;
+  pathname: string;
+  isImage?: boolean;
+  isVideo?: boolean;
+};
 
-async function listTeamImages(teamId: string) {
-  // Reads from /public/gallery/<teamId>/
-  const dir = path.join(process.cwd(), "public", "gallery", teamId);
-
-  try {
-    const files = await fs.readdir(dir);
-    return files
-      .filter((f) => IMAGE_EXTS.has(path.extname(f).toLowerCase()))
-      .sort((a, b) => a.localeCompare(b))
-      .map((f) => `/gallery/${teamId}/${f}`); // public URL path
-  } catch {
-    // Folder doesn't exist yet (or no access in dev)
-    return [];
-  }
-}
-
-async function getMedia(team: string) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL || ""}/api/gallery-media?team=${team}`, {
+async function getMedia(teamId: string): Promise<MediaItem[]> {
+  // Works in Vercel because it’s same-origin at build/runtime
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL ?? ""}/api/gallery-media?team=${teamId}`, {
     cache: "no-store",
   }).catch(() => null);
 
@@ -35,29 +21,37 @@ async function getMedia(team: string) {
   return data.items || [];
 }
 
-export default async function TeamGalleryPage({
-  params,
-}: {
-  params: { team: string };
-}) {
-  const team = getTeam(params.team);
-  
-// @ts-ignore - server component fetch
-const media = await getMedia(team.id);
-  
+function getOrgTeam(teamId: string) {
+  if (teamId === "org") {
+    return {
+      id: "org",
+      name: "Organization",
+      ages: "Events • Banquets • Community",
+      colors: "All Teams",
+      logo: "/logos/blessedmayhem.png",
+      cashApp: "",
+      registration: "",
+      contacts: [],
+    };
+  }
+  return getTeam(teamId);
+}
+
+export default async function TeamGalleryPage({ params }: { params: { team: string } }) {
+  const teamId = params.team.toLowerCase();
+  const team = getOrgTeam(teamId);
+
   if (!team) {
     return (
       <div className="wrap section">
-        <h1>Team not found</h1>
-        <p>Go back to the gallery and pick a team.</p>
-        <Link className="btn" href="/gallery">
-          Back to Gallery
-        </Link>
+        <h1>Gallery not found</h1>
+        <p>Go back and pick a team.</p>
+        <Link className="btn" href="/gallery">Back to Gallery</Link>
       </div>
     );
   }
 
-  const images = await listTeamImages(team.id);
+  const media = await getMedia(team.id);
 
   return (
     <div>
@@ -71,12 +65,9 @@ const media = await getMedia(team.id);
           </div>
 
           <div className="navLinks">
-            <Link className="btn ghost" href="/">
-              Home
-            </Link>
-            <Link className="btn ghost" href="/gallery">
-              All Teams
-            </Link>
+            <Link className="btn ghost" href="/">Home</Link>
+            <Link className="btn ghost" href="/gallery">All Galleries</Link>
+            <Link className="btn" href="/admin/uploads">Upload</Link>
           </div>
         </div>
       </nav>
@@ -84,114 +75,84 @@ const media = await getMedia(team.id);
       <div className="wrap section">
         <div className="sectionTitle">
           <div>
-            <h1>{team.name}</h1>
-            <p>
+            <h1 style={{ margin: 0 }}>{team.name}</h1>
+            <p style={{ marginTop: 6, opacity: 0.9 }}>
               {team.ages} • {team.colors}
             </p>
           </div>
+
           <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
-            <Image
-              src={team.logo}
-              alt={team.name}
-              width={64}
-              height={64}
-              style={{ borderRadius: 14 }}
-            />
+            <Image src={team.logo} alt={team.name} width={64} height={64} style={{ borderRadius: 14 }} />
           </div>
         </div>
 
-        <div className="card" style={{ padding: 16, marginBottom: 18 }}>
-          <h3 style={{ marginTop: 0 }}>Quick Links</h3>
-
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
-            {team.registration ? (
-              <a className="btn" href={team.registration} target="_blank" rel="noreferrer">
-                Register
-              </a>
-            ) : null}
-
-            <a className="btn ghost" href={org.sponsorForm} target="_blank" rel="noreferrer">
-              Sponsor Form
-            </a>
-
-            {team.id === "tball" ? (
-              <>
-                <a className="btn ghost" href={org.tballMerch.players} target="_blank" rel="noreferrer">
-                  Players Merch Form
-                </a>
-                <a className="btn ghost" href={org.tballMerch.parentFamily} target="_blank" rel="noreferrer">
-                  Parent/Family Merch Form
-                </a>
-                <a className="btn ghost" href={org.tballMerch.coach} target="_blank" rel="noreferrer">
-                  Coach Merch Form
-                </a>
-              </>
-            ) : null}
+        {team.contacts?.length ? (
+          <div className="card" style={{ padding: 16, marginBottom: 16 }}>
+            <h3 style={{ marginTop: 0 }}>Contacts</h3>
+            <ul style={{ margin: 0, paddingLeft: 18 }}>
+              {team.contacts.map((c) => (
+                <li key={`${c.name}-${c.phone}`}>
+                  <b>{c.name}</b>{" "}
+                  <a href={phoneHref(c.phone)} style={{ textDecoration: "underline" }}>
+                    {c.phone}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
-
-          <div style={{ marginTop: 14 }}>
-            {team.cashApp ? (
-              <p style={{ margin: 0 }}>
-                <b>CashApp:</b> {team.cashApp}
-              </p>
-            ) : (
-              <p style={{ margin: 0 }}>
-                <b>CashApp:</b> (add one in <code>app/lib/data.ts</code>)
-              </p>
-            )}
-          </div>
-        </div>
+        ) : null}
 
         <div className="card" style={{ padding: 16 }}>
-          <h3 style={{ marginTop: 0 }}>Contacts</h3>
-          <ul style={{ margin: 0, paddingLeft: 18 }}>
-            {team.contacts.map((c) => (
-              <li key={`${c.name}-${c.phone}`}>
-                <b>{c.name}</b>{" "}
-                <a href={phoneHref(c.phone)} style={{ textDecoration: "underline" }}>
-                  {c.phone}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
+          <div style={{ display: "flex", justifyContent: "space-between", gap: 12, flexWrap: "wrap" }}>
+            <div>
+              <h3 style={{ marginTop: 0 }}>Media</h3>
+              <p style={{ margin: 0, opacity: 0.85 }}>
+                Photos and videos uploaded from Admin → Uploads.
+              </p>
+            </div>
+            <Link className="btn" href="/admin/uploads">Upload Media</Link>
+          </div>
 
-        <div className="card" style={{ padding: 16, marginTop: 18 }}>
-          <h3 style={{ marginTop: 0 }}>Photos</h3>
-
-          <p style={{ marginTop: 0 }}>
-            Upload images here:
-            <br />
-            <code>/public/gallery/{team.id}/</code>
-          </p>
-
-          {images.length === 0 ? (
-            <p style={{ opacity: 0.85, marginBottom: 0 }}>
-              No images found yet. Add JPG/PNG/WebP files to that folder and redeploy.
+          {media.length === 0 ? (
+            <p style={{ marginTop: 14, opacity: 0.85 }}>
+              Nothing uploaded yet.
             </p>
           ) : (
             <div
               style={{
-                marginTop: 12,
+                marginTop: 14,
                 display: "grid",
                 gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
                 gap: 12,
               }}
             >
-              {images.map((src) => (
-                <div
-                  key={src}
+              {media.map((m) => (
+                <a
+                  key={m.url}
+                  href={m.url}
+                  target="_blank"
+                  rel="noreferrer"
                   className="card"
-                  style={{
-                    padding: 10,
-                    borderRadius: 16,
-                    overflow: "hidden",
-                  }}
+                  style={{ padding: 10, borderRadius: 16, textDecoration: "none", color: "inherit" }}
+                  title="Open media"
                 >
-                  <div style={{ position: "relative", width: "100%", aspectRatio: "4/3" }}>
-                    <Image src={src} alt={`${team.name} photo`} fill style={{ objectFit: "cover" }} />
+                  <div style={{ fontWeight: 800, fontSize: 12, opacity: 0.9, marginBottom: 8 }}>
+                    {m.pathname.split("/").pop()}
                   </div>
-                </div>
+
+                  {m.isVideo ? (
+                    <video
+                      src={m.url}
+                      style={{ width: "100%", borderRadius: 12 }}
+                      muted
+                      playsInline
+                      preload="metadata"
+                    />
+                  ) : (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={m.url} alt="" style={{ width: "100%", borderRadius: 12 }} />
+                  )}
+                </a>
               ))}
             </div>
           )}
