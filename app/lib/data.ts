@@ -42,7 +42,7 @@ export const org = {
   },
 
   // Optional: an org logo to use on /gallery/org
-  orgLogo: "/logos/blessedmayhem.png",
+  orgLogo: "/logos/mayhem.png",
 };
 
 export const teams: Team[] = [
@@ -82,7 +82,7 @@ export const teams: Team[] = [
     contacts: [{ name: "Team mom Jennifer", phone: "915-803-9442" }],
   },
    {
-    id: "blessedmayhem",
+    id: "mayhem",
     name: "Renegades Mayhem",
     ages: "Ages 6–12",
     colors: "Metallic Purple & Black",
