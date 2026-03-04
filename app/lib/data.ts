@@ -5,7 +5,7 @@ export type Contact = {
   phone: string; // keep as "915-xxx-xxxx" for display
 };
 
-export type TeamId = "karma" | "riot" | "anarchy" | "tball" | "org";
+export type TeamId = "karma" | "riot" | "anarchy" | "tball" | "org" | "blessedmayhem";
 
 export type Team = {
   id: Exclude<TeamId, "org">; // real “program” teams only
@@ -81,6 +81,15 @@ export const teams: Team[] = [
     cashApp: "$renegadescheerteam",
     contacts: [{ name: "Team mom Jennifer", phone: "915-803-9442" }],
   },
+   {
+    id: "blessedmayhem",
+    name: "Renegades Mayhem",
+    ages: "Ages 6–12",
+    colors: "Metallic Purple & Black",
+    logo: "/logos/mayhem.png",
+    cashApp: "$renegadescheerteam",
+    contacts: [{ name: "Team mom Jennifer", phone: "915-803-9442" }],
+  },
   {
     id: "tball",
     name: "Renegades T-Ball",
@@ -103,6 +112,7 @@ export const TEAMS = teams;
 // Put org images in: /public/gallery/org/
 export const GALLERY_TEAMS = [
   { id: "org" as const, name: "Organization", colors: "Events • Banquets • Community" },
+  
   ...teams.map((t) => ({ id: t.id, name: t.name, colors: t.colors })),
 ] as const;
 
