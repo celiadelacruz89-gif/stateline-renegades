@@ -118,12 +118,13 @@ export const GALLERY_TEAMS = [
 
 // ✅ Sponsors (logos go in: /public/sponsors/...) OR paste Vercel Blob URL
 export const sponsors: Sponsor[] = [
-  { name: "Mediano's", logo: "/sponsors/medianos.png" },
-  { name: "JJ Premium Carne Seca", logo: "/sponsors/jj-premium-carne-seca.png" },
-  { name: "HDR Logistic Services LLC", logo: "/sponsors/hdr-llogistic-services.png" },
+   { name: "Mediano's", logo: "/sponsors/medianos.png" },
+    { name: "JJ Premium Carne Seca", logo: "/sponsors/jj-premium-carne-seca.png" },
+ { name: "HDR Logistic Services LLC", logo: "/sponsors/hdr-logistic-services.png" },
+  { name: "R&M Courier Services Inc", logo: "/sponsors/rm-courier.png" },
   { name: "Tire Ramz Shop and Repair", logo: "/sponsors/tire-ramz.png" },
   { name: "JBS Customs", logo: "/sponsors/jbs-customs.png" },
-  { name: "Pollo Asados El Rapido", logo: "/sponsors/pollos-asados-el-rapido.png" },
+ { name: "Pollo Asados El Rapido", logo: "/sponsors/pollos-asados-el-rapido.png" },
   { name: "ShaySlay Treats", logo: "/sponsors/shayslay-treats.png" },
 
   // If you add the missing ones later, just add lines like:
