@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-
 import SponsorShowcase from "./components/SponsorShowcase";
 import { org, teams, sponsors } from "./lib/data";
 import { phoneHref } from "./lib/utils";
@@ -37,23 +36,29 @@ export default function HomePage() {
           <div>
             <h1 style={{ marginTop: 0, marginBottom: 8 }}>{org.name}</h1>
             <p style={{ marginTop: 0, opacity: 0.9 }}>
-              {org.tagline}. Registration, CashApp, contacts, sponsor form, and T-Ball merch — all in one place.
+              {org.tagline}. Registration, CashApp, contacts, sponsor form, and T-Ball merch — all in
+              one place.
             </p>
 
             <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginTop: 14 }}>
               <a className="btn" href={org.sponsorForm} target="_blank" rel="noreferrer">
                 Sponsor Application
               </a>
+
               <a className="btn ghost" href={org.karmaRiotRegistration} target="_blank" rel="noreferrer">
                 Karma/Riot Registration
               </a>
-                <a className="btn ghost" href={org.jjFundraiser} target="_blank">
-    JJ Carne Seca Fundraiser
-  </a>
-</div>
+
               <a className="btn ghost" href={org.tballRegistration} target="_blank" rel="noreferrer">
                 T-Ball Registration
               </a>
+
+              {"jjFundraiser" in org ? (
+                <a className="btn ghost" href={(org as any).jjFundraiser} target="_blank" rel="noreferrer">
+                  JJ Carne Seca Fundraiser
+                </a>
+              ) : null}
+
               <Link className="btn ghost" href="/gallery">
                 View Gallery
               </Link>
@@ -104,11 +109,7 @@ export default function HomePage() {
                 )}
 
                 {t.cashApp ? (
-                  <button
-                    className="btn ghost"
-                    onClick={() => navigator.clipboard.writeText(t.cashApp!)}
-                    title="Copy CashApp"
-                  >
+                  <button className="btn ghost" onClick={() => navigator.clipboard.writeText(t.cashApp!)}>
                     Copy CashApp
                   </button>
                 ) : (
@@ -151,7 +152,12 @@ export default function HomePage() {
                       <a className="btn ghost" href={org.tballMerch.players} target="_blank" rel="noreferrer">
                         Players Order Form
                       </a>
-                      <a className="btn ghost" href={org.tballMerch.parentFamily} target="_blank" rel="noreferrer">
+                      <a
+                        className="btn ghost"
+                        href={org.tballMerch.parentFamily}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
                         Parent/Family Order Form
                       </a>
                       <a className="btn ghost" href={org.tballMerch.coach} target="_blank" rel="noreferrer">
@@ -165,7 +171,7 @@ export default function HomePage() {
           ))}
         </div>
 
-        {/* Sponsors carousel */}
+        {/* Sponsors carousel (INSIDE component return) */}
         <SponsorShowcase sponsors={sponsors} sponsorForm={org.sponsorForm} />
 
         {/* Sponsor + Quick Donate */}
@@ -174,7 +180,8 @@ export default function HomePage() {
             <div>
               <h2 style={{ marginTop: 0 }}>Sponsors & Donations</h2>
               <p style={{ marginBottom: 0 }}>
-                Support our kids with sponsorships and donations. Thank you for helping the Stateline Renegades grow.
+                Support our kids with sponsorships and donations. Thank you for helping the Stateline
+                Renegades grow.
               </p>
             </div>
           </div>
@@ -190,7 +197,10 @@ export default function HomePage() {
             <button className="btn ghost" onClick={() => navigator.clipboard.writeText("$RenegadesBB")}>
               Copy $RenegadesBB (T-Ball)
             </button>
-            <button className="btn ghost" onClick={() => navigator.clipboard.writeText("$renegadescheerteam")}>
+            <button
+              className="btn ghost"
+              onClick={() => navigator.clipboard.writeText("$renegadescheerteam")}
+            >
               Copy $renegadescheerteam (Anarchy)
             </button>
           </div>
