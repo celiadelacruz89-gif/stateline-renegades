@@ -1,10 +1,4 @@
 // app/lib/data.ts
-
-export const GALLERY_TEAMS = [
-  { id: "org", name: "Organization", colors: "Events • Banquets • Community" },
-  ...teams.map(t => ({ id: t.id, name: t.name, colors: t.colors })),
-] as const;
-
 export type Contact = {
   name: string;
   phone: string; // keep as "915-xxx-xxxx" for display
@@ -86,9 +80,22 @@ export const teams: Team[] = [
     ],
   },
 ];
+export const GALLERY_TEAMS = [
+   { id: "org", name: "Organization", colors: "Events • Banquets • Community" },
+  ...teams.map((t) => ({
+    id: t.id,
+    name: t.name,
+    colors: t.colors,
+  })),
+] as const;
 
 // ✅ Compatibility exports (fixes your build errors no matter which import name pages use)
 export const TEAMS = teams;
+export const GALLERY_TEAMS = [
+  { id: "org", ... },
+  ...teams.map(...)
+] as const;
+
 // --- Sponsors (logos go in: /public/sponsors/...) ---
 export const sponsors = [
   { name: "Mediano's", logo: "/sponsors/medianos.png" },
