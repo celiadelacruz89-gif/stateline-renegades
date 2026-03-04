@@ -5,7 +5,7 @@ export type Contact = {
   phone: string; // keep as "915-xxx-xxxx" for display
 };
 
-export type TeamId = "karma" | "riot" | "anarchy" | "tball" | "org" | "blessedmayhem";
+export type TeamId = "karma" | "riot" | "anarchy" | "tball" | "org" | "mayhem";
 
 export type Team = {
   id: Exclude<TeamId, "org">; // real “program” teams only
