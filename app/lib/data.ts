@@ -34,6 +34,8 @@ export const org = {
   karmaRiotRegistration: "https://form.jotform.com/260336801253046",
   tballRegistration: "https://form.jotform.com/260086521920149",
 
+   jjFundraiser: "https://form.jotform.com/260160484299058",
+  
   // T-Ball Merch Links
   tballMerch: {
     players: "https://form.jotform.com/260125057825050",
