@@ -1,19 +1,20 @@
-// app/admin/page.tsx
 "use client";
 
 import Link from "next/link";
-
-<Link className="btn" href="/admin/uploads">
-  Upload Photos/Videos
-</Link>
 
 export default function AdminPage() {
   return (
     <div className="wrap section">
       <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 14 }}>
-        <Link className="btn ghost" href="/">Home</Link>
-        <Link className="btn ghost" href="/gallery">Gallery</Link>
-        <Link className="btn" href="/admin/uploads">Upload Photos/Videos</Link>
+        <Link className="btn ghost" href="/">
+          Home
+        </Link>
+        <Link className="btn ghost" href="/gallery">
+          Gallery
+        </Link>
+        <Link className="btn" href="/admin/uploads">
+          Upload Photos/Videos
+        </Link>
       </div>
 
       <h1 style={{ marginTop: 0 }}>Admin Controls</h1>
