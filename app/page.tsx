@@ -47,6 +47,10 @@ export default function HomePage() {
               <a className="btn ghost" href={org.karmaRiotRegistration} target="_blank" rel="noreferrer">
                 Karma/Riot Registration
               </a>
+                <a className="btn ghost" href={org.jjFundraiser} target="_blank">
+    JJ Carne Seca Fundraiser
+  </a>
+</div>
               <a className="btn ghost" href={org.tballRegistration} target="_blank" rel="noreferrer">
                 T-Ball Registration
               </a>
