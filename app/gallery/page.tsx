@@ -1,42 +1,18 @@
-import Link from "next/link";
-import { GALLERY_TEAMS } from "../lib/data";
+import PublicGallery from "@/components/PublicGallery";
 
-export default function GalleryHome() {
+export const dynamic = "force-dynamic";
+
+export default function GalleryPage() {
   return (
-    <div>
-      <nav>
-        <div className="wrap navInner">
-          <div className="brand">
-            <div className="brandMark" />
-            <div className="brandText">
-              <b>Gallery</b> <span>Stateline Renegades</span>
-            </div>
-          </div>
+    <main className="mx-auto max-w-7xl space-y-12 px-4 py-10">
+      <h1 className="text-4xl font-extrabold">Stateline Renegades Gallery</h1>
 
-          <div className="navLinks">
-            <Link className="btn ghost" href="/">Home</Link>
-            <Link className="btn" href="/admin">Admin Controls</Link>
-          </div>
-        </div>
-      </nav>
-
-      <div className="wrap section">
-        <div className="sectionTitle">
-          <div>
-            <h2>Galleries</h2>
-            <p>Choose a team or Organization.</p>
-          </div>
-        </div>
-
-        <div className="grid2">
-          {GALLERY_TEAMS.map((t) => (
-            <Link key={t.id} className="card program" href={`/gallery/${t.id}`}>
-              <h3>{t.name}</h3>
-              <p>{t.colors}</p>
-            </Link>
-          ))}
-        </div>
-      </div>
-    </div>
+      <PublicGallery team="org" title="Organization Gallery" />
+      <PublicGallery team="karma" title="Karma Gallery" />
+      <PublicGallery team="riot" title="Riot Gallery" />
+      <PublicGallery team="anarchy" title="Anarchy Gallery" />
+      <PublicGallery team="mayhem" title="Blessed Mayhem Gallery" />
+      <PublicGallery team="tball" title="T-Ball Gallery" />
+    </main>
   );
 }
