@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { list } from "@vercel/blob";
 
-const ALLOWED_TEAMS = new Set(["org", "karma", "riot", "anarchy", "tball"]);
+const ALLOWED_TEAMS = new Set(["org", "karma", "riot", "anarchy", "mayhem", "tball"]);
 
 function inferType(pathname: string) {
   const lower = pathname.toLowerCase();
