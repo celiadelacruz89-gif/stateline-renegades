@@ -1,7 +1,14 @@
 import { NextResponse } from "next/server";
 import { put } from "@vercel/blob";
 
-const ALLOWED_TEAMS = new Set(["org", "karma", "riot", "anarchy", "mayhem", "tball"]);
+const ALLOWED_TEAMS = new Set([
+  "org",
+  "karma",
+  "riot",
+  "anarchy",
+  "mayhem",
+  "tball",
+]);
 
 function safeName(name: string) {
   return name
@@ -14,12 +21,13 @@ function safeName(name: string) {
 export async function POST(req: Request) {
   const form = await req.formData();
 
-  const team = String(form.get("team") || "").toLowerCase();
+  const team = String(form.get("team") || "").toLowerCase().trim();
   const file = form.get("file") as File | null;
 
   if (!ALLOWED_TEAMS.has(team)) {
     return NextResponse.json({ error: "Invalid team" }, { status: 400 });
   }
+
   if (!file) {
     return NextResponse.json({ error: "Missing file" }, { status: 400 });
   }
@@ -33,6 +41,8 @@ export async function POST(req: Request) {
   });
 
   return NextResponse.json({
+    success: true,
+    team,
     url: blob.url,
     pathname: blob.pathname,
   });
