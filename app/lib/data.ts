@@ -94,7 +94,7 @@ export const teams: Team[] = [
   contacts: [
     { name: "Jennifer Billesbach", phone: "915-803-9442" }
   ]
-  }
+  },
   {
     id: "tball",
     name: "Renegades T-Ball",
