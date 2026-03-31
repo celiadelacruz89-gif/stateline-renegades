@@ -83,15 +83,18 @@ export const teams: Team[] = [
     cashApp: "$renegadescheerteam",
     contacts: [{ name: "Team mom Jennifer", phone: "915-803-9442" }],
   },
-   {
-    id: "mayhem",
-    name: "Renegades Mayhem",
-    ages: "Ages 6–12",
-    colors: "Metallic Purple & Black",
-    logo: "/logos/mayhem.png",
-    cashApp: "$renegadescheerteam",
-    contacts: [{ name: "Team mom Jennifer", phone: "915-803-9442" }],
-  },
+  {
+  id: "mayhem",
+  name: "Blessed Mayhem Cheer",
+  ages: "6–12",
+  colors: "Black & Purple",
+  logo: "/logos/mayhem.png",
+  cashApp: "$renegadescheerteam",
+  registration: "https://forms.gle/6W6GNLNYwYCay7zXA",
+  contacts: [
+    { name: "Jennifer Billesbach", phone: "915-803-9442" }
+  ]
+  }
   {
     id: "tball",
     name: "Renegades T-Ball",
