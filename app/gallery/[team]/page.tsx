@@ -3,6 +3,8 @@ import Image from "next/image";
 import { getTeam, phoneHref } from "../../lib/utils";
 import { org } from "../../lib/data";
 
+export const dynamic = "force-dynamic";
+
 type MediaItem = {
   url: string;
   pathname: string;
@@ -11,12 +13,22 @@ type MediaItem = {
 };
 
 async function getMedia(teamId: string): Promise<MediaItem[]> {
-  // Works in Vercel because it’s same-origin at build/runtime
-  const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL ?? ""}/api/gallery-media?team=${teamId}`, {
+  const baseUrl =
+    process.env.NEXT_PUBLIC_SITE_URL ||
+    process.env.VERCEL_URL?.startsWith("http")
+      ? process.env.VERCEL_URL
+      : process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
+      : "";
+
+  const url = `${baseUrl}/api/gallery?team=${teamId}`;
+
+  const res = await fetch(url, {
     cache: "no-store",
   }).catch(() => null);
 
   if (!res || !res.ok) return [];
+
   const data = await res.json();
   return data.items || [];
 }
@@ -34,10 +46,15 @@ function getOrgTeam(teamId: string) {
       contacts: [],
     };
   }
+
   return getTeam(teamId);
 }
 
-export default async function TeamGalleryPage({ params }: { params: { team: string } }) {
+export default async function TeamGalleryPage({
+  params,
+}: {
+  params: { team: string };
+}) {
   const teamId = params.team.toLowerCase();
   const team = getOrgTeam(teamId);
 
@@ -46,7 +63,9 @@ export default async function TeamGalleryPage({ params }: { params: { team: stri
       <div className="wrap section">
         <h1>Gallery not found</h1>
         <p>Go back and pick a team.</p>
-        <Link className="btn" href="/gallery">Back to Gallery</Link>
+        <Link className="btn" href="/gallery">
+          Back to Gallery
+        </Link>
       </div>
     );
   }
@@ -65,9 +84,15 @@ export default async function TeamGalleryPage({ params }: { params: { team: stri
           </div>
 
           <div className="navLinks">
-            <Link className="btn ghost" href="/">Home</Link>
-            <Link className="btn ghost" href="/gallery">All Galleries</Link>
-            <Link className="btn" href="/admin/uploads">Upload</Link>
+            <Link className="btn ghost" href="/">
+              Home
+            </Link>
+            <Link className="btn ghost" href="/gallery">
+              All Galleries
+            </Link>
+            <Link className="btn" href="/admin/uploads">
+              Upload
+            </Link>
           </div>
         </div>
       </nav>
@@ -82,7 +107,13 @@ export default async function TeamGalleryPage({ params }: { params: { team: stri
           </div>
 
           <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
-            <Image src={team.logo} alt={team.name} width={64} height={64} style={{ borderRadius: 14 }} />
+            <Image
+              src={team.logo}
+              alt={team.name}
+              width={64}
+              height={64}
+              style={{ borderRadius: 14 }}
+            />
           </div>
         </div>
 
@@ -93,7 +124,10 @@ export default async function TeamGalleryPage({ params }: { params: { team: stri
               {team.contacts.map((c) => (
                 <li key={`${c.name}-${c.phone}`}>
                   <b>{c.name}</b>{" "}
-                  <a href={phoneHref(c.phone)} style={{ textDecoration: "underline" }}>
+                  <a
+                    href={phoneHref(c.phone)}
+                    style={{ textDecoration: "underline" }}
+                  >
                     {c.phone}
                   </a>
                 </li>
@@ -103,20 +137,27 @@ export default async function TeamGalleryPage({ params }: { params: { team: stri
         ) : null}
 
         <div className="card" style={{ padding: 16 }}>
-          <div style={{ display: "flex", justifyContent: "space-between", gap: 12, flexWrap: "wrap" }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              gap: 12,
+              flexWrap: "wrap",
+            }}
+          >
             <div>
               <h3 style={{ marginTop: 0 }}>Media</h3>
               <p style={{ margin: 0, opacity: 0.85 }}>
                 Photos and videos uploaded from Admin → Uploads.
               </p>
             </div>
-            <Link className="btn" href="/admin/uploads">Upload Media</Link>
+            <Link className="btn" href="/admin/uploads">
+              Upload Media
+            </Link>
           </div>
 
           {media.length === 0 ? (
-            <p style={{ marginTop: 14, opacity: 0.85 }}>
-              Nothing uploaded yet.
-            </p>
+            <p style={{ marginTop: 14, opacity: 0.85 }}>Nothing uploaded yet.</p>
           ) : (
             <div
               style={{
@@ -133,10 +174,22 @@ export default async function TeamGalleryPage({ params }: { params: { team: stri
                   target="_blank"
                   rel="noreferrer"
                   className="card"
-                  style={{ padding: 10, borderRadius: 16, textDecoration: "none", color: "inherit" }}
+                  style={{
+                    padding: 10,
+                    borderRadius: 16,
+                    textDecoration: "none",
+                    color: "inherit",
+                  }}
                   title="Open media"
                 >
-                  <div style={{ fontWeight: 800, fontSize: 12, opacity: 0.9, marginBottom: 8 }}>
+                  <div
+                    style={{
+                      fontWeight: 800,
+                      fontSize: 12,
+                      opacity: 0.9,
+                      marginBottom: 8,
+                    }}
+                  >
                     {m.pathname.split("/").pop()}
                   </div>
 
@@ -147,10 +200,14 @@ export default async function TeamGalleryPage({ params }: { params: { team: stri
                       muted
                       playsInline
                       preload="metadata"
+                      controls
                     />
                   ) : (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img src={m.url} alt="" style={{ width: "100%", borderRadius: 12 }} />
+                    <img
+                      src={m.url}
+                      alt=""
+                      style={{ width: "100%", borderRadius: 12 }}
+                    />
                   )}
                 </a>
               ))}
