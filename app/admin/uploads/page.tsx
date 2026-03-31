@@ -23,7 +23,7 @@ export default function AdminUploadsPage() {
   const accept = useMemo(() => "image/*,video/*", []);
 
   async function refresh() {
-    const res = await fetch(`/api/gallery-media?team=${team}`, { cache: "no-store" });
+    const res = await fetch(`/api/gallery?team=${team}`, { cache: "no-store" });
     const data = await res.json();
     setItems(data.items || []);
   }
@@ -44,7 +44,11 @@ export default function AdminUploadsPage() {
         form.append("team", team);
         form.append("file", file);
 
-        const res = await fetch("/api/upload", { method: "POST", body: form });
+        const res = await fetch("/api/upload", {
+          method: "POST",
+          body: form,
+        });
+
         const data = await res.json();
         if (!res.ok) throw new Error(data?.error || "Upload failed");
       }
@@ -53,6 +57,36 @@ export default function AdminUploadsPage() {
       await refresh();
     } catch (e: any) {
       setError(e?.message || "Upload failed");
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function deleteMedia(url: string) {
+    const ok = window.confirm("Delete this photo/video?");
+    if (!ok) return;
+
+    setBusy(true);
+    setError(null);
+
+    try {
+      const res = await fetch("/api/delete-media", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ url }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data?.error || "Delete failed");
+      }
+
+      await refresh();
+    } catch (e: any) {
+      setError(e?.message || "Delete failed");
     } finally {
       setBusy(false);
     }
@@ -73,9 +107,15 @@ export default function AdminUploadsPage() {
   return (
     <div className="wrap section">
       <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 14 }}>
-        <Link className="btn ghost" href="/">Home</Link>
-        <Link className="btn ghost" href="/gallery">Gallery</Link>
-        <Link className="btn" href="/admin">Admin Controls</Link>
+        <Link className="btn ghost" href="/">
+          Home
+        </Link>
+        <Link className="btn ghost" href="/gallery">
+          Gallery
+        </Link>
+        <Link className="btn" href="/admin">
+          Admin Controls
+        </Link>
       </div>
 
       <h1 style={{ marginTop: 0 }}>Admin Uploads</h1>
@@ -85,10 +125,12 @@ export default function AdminUploadsPage() {
 
         <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center" }}>
           <label style={{ fontWeight: 700 }}>Choose gallery:</label>
+
           <select
             value={team}
             onChange={(e) => setTeam(e.target.value)}
             style={{ padding: 10, borderRadius: 12 }}
+            disabled={busy}
           >
             {GALLERY_TEAMS.map((t) => (
               <option key={t.id} value={t.id}>
@@ -97,7 +139,8 @@ export default function AdminUploadsPage() {
             ))}
           </select>
 
-          <input type="file" accept={accept} multiple onChange={onPick} />
+          <input type="file" accept={accept} multiple onChange={onPick} disabled={busy} />
+
           <button className="btn" disabled={busy || files.length === 0} onClick={uploadAll}>
             {busy ? "Uploading..." : `Upload ${files.length || ""}`}
           </button>
@@ -149,31 +192,68 @@ export default function AdminUploadsPage() {
             }}
           >
             {items.map((m) => (
-              <a
+              <div
                 key={m.url}
-                href={m.url}
-                target="_blank"
-                rel="noreferrer"
                 className="card"
-                style={{ padding: 10, borderRadius: 16, textDecoration: "none", color: "inherit" }}
+                style={{ padding: 10, borderRadius: 16 }}
               >
-                <div style={{ fontWeight: 800, fontSize: 12, opacity: 0.9, marginBottom: 8 }}>
-                  {m.pathname.split("/").pop()}
-                </div>
+                <a
+                  href={m.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  <div
+                    style={{
+                      fontWeight: 800,
+                      fontSize: 12,
+                      opacity: 0.9,
+                      marginBottom: 8,
+                      wordBreak: "break-word",
+                    }}
+                  >
+                    {m.pathname.split("/").pop()}
+                  </div>
 
-                {m.isVideo ? (
-                  <video
-                    src={m.url}
-                    style={{ width: "100%", borderRadius: 12 }}
-                    muted
-                    playsInline
-                    preload="metadata"
-                  />
-                ) : (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img src={m.url} alt="" style={{ width: "100%", borderRadius: 12 }} />
-                )}
-              </a>
+                  {m.isVideo ? (
+                    <video
+                      src={m.url}
+                      style={{ width: "100%", borderRadius: 12 }}
+                      muted
+                      playsInline
+                      preload="metadata"
+                      controls
+                    />
+                  ) : (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={m.url}
+                      alt=""
+                      style={{ width: "100%", borderRadius: 12 }}
+                    />
+                  )}
+                </a>
+
+                <button
+                  type="button"
+                  onClick={() => deleteMedia(m.url)}
+                  disabled={busy}
+                  style={{
+                    marginTop: 10,
+                    width: "100%",
+                    padding: "10px 12px",
+                    borderRadius: 12,
+                    border: "1px solid rgba(255,255,255,0.15)",
+                    background: "#7a1f1f",
+                    color: "white",
+                    cursor: busy ? "not-allowed" : "pointer",
+                    fontWeight: 700,
+                    opacity: busy ? 0.7 : 1,
+                  }}
+                >
+                  Delete
+                </button>
+              </div>
             ))}
           </div>
         )}
