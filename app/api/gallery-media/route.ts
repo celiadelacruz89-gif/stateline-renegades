@@ -1,7 +1,14 @@
 import { NextResponse } from "next/server";
 import { list } from "@vercel/blob";
 
-const ALLOWED_TEAMS = new Set(["org", "karma", "riot", "anarchy", "mayhem", "tball"]);
+const ALLOWED_TEAMS = new Set([
+  "org",
+  "karma",
+  "riot",
+  "anarchy",
+  "mayhem",
+  "tball",
+]);
 
 function inferType(pathname: string) {
   const lower = pathname.toLowerCase();
@@ -12,19 +19,21 @@ function inferType(pathname: string) {
 
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
-  const team = (searchParams.get("team") || "").toLowerCase();
+  const team = (searchParams.get("team") || "").toLowerCase().trim();
 
   if (!ALLOWED_TEAMS.has(team)) {
     return NextResponse.json({ items: [] });
   }
 
   const prefix = `gallery/${team}/`;
-
   const { blobs } = await list({ prefix, limit: 200 });
 
   const items = blobs
     .slice()
-    .sort((a, b) => (b.uploadedAt?.getTime?.() || 0) - (a.uploadedAt?.getTime?.() || 0))
+    .sort(
+      (a, b) =>
+        (b.uploadedAt?.getTime?.() || 0) - (a.uploadedAt?.getTime?.() || 0)
+    )
     .map((b) => {
       const t = inferType(b.pathname);
       return {
