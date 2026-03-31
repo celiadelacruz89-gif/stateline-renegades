@@ -217,18 +217,6 @@ export default async function TeamGalleryPage({
                   }}
                   title="Open media"
                 >
-                  <div
-                    style={{
-                      fontWeight: 800,
-                      fontSize: 12,
-                      opacity: 0.9,
-                      marginBottom: 8,
-                      wordBreak: "break-word",
-                    }}
-                  >
-                    {m.pathname.split("/").pop()}
-                  </div>
-
                   {m.isVideo ? (
                     <video
                       src={m.url}
