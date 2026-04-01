@@ -140,6 +140,8 @@ export const sponsors = [
   { name: "ShaySlay Treats", logo: "/sponsors/shayslay-treats.png" },
   
   { name: "R&M Courier Services Inc", logo: "/sponsors/rm-courier.png" },
+  
+  { name: "MSC Foundation", logo: "/sponsors/MSC-Foundation.png" },
 ];
 
   // If you add the missing ones later, just add lines like:
