@@ -47,7 +47,7 @@ const coaches = [
 {
   name: "James Garey",
     role: "T-Ball Coach",
-    bio: "Believes every child deserves the opportunity to learn, grow, and succeed on the field..",
+    bio: "Believes every child deserves the opportunity to learn, grow, and succeed on the field.",
   },
 {
  name: "Luis Ramirez",
@@ -60,12 +60,11 @@ const coaches = [
     bio: "Bringing energy, encouragement, and a positive attitude to every practice and game.",
   },
   ];
-{
 
 export default function CoachesPage() {
   return (
     <main className="wrap section">
-      <h1>Coach & Staff</h1>
+     <h1>Coach &amp; Staff</h1>
 
       <p style={{ fontSize: 20, opacity: 0.9, lineHeight: 1.7 }}>
         Meet the leaders, coaches, and volunteers helping build the Stateline
