@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import HeroSlider from "./components/HeroSlider";
 import SponsorShowcase from "./components/SponsorShowcase";
 import { org, teams, sponsors } from "./lib/data";
 import { phoneHref } from "./lib/utils";
@@ -11,7 +12,8 @@ export default function HomePage() {
   const tballTeam = teams.find((t) => t.id === "tball");
 
   return (
-    <div>
+    <>
+
       <nav>
         <div className="wrap navInner">
           <div className="brand">
@@ -38,106 +40,8 @@ export default function HomePage() {
 
       <main className="wrap section">
         {/* HERO */}
-        <section
-          className="card"
-          style={{
-            padding: 28,
-            borderRadius: 28,
-            display: "grid",
-            gap: 24,
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-            alignItems: "center",
-          }}
-        >
-          <div>
-            <div className="pill" style={{ display: "inline-flex", marginBottom: 14, fontWeight: 800 }}>
-              T-Ball • Cheer • Community • Family
-            </div>
-
-            <h1
-              style={{
-                margin: 0,
-                fontSize: "clamp(2.4rem, 6vw, 5rem)",
-                lineHeight: 0.95,
-                letterSpacing: "-0.04em",
-              }}
-            >
-              Stateline Renegades
-            </h1>
-
-            <h2
-              style={{
-                margin: "14px 0 0",
-                fontSize: "clamp(1.4rem, 3vw, 2.4rem)",
-                lineHeight: 1.1,
-              }}
-            >
-              One Organization. Five Teams. One Renegade Family.
-            </h2>
-
-            <p style={{ marginTop: 16, opacity: 0.9, fontSize: 18, lineHeight: 1.7, maxWidth: 760 }}>
-              Building confidence, discipline, teamwork, leadership, and lifelong memories through youth
-              T-Ball and cheer programs.
-            </p>
-
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginTop: 20 }}>
-              <a className="btn" href={org.karmaRiotRegistration} target="_blank" rel="noreferrer">
-                Cheer Registration
-              </a>
-
-              <a className="btn" href={org.tballRegistration} target="_blank" rel="noreferrer">
-                T-Ball Registration
-              </a>
-
-              <a className="btn ghost" href={org.sponsorForm} target="_blank" rel="noreferrer">
-                Become a Sponsor
-              </a>
-
-              <Link className="btn ghost" href="/gallery">
-                View Gallery
-              </Link>
-            </div>
-          </div>
-
-          <div className="card" style={{ padding: 18, borderRadius: 24 }}>
-            <div style={{ fontWeight: 900, fontSize: 20, marginBottom: 14 }}>Our Programs</div>
-
-            <div style={{ display: "grid", gap: 12 }}>
-              {teams.map((t) => (
-                <Link
-                  key={t.id}
-                  href={`/gallery/${t.id}`}
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 12,
-                    padding: 12,
-                    borderRadius: 18,
-                    background: "rgba(255,255,255,0.04)",
-                    border: "1px solid rgba(255,255,255,0.08)",
-                    color: "inherit",
-                    textDecoration: "none",
-                  }}
-                >
-                  <Image
-                    src={t.logo}
-                    alt={t.name}
-                    width={58}
-                    height={58}
-                    style={{ borderRadius: 15, objectFit: "cover" }}
-                  />
-                  <div>
-                    <div style={{ fontWeight: 900 }}>{t.name}</div>
-                    <div style={{ fontSize: 13, opacity: 0.8 }}>
-                      {t.ages} • {t.colors}
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-
+<HeroSlider />
+        
         {/* STATS */}
         <section
           style={{
@@ -508,6 +412,6 @@ export default function HomePage() {
           <p style={{ margin: 0, opacity: 0.7 }}>© 2026 Stateline Renegades. All rights reserved.</p>
         </footer>
       </main>
-    </div>
-  );
+  </>
+);
 }
