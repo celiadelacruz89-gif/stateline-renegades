@@ -9,13 +9,13 @@ export default function MayhemPage() {
       <TeamHero
         title="Mayhem Cheer"
         subtitle="Our Full Travel Team built for athletes seeking advanced competition opportunities. Power, performance, confidence, and exciting cheer progression."
-        emoji="🔥"
-        colors="linear-gradient(135deg, #111827, #7c2d12, #f97316)"
+        emoji="💜"
+       colors="linear-gradient(135deg, #111827, #4c1d95, #9333ea)"
       />
 
       <div
         style={{
-          background: "#f97316",
+          background: "#9333ea",
           color: "white",
           padding: "12px 20px",
           borderRadius: 999,
