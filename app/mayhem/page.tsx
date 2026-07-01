@@ -1,18 +1,63 @@
+import { teams } from "../lib/data";
+import { phoneHref } from "../lib/utils";
+
 export default function MayhemPage() {
+  const team = teams.find((t) => t.id === "mayhem");
+
   return (
     <main className="wrap section">
       <h1>Mayhem Cheer</h1>
 
-      <div className="card">
-        <p>
-          A high-energy cheer program focused on confidence,
-          performance, athlete growth, and team success.
-        </p>
+      <p style={{ fontSize: 20, opacity: 0.9, lineHeight: 1.7 }}>
+        A bold cheer program focused on athlete growth, confidence,
+        performance quality, and exciting progression.
+      </p>
 
-        <a className="btn">
-          Registration Coming Soon
-        </a>
-      </div>
+      <section className="grid2">
+        <div className="card" style={{ padding: 24 }}>
+          <h2 style={{ marginTop: 0 }}>⚡ Program Focus</h2>
+
+          <ul style={{ lineHeight: 2 }}>
+            <li>Cheer skill progression</li>
+            <li>Performance and showmanship</li>
+            <li>Teamwork and confidence</li>
+            <li>Stunts, jumps, dance, and motions</li>
+            <li>Positive competitive mindset</li>
+          </ul>
+
+          {team?.registration ? (
+            <a className="btn" href={team.registration} target="_blank" rel="noreferrer">
+              Register for Mayhem
+            </a>
+          ) : (
+            <span className="pill subtle">Registration coming soon</span>
+          )}
+        </div>
+
+        <div className="card" style={{ padding: 24 }}>
+          <h2 style={{ marginTop: 0 }}>Team Details</h2>
+
+          <p style={{ lineHeight: 1.8 }}>
+            <b>Ages:</b> {team?.ages || "Coming soon"}
+            <br />
+            <b>Colors:</b> {team?.colors || "Team colors coming soon"}
+          </p>
+        </div>
+      </section>
+
+      <section className="card" style={{ padding: 24, marginTop: 24 }}>
+        <h2 style={{ marginTop: 0 }}>Contacts</h2>
+
+        {team ? (
+          <div style={{ display: "grid", gap: 10 }}>
+            {team.contacts.map((c) => (
+              <a key={c.phone} href={phoneHref(c.phone)} style={{ textDecoration: "underline" }}>
+                {c.name} — {c.phone}
+              </a>
+            ))}
+          </div>
+        ) : null}
+      </section>
     </main>
   );
 }
