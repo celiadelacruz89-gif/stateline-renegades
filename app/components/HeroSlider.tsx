@@ -23,7 +23,15 @@ export default function HeroSlider() {
   }, []);
 
   return (
-    <div className="relative h-[700px] w-full overflow-hidden rounded-[28px]">
+    <div
+      style={{
+        position: "relative",
+        height: "700px",
+        width: "100%",
+        overflow: "hidden",
+        borderRadius: "28px",
+      }}
+    >
       {slides.map((slide, index) => (
         <Image
           key={slide}
@@ -31,50 +39,80 @@ export default function HeroSlider() {
           alt={`Stateline Renegades hero ${index + 1}`}
           fill
           priority={index === 0}
-          className="z-0 object-cover transition-opacity duration-1000"
-          style={{ opacity: current === index ? 1 : 0 }}
+          style={{
+            objectFit: "cover",
+            opacity: current === index ? 1 : 0,
+            transition: "opacity 1s ease-in-out",
+            zIndex: 1,
+          }}
         />
       ))}
 
-      <div className="absolute inset-0 z-10 bg-black/60" />
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          background: "rgba(0,0,0,0.65)",
+          zIndex: 2,
+        }}
+      />
 
-      <div className="absolute inset-0 z-20 flex items-center justify-center px-6 text-center text-white">
-        <div className="max-w-5xl">
-          <div className="mb-5 inline-block rounded-full bg-white/15 px-5 py-2 font-bold">
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          zIndex: 3,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          textAlign: "center",
+          color: "white",
+          padding: "24px",
+        }}
+      >
+        <div style={{ maxWidth: "900px" }}>
+          <div
+            style={{
+              display: "inline-block",
+              padding: "10px 18px",
+              borderRadius: "999px",
+              background: "rgba(255,255,255,0.18)",
+              fontWeight: 800,
+              marginBottom: "22px",
+            }}
+          >
             T-Ball • Anarchy • Mayhem • Riot • Karma
           </div>
 
-          <h1 className="mb-4 text-5xl font-extrabold md:text-7xl">
+          <h1
+            style={{
+              fontSize: "clamp(44px, 7vw, 96px)",
+              lineHeight: 1,
+              margin: "0 0 18px",
+              fontWeight: 950,
+            }}
+          >
             STATELINE RENEGADES
           </h1>
 
-          <p className="mb-2 text-xl md:text-2xl">
+          <p style={{ fontSize: "clamp(22px, 3vw, 34px)", margin: "0 0 10px" }}>
             Building Champions On and Off the Field
           </p>
 
-          <p className="mb-8 text-lg md:text-xl">
+          <p style={{ fontSize: "clamp(16px, 2vw, 24px)", margin: "0 0 34px" }}>
             Cheer • T-Ball • Baseball • Community • Family
           </p>
 
-          <div className="flex flex-wrap justify-center gap-4">
-            <a
-              href="https://form.jotform.com/260336801253046"
-              className="rounded-lg bg-pink-500 px-6 py-3 font-bold text-white hover:bg-pink-600"
-            >
+          <div style={{ display: "flex", gap: "14px", justifyContent: "center", flexWrap: "wrap" }}>
+            <a className="btn" href="https://form.jotform.com/260336801253046">
               Register Now
             </a>
 
-            <a
-              href="https://form.jotform.com/celiadelacruz89/sponsorship-application-form"
-              className="rounded-lg bg-teal-500 px-6 py-3 font-bold text-white hover:bg-teal-600"
-            >
+            <a className="btn" href="https://form.jotform.com/celiadelacruz89/sponsorship-application-form">
               Become A Sponsor
             </a>
 
-            <a
-              href="#teams"
-              className="rounded-lg bg-white px-6 py-3 font-bold text-black hover:bg-gray-200"
-            >
+            <a className="btn" href="#teams">
               Meet Our Teams
             </a>
           </div>
