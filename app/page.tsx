@@ -74,37 +74,109 @@ export default function HomePage() {
         Now Registering
       </div>
 
-      <h2 style={{ margin: "6px 0 6px", fontSize: "30px" }}>
-        Join the Renegade Family
+      <h2
+        style={{
+          margin: "6px 0",
+          fontSize: "30px",
+          fontWeight: 900,
+        }}
+      >
+        Riot & Karma Cheer Registration Open
       </h2>
 
-      <p style={{ margin: 0, opacity: 0.86, lineHeight: 1.6 }}>
-        Karma Cheer ages 3–5 • Riot Cheer ages 10–12 • T-Ball registration open
+      <p
+        style={{
+          margin: 0,
+          opacity: 0.9,
+          lineHeight: 1.8,
+          fontSize: "16px",
+        }}
+      >
+        🩷 Karma Cheer (Ages 3–5) — Only 4 Spots Available
+        <br />
+        💚 Riot Cheer (Ages 10–12) — Only 3 Spots Available
       </p>
     </div>
 
-    <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
+    <div
+      style={{
+        display: "flex",
+        gap: "10px",
+        flexWrap: "wrap",
+      }}
+    >
       <a
         className="btn"
         href="https://form.jotform.com/260336801253046"
         target="_blank"
         rel="noreferrer"
       >
-        Cheer Registration
+        Register for Riot / Karma
       </a>
 
       <a
         className="btn ghost"
-        href="https://form.jotform.com/260086521920149"
-        target="_blank"
-        rel="noreferrer"
+        href="#teams"
       >
-        T-Ball Registration
+        View Teams
       </a>
     </div>
   </div>
 </section>
-        
+{/* UPCOMING EVENTS */}
+<section
+  className="card"
+  style={{
+    padding: "22px",
+    marginTop: "14px",
+  }}
+>
+  <div
+    style={{
+      fontSize: "13px",
+      fontWeight: 900,
+      letterSpacing: "0.14em",
+      textTransform: "uppercase",
+      opacity: 0.85,
+      marginBottom: "10px",
+    }}
+  >
+    Upcoming Events
+  </div>
+
+  <div
+    style={{
+      display: "grid",
+      gap: "12px",
+      gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+    }}
+  >
+    <div className="card" style={{ padding: "16px" }}>
+      <h3 style={{ marginTop: 0 }}>📣 Cheer Camp</h3>
+      <p style={{ marginBottom: 0 }}>
+        July 17–18
+        <br />
+        Ages 2–14
+      </p>
+    </div>
+
+    <div className="card" style={{ padding: "16px" }}>
+      <h3 style={{ marginTop: 0 }}>🎟️ Back-to-School Raffle</h3>
+      <p style={{ marginBottom: 0 }}>
+        Drawing July 25
+        <br />
+        12 Winners
+      </p>
+    </div>
+
+    <div className="card" style={{ padding: "16px" }}>
+      <h3 style={{ marginTop: 0 }}>🤝 Sponsors Needed</h3>
+      <p style={{ marginBottom: 0 }}>
+        Support local youth athletes and community programs.
+      </p>
+    </div>
+  </div>
+</section>
         {/* STATS */}
         <section
           style={{
