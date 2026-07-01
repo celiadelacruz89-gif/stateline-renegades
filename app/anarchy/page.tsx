@@ -18,6 +18,7 @@ export default function AnarchyPage() {
           <h2 style={{ marginTop: 0 }}>💥 Program Focus</h2>
 
           <ul style={{ lineHeight: 2 }}>
+            <li>Full Travel Team</li>
             <li>Competitive cheer development</li>
             <li>Stunts, jumps, dance, and performance quality</li>
             <li>Team discipline and accountability</li>

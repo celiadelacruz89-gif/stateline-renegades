@@ -18,6 +18,7 @@ export default function MayhemPage() {
           <h2 style={{ marginTop: 0 }}>⚡ Program Focus</h2>
 
           <ul style={{ lineHeight: 2 }}>
+            <li>Full Travel Team</li>
             <li>Cheer skill progression</li>
             <li>Performance and showmanship</li>
             <li>Teamwork and confidence</li>
