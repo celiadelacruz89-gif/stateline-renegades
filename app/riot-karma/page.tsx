@@ -10,38 +10,131 @@ export default function RiotKarmaPage() {
     <main className="wrap section">
       <TeamHero
         title="Riot / Karma Cheer"
-        subtitle="Confidence, teamwork, performance, and cheer training for our Renegade athletes."
+        subtitle="Our Local Travel Teams focused on athlete development, confidence, teamwork, and preparing athletes for advanced competition opportunities."
         emoji="🦋"
         colors="linear-gradient(135deg, #004d40, #0f766e, #f9a8d4)"
       />
 
+      <div
+        style={{
+          background: "#0f766e",
+          color: "white",
+          padding: "12px 20px",
+          borderRadius: 999,
+          display: "inline-block",
+          marginBottom: 20,
+          fontWeight: 700,
+        }}
+      >
+        LOCAL TRAVEL TEAMS
+      </div>
+
+      <section className="card" style={{ padding: 24, marginBottom: 24 }}>
+        <h2 style={{ marginTop: 0 }}>Renegades Cheer Pathway</h2>
+
+        <p style={{ fontSize: 18, lineHeight: 1.8 }}>
+          🩷 <b>Karma Ages 3–5</b> → Beginner Development
+          <br />
+          💚 <b>Riot Ages 6–14</b> → Local Travel Team
+          <br />
+          ⚡ <b>Anarchy</b> → Full Travel Team
+          <br />
+          🔥 <b>Mayhem</b> → Full Travel Team
+        </p>
+      </section>
+
       <section className="grid2">
         <div className="card" style={{ padding: 24 }}>
-          <h2>💚 Riot Cheer</h2>
-          <p><b>Ages:</b> 6–14<br /><b>Spots Available:</b> 3</p>
+          <h2 style={{ marginTop: 0 }}>💚 Riot Cheer</h2>
+
+          <p style={{ color: "#16a34a", fontWeight: 700 }}>
+            Local Travel Team
+          </p>
+
+          <p style={{ fontSize: 18 }}>
+            <b>Ages:</b> 6–14
+            <br />
+            <b>Spots Available:</b> 3
+          </p>
+
           <ul style={{ lineHeight: 2 }}>
+            <li>Local travel competition team</li>
+            <li>Competition-style cheer training</li>
+            <li>Designed for athletes building advanced skills</li>
             <li>Jumps, motions, dance, and performance</li>
             <li>Teamwork and confidence building</li>
-            <li>Competition-style cheer training</li>
           </ul>
-          {riot?.registration && <a className="btn" href={riot.registration} target="_blank" rel="noreferrer">Register for Riot</a>}
+
+          {riot?.registration && (
+            <a
+              className="btn"
+              href={riot.registration}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Register for Riot
+            </a>
+          )}
         </div>
 
         <div className="card" style={{ padding: 24 }}>
-          <h2>🩷 Karma Cheer</h2>
-          <p><b>Ages:</b> 3–5<br /><b>Spots Available:</b> 4</p>
+          <h2 style={{ marginTop: 0 }}>🩷 Karma Cheer</h2>
+
+          <p style={{ color: "#ec4899", fontWeight: 700 }}>
+            Local Travel Team
+          </p>
+
+          <p style={{ fontSize: 18 }}>
+            <b>Ages:</b> 3–5
+            <br />
+            <b>Spots Available:</b> 4
+          </p>
+
           <ul style={{ lineHeight: 2 }}>
             <li>Mini cheer basics</li>
             <li>Fun beginner motions and jumps</li>
             <li>Confidence and listening skills</li>
+            <li>Local performances and competitions</li>
+            <li>Perfect introduction to competitive cheer</li>
           </ul>
-          {karma?.registration && <a className="btn" href={karma.registration} target="_blank" rel="noreferrer">Register for Karma</a>}
+
+          {karma?.registration && (
+            <a
+              className="btn"
+              href={karma.registration}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Register for Karma
+            </a>
+          )}
         </div>
       </section>
 
       <section className="card" style={{ padding: 24, marginTop: 24 }}>
-        <h2>Practice Schedule</h2>
-        <p><b>Tuesday – Thursday</b><br />6:00 PM – 8:00 PM</p>
+        <h2 style={{ marginTop: 0 }}>Practice Schedule</h2>
+
+        <p style={{ fontSize: 18, lineHeight: 1.8 }}>
+          <b>Days:</b> Tuesday – Thursday
+          <br />
+          <b>Time:</b> 6:00 PM – 8:00 PM
+        </p>
+      </section>
+
+      <section className="card" style={{ padding: 24, marginTop: 24 }}>
+        <h2 style={{ marginTop: 0 }}>Contacts</h2>
+
+        <div style={{ display: "grid", gap: 10 }}>
+          {[...(riot?.contacts || []), ...(karma?.contacts || [])].map((c) => (
+            <a
+              key={`${c.name}-${c.phone}`}
+              href={phoneHref(c.phone)}
+              style={{ textDecoration: "underline" }}
+            >
+              {c.name} — {c.phone}
+            </a>
+          ))}
+        </div>
       </section>
     </main>
   );
