@@ -41,6 +41,69 @@ export default function HomePage() {
       <main className="wrap section">
         {/* HERO */}
 <HeroSlider />
+{/* NOW REGISTERING */}
+<section
+  className="card"
+  style={{
+    padding: "22px",
+    marginTop: "18px",
+    border: "1px solid rgba(255,255,255,0.14)",
+    background:
+      "linear-gradient(90deg, rgba(255,79,210,0.22), rgba(57,213,255,0.18))",
+  }}
+>
+  <div
+    style={{
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      gap: "18px",
+      flexWrap: "wrap",
+    }}
+  >
+    <div>
+      <div
+        style={{
+          fontSize: "13px",
+          fontWeight: 900,
+          letterSpacing: "0.14em",
+          textTransform: "uppercase",
+          opacity: 0.85,
+        }}
+      >
+        Now Registering
+      </div>
+
+      <h2 style={{ margin: "6px 0 6px", fontSize: "30px" }}>
+        Join the Renegade Family
+      </h2>
+
+      <p style={{ margin: 0, opacity: 0.86, lineHeight: 1.6 }}>
+        Karma Cheer ages 3–5 • Riot Cheer ages 10–12 • T-Ball registration open
+      </p>
+    </div>
+
+    <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
+      <a
+        className="btn"
+        href="https://form.jotform.com/260336801253046"
+        target="_blank"
+        rel="noreferrer"
+      >
+        Cheer Registration
+      </a>
+
+      <a
+        className="btn ghost"
+        href="https://form.jotform.com/260086521920149"
+        target="_blank"
+        rel="noreferrer"
+      >
+        T-Ball Registration
+      </a>
+    </div>
+  </div>
+</section>
         
         {/* STATS */}
         <section
