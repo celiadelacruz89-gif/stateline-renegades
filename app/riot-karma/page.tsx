@@ -37,7 +37,7 @@ export default function RiotKarmaPage() {
         <div className="card">
           <h2>💚 Riot Cheer</h2>
 
-          <p>Ages 10–12</p>
+          <p>Ages 6–14</p>
 
           <p>
             Only 3 Spots Available
