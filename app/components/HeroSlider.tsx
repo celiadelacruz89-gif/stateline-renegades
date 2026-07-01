@@ -23,95 +23,62 @@ export default function HeroSlider() {
   }, []);
 
   return (
-    <div
-      style={{
-        position: "relative",
-        width: "100%",
-        height: "500px",
-        borderRadius: "28px",
-        overflow: "hidden",
-      }}
-    >
+    <div className="relative h-[500px] w-full overflow-hidden rounded-[28px]">
       {slides.map((slide, index) => (
         <Image
           key={slide}
           src={slide}
-          alt={`Hero ${index + 1}`}
+          alt={`Stateline Renegades hero ${index + 1}`}
           fill
           priority={index === 0}
-          style={{
-            objectFit: "cover",
-            opacity: current === index ? 1 : 0,
-            transition: "opacity 1s ease-in-out",
-          }}
+          className="z-0 object-cover transition-opacity duration-1000"
+          style={{ opacity: current === index ? 1 : 0 }}
         />
       ))}
 
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          background:
-            "linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.75))",
-        }}
-      />
+      <div className="absolute inset-0 z-10 bg-black/60" />
 
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          padding: "40px",
-          color: "white",
-        }}
-      >
-        <div
-          style={{
-            display: "inline-block",
-            width: "fit-content",
-            padding: "8px 16px",
-            borderRadius: "999px",
-            background: "rgba(255,255,255,.15)",
-            marginBottom: "18px",
-            fontWeight: 700,
-          }}
-        >
-          T-Ball • Anarchy • Mayhem • Riot • Karma
+      <div className="absolute inset-0 z-20 flex items-center justify-center px-6 text-center text-white">
+        <div className="max-w-5xl">
+          <div className="mb-5 inline-block rounded-full bg-white/15 px-5 py-2 font-bold">
+            T-Ball • Anarchy • Mayhem • Riot • Karma
+          </div>
+
+          <h1 className="mb-4 text-5xl font-extrabold md:text-7xl">
+            STATELINE RENEGADES
+          </h1>
+
+          <p className="mb-2 text-xl md:text-2xl">
+            Building Champions On and Off the Field
+          </p>
+
+          <p className="mb-8 text-lg md:text-xl">
+            Cheer • T-Ball • Baseball • Community • Family
+          </p>
+
+          <div className="flex flex-wrap justify-center gap-4">
+            <a
+              href="https://form.jotform.com/260336801253046"
+              className="rounded-lg bg-pink-500 px-6 py-3 font-bold text-white hover:bg-pink-600"
+            >
+              Register Now
+            </a>
+
+            <a
+              href="https://form.jotform.com/celiadelacruz89/sponsorship-application-form"
+              className="rounded-lg bg-teal-500 px-6 py-3 font-bold text-white hover:bg-teal-600"
+            >
+              Become A Sponsor
+            </a>
+
+            <a
+              href="#teams"
+              className="rounded-lg bg-white px-6 py-3 font-bold text-black hover:bg-gray-200"
+            >
+              Meet Our Teams
+            </a>
+          </div>
         </div>
-
-        <h1
-          style={{
-            fontSize: "clamp(2.5rem, 6vw, 5rem)",
-            margin: 0,
-            lineHeight: 1,
-          }}
-        >
-          Stateline Renegades
-        </h1>
-
-        <h2
-          style={{
-            fontSize: "clamp(1.25rem, 3vw, 2rem)",
-            marginTop: "12px",
-            fontWeight: 600,
-          }}
-        >
-          One Organization. Five Teams. One Renegade Family.
-        </h2>
-
-        <p
-          style={{
-            maxWidth: "700px",
-            marginTop: "16px",
-            fontSize: "1.1rem",
-            lineHeight: 1.7,
-          }}
-        >
-          Building confidence, discipline, teamwork, leadership, and lifelong
-          memories through youth sports.
-        </p>
       </div>
     </div>
   );
