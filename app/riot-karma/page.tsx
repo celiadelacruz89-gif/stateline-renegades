@@ -11,8 +11,8 @@ export default function RiotKarmaPage() {
       <TeamHero
         title="Riot / Karma Cheer"
         subtitle="Our Local Travel Teams focused on athlete development, confidence, teamwork, and preparing athletes for advanced competition opportunities."
-        emoji="🦋"
         colors="linear-gradient(135deg, #004d40, #0f766e, #f9a8d4)"
+         logo="/logos/riot-karma.png"
       />
 
       <div

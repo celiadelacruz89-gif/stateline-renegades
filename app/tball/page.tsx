@@ -10,8 +10,8 @@ export default function TBallPage() {
       <TeamHero
         title="T-Ball"
         subtitle="Building confidence, teamwork, and baseball fundamentals for young athletes."
-        emoji="⚾"
         colors="linear-gradient(135deg, #111827, #991b1b, #ef4444)"
+        logo="/logos/tball.png"
       />
 
       <section className="grid2">

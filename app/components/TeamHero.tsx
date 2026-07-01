@@ -1,11 +1,18 @@
+import Image from "next/image";
+
 type TeamHeroProps = {
   title: string;
   subtitle: string;
-  emoji: string;
   colors: string;
+  logo?: string;
 };
 
-export default function TeamHero({ title, subtitle, emoji, colors }: TeamHeroProps) {
+export default function TeamHero({
+  title,
+  subtitle,
+  colors,
+  logo,
+}: TeamHeroProps) {
   return (
     <section
       className="card"
@@ -16,9 +23,31 @@ export default function TeamHero({ title, subtitle, emoji, colors }: TeamHeroPro
         color: "white",
       }}
     >
-      <div style={{ fontSize: 54, marginBottom: 10 }}>{emoji}</div>
-      <h1 style={{ margin: 0, fontSize: 44 }}>{title}</h1>
-      <p style={{ fontSize: 20, maxWidth: 700, lineHeight: 1.6, opacity: 0.95 }}>
+      {logo && (
+        <Image
+          src={logo}
+          alt={title}
+          width={90}
+          height={90}
+          style={{
+            objectFit: "contain",
+            marginBottom: 12,
+          }}
+        />
+      )}
+
+      <h1 style={{ margin: 0, fontSize: 44 }}>
+        {title}
+      </h1>
+
+      <p
+        style={{
+          fontSize: 20,
+          maxWidth: 700,
+          lineHeight: 1.6,
+          opacity: 0.95,
+        }}
+      >
         {subtitle}
       </p>
     </section>

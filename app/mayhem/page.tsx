@@ -9,8 +9,8 @@ export default function MayhemPage() {
       <TeamHero
         title="Mayhem Cheer"
         subtitle="Our Full Travel Team built for athletes seeking advanced competition opportunities. Power, performance, confidence, and exciting cheer progression."
-        emoji="💜"
        colors="linear-gradient(135deg, #111827, #4c1d95, #9333ea)"
+       logo="/logos/mayhem.png"
       />
 
       <div

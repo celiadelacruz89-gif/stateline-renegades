@@ -9,8 +9,8 @@ export default function AnarchyPage() {
       <TeamHero
         title="Anarchy Cheer"
         subtitle="Our Full Travel Team competing against top programs throughout the region. Bold energy, strong fundamentals, and high-impact team development."
-        emoji="⚡"
         colors="linear-gradient(135deg, #111827, #7f1d1d, #dc2626)"
+        logo="/logos/anarchy.png"
       />
 
       <div
