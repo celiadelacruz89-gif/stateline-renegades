@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import HeroSlider from "./components/HeroSlider";
 import { org, teams } from "./lib/data";
+import WhyChooseUs from "./components/WhyChooseUs";
 
 export default function HomePage() {
   return (
@@ -33,7 +34,7 @@ export default function HomePage() {
 
       <main className="wrap section">
         <HeroSlider />
-
+<WhyChooseUs />
         {/* NOW REGISTERING */}
         <section
           className="card"
