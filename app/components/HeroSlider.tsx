@@ -4,7 +4,6 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const slides = [
- const slides = [
   "/Hero/hero1.jpg  (T-Ball).png",
   "/Hero/hero2.jpg  (Karma).png",
   "/Hero/hero3.jpg  (Riot).png",
