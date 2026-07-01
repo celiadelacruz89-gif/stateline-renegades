@@ -148,9 +148,9 @@ export default function HomePage() {
 
         <section className="grid2">
           {[
-            ["🩷 Riot / Karma Cheer", "Ages 3–5 and 6–14. Registration open now.", "/riot-karma"],
-            ["💥 Anarchy Cheer", "Competitive cheer team information.", "/anarchy"],
-            ["⚡ Mayhem Cheer", "Performance, growth, and team development.", "/mayhem"],
+            ["🩷 Riot / Karma Cheer", "Local travel Competitive cheer team, Ages 3–5 and 6–14. Registration open now.", "/riot-karma"],
+            ["💥 Anarchy Cheer", "Full travel Competitive cheer team information.", "/anarchy"],
+            ["⚡ Mayhem Cheer", "Full travel Competitive cheerPerformance, growth, and team development.", "/mayhem"],
             ["⚾ T-Ball", "Beginner baseball fundamentals and teamwork.", "/tball"],
             ["🤝 Sponsors", "Support our athletes and organization.", "/sponsors"],
           ].map(([title, text, href]) => (
