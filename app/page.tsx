@@ -187,13 +187,28 @@ export default function HomePage() {
           }}
         >
           {[
-            ["5", "Programs"],
-            ["4", "Cheer Teams"],
-            ["1", "T-Ball Program"],
-            ["1", "Renegade Family"],
-          ].map(([number, label]) => (
-            <div key={label} className="card" style={{ padding: 20, textAlign: "center" }}>
-              <h2 style={{ margin: 0, fontSize: 38 }}>{number}</h2>
+  ["100+", "Athletes"],
+  ["5", "Teams"],
+  ["10+", "Coaches & Volunteers"],
+  ["1", "Renegade Family"],
+].map(([number, label]) => (
+          <div
+  key={label}
+  className="card"
+  style={{
+    padding: 30,
+    textAlign: "center",
+  }}
+>
+  <h2
+    style={{
+      margin: 0,
+      fontSize: 42,
+      fontWeight: 900,
+    }}
+  >
+    {number}
+  </h2>
               <p style={{ margin: "6px 0 0", opacity: 0.85 }}>{label}</p>
             </div>
           ))}
@@ -207,7 +222,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="grid2">
+        <section id="teams" className="grid2">
           {teams.map((t) => (
             <div key={t.id} className="card programCard">
               <div className="programTop">
@@ -458,7 +473,8 @@ export default function HomePage() {
             marginTop: 18,
           }}
         >
-          <div className="card" style={{ padding: 18 }}>
+          <div className="card" style={{ padding: 18
+           }}>
             <h3 style={{ marginTop: 0 }}>Cheer Contacts</h3>
             <div style={{ display: "grid", gap: 8 }}>
               <a href={phoneHref("915-352-9033")} style={{ textDecoration: "underline" }}>
