@@ -7,6 +7,9 @@ import { org, teams, sponsors } from "./lib/data";
 import { phoneHref } from "./lib/utils";
 
 export default function HomePage() {
+  const cheerTeams = teams.filter((t) => t.id !== "tball");
+  const tballTeam = teams.find((t) => t.id === "tball");
+
   return (
     <div>
       <nav>
@@ -14,7 +17,8 @@ export default function HomePage() {
           <div className="brand">
             <div className="brandMark" />
             <div className="brandText">
-              <b>{org.name}</b> <span>{org.tagline}</span>
+              <b>{org.name}</b>
+              <span>One Organization. Five Teams. One Renegade Family.</span>
             </div>
           </div>
 
@@ -23,85 +27,86 @@ export default function HomePage() {
               Gallery
             </Link>
             <a className="btn ghost" href={org.sponsorForm} target="_blank" rel="noreferrer">
-              Sponsor Form
+              Sponsor
             </a>
             <Link className="btn" href="/admin">
-              Admin Controls
+              Admin
             </Link>
           </div>
         </div>
       </nav>
 
-      <div className="wrap section">
-        <div
+      <main className="wrap section">
+        {/* HERO */}
+        <section
           className="card"
           style={{
-            padding: 24,
+            padding: 28,
+            borderRadius: 28,
             display: "grid",
-            gap: 18,
+            gap: 24,
             gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
             alignItems: "center",
           }}
         >
           <div>
-            <div
-              className="pill"
-              style={{
-                display: "inline-flex",
-                marginBottom: 12,
-                fontWeight: 700,
-              }}
-            >
-              Building athletes, confidence, and community
+            <div className="pill" style={{ display: "inline-flex", marginBottom: 14, fontWeight: 800 }}>
+              T-Ball • Cheer • Community • Family
             </div>
 
-            <h1 style={{ marginTop: 0, marginBottom: 10, fontSize: "clamp(2rem, 5vw, 4rem)", lineHeight: 1.05 }}>
-              {org.name}
+            <h1
+              style={{
+                margin: 0,
+                fontSize: "clamp(2.4rem, 6vw, 5rem)",
+                lineHeight: 0.95,
+                letterSpacing: "-0.04em",
+              }}
+            >
+              Stateline Renegades
             </h1>
 
-            <p style={{ marginTop: 0, opacity: 0.9, fontSize: 18, lineHeight: 1.7, maxWidth: 720 }}>
-              {org.tagline}. Cheer, T-Ball, team growth, family involvement, fundraising, and community
-              support — all in one place.
+            <h2
+              style={{
+                margin: "14px 0 0",
+                fontSize: "clamp(1.4rem, 3vw, 2.4rem)",
+                lineHeight: 1.1,
+              }}
+            >
+              One Organization. Five Teams. One Renegade Family.
+            </h2>
+
+            <p style={{ marginTop: 16, opacity: 0.9, fontSize: 18, lineHeight: 1.7, maxWidth: 760 }}>
+              Building confidence, discipline, teamwork, leadership, and lifelong memories through youth
+              T-Ball and cheer programs.
             </p>
 
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginTop: 18 }}>
-              <a className="btn" href={org.sponsorForm} target="_blank" rel="noreferrer">
-                Sponsor Application
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginTop: 20 }}>
+              <a className="btn" href={org.karmaRiotRegistration} target="_blank" rel="noreferrer">
+                Cheer Registration
               </a>
 
-              <a className="btn ghost" href={org.karmaRiotRegistration} target="_blank" rel="noreferrer">
-                Karma / Riot Registration
-              </a>
-
-              <a className="btn ghost" href={org.tballRegistration} target="_blank" rel="noreferrer">
+              <a className="btn" href={org.tballRegistration} target="_blank" rel="noreferrer">
                 T-Ball Registration
+              </a>
+
+              <a className="btn ghost" href={org.sponsorForm} target="_blank" rel="noreferrer">
+                Become a Sponsor
               </a>
 
               <Link className="btn ghost" href="/gallery">
                 View Gallery
               </Link>
-
-              {"jjFundraiser" in org ? (
-                <a className="btn ghost" href={(org as any).jjFundraiser} target="_blank" rel="noreferrer">
-                  JJ Carne Seca Fundraiser
-                </a>
-              ) : null}
             </div>
           </div>
 
-          <div
-            className="card"
-            style={{
-              padding: 18,
-              borderRadius: 24,
-            }}
-          >
-            <div style={{ fontWeight: 800, marginBottom: 12, fontSize: 18 }}>Our Programs</div>
+          <div className="card" style={{ padding: 18, borderRadius: 24 }}>
+            <div style={{ fontWeight: 900, fontSize: 20, marginBottom: 14 }}>Our Programs</div>
 
             <div style={{ display: "grid", gap: 12 }}>
               {teams.map((t) => (
-                <div
+                <Link
                   key={t.id}
+                  href={`/gallery/${t.id}`}
                   style={{
                     display: "flex",
                     alignItems: "center",
@@ -110,91 +115,85 @@ export default function HomePage() {
                     borderRadius: 18,
                     background: "rgba(255,255,255,0.04)",
                     border: "1px solid rgba(255,255,255,0.08)",
+                    color: "inherit",
+                    textDecoration: "none",
                   }}
                 >
                   <Image
                     src={t.logo}
                     alt={t.name}
-                    width={56}
-                    height={56}
-                    style={{ borderRadius: 14, objectFit: "cover" }}
+                    width={58}
+                    height={58}
+                    style={{ borderRadius: 15, objectFit: "cover" }}
                   />
-                  <div style={{ minWidth: 0 }}>
-                    <div style={{ fontWeight: 800 }}>{t.name}</div>
+                  <div>
+                    <div style={{ fontWeight: 900 }}>{t.name}</div>
                     <div style={{ fontSize: 13, opacity: 0.8 }}>
                       {t.ages} • {t.colors}
                     </div>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </div>
-        </div>
+        </section>
 
-        <div
+        {/* STATS */}
+        <section
           style={{
             display: "grid",
-            gap: 16,
-            gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+            gap: 14,
+            gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
             marginTop: 18,
           }}
         >
-          <div className="card" style={{ padding: 18 }}>
-            <h3 style={{ marginTop: 0, marginBottom: 8 }}>Why Families Join</h3>
-            <p style={{ margin: 0, opacity: 0.85, lineHeight: 1.7 }}>
-              We create a positive environment where athletes build confidence, discipline, teamwork, and
-              leadership.
-            </p>
-          </div>
+          {[
+            ["5", "Programs"],
+            ["4", "Cheer Teams"],
+            ["1", "T-Ball Program"],
+            ["1", "Renegade Family"],
+          ].map(([number, label]) => (
+            <div key={label} className="card" style={{ padding: 20, textAlign: "center" }}>
+              <h2 style={{ margin: 0, fontSize: 38 }}>{number}</h2>
+              <p style={{ margin: "6px 0 0", opacity: 0.85 }}>{label}</p>
+            </div>
+          ))}
+        </section>
 
-          <div className="card" style={{ padding: 18 }}>
-            <h3 style={{ marginTop: 0, marginBottom: 8 }}>Competitive & Beginner Options</h3>
-            <p style={{ margin: 0, opacity: 0.85, lineHeight: 1.7 }}>
-              From beginner programs to full-travel teams, athletes have room to learn, perform, and grow.
-            </p>
-          </div>
-
-          <div className="card" style={{ padding: 18 }}>
-            <h3 style={{ marginTop: 0, marginBottom: 8 }}>Community Impact</h3>
-            <p style={{ margin: 0, opacity: 0.85, lineHeight: 1.7 }}>
-              Fundraising, sponsorships, and support help us strengthen opportunities for every child in the
-              program.
-            </p>
-          </div>
-        </div>
-
-        <div className="sectionTitle" style={{ marginTop: 24 }}>
+        {/* PROGRAMS */}
+        <section className="sectionTitle" style={{ marginTop: 28 }}>
           <div>
-            <h2>Teams</h2>
-            <p>Explore each team, register, view photos, donate, and connect with coaches.</p>
+            <h2>Meet Our Teams</h2>
+            <p>T-Ball, Anarchy Cheer, Mayhem Cheer, Riot Cheer, and Karma Cheer.</p>
           </div>
-        </div>
+        </section>
 
-        <div className="grid2">
+        <section className="grid2">
           {teams.map((t) => (
             <div key={t.id} className="card programCard">
               <div className="programTop">
                 <div>
                   <h3 style={{ margin: 0 }}>{t.name}</h3>
-                  <p style={{ margin: "6px 0 0 0", opacity: 0.9 }}>
+                  <p style={{ margin: "6px 0 0", opacity: 0.9 }}>
                     {t.ages} • {t.colors}
                   </p>
                 </div>
-                <Image src={t.logo} alt={t.name} width={62} height={62} style={{ borderRadius: 16 }} />
+
+                <Image src={t.logo} alt={t.name} width={68} height={68} style={{ borderRadius: 18 }} />
               </div>
 
-              <div style={{ marginTop: 8, opacity: 0.88, lineHeight: 1.7 }}>
+              <p style={{ marginTop: 14, opacity: 0.88, lineHeight: 1.7 }}>
                 {t.id === "karma" &&
-                  "A strong start for younger athletes to build confidence, coordination, and a love for cheer."}
+                  "Our youngest cheer athletes learn confidence, coordination, teamwork, and the basics of cheer in a fun and positive environment."}
                 {t.id === "riot" &&
-                  "A high-energy program designed for athletes ready to grow in performance, teamwork, and skill."}
+                  "A high-energy cheer team focused on performance, discipline, skill-building, and strong team bonds."}
                 {t.id === "anarchy" &&
-                  "A full-travel competitive team for athletes pursuing high-level performance and strong routines."}
+                  "A competitive cheer team built for athletes ready to grow, perform, and push toward higher-level routines."}
                 {t.id === "mayhem" &&
-                  "A bold and competitive team focused on growth, performance quality, and exciting progression."}
+                  "A bold cheer program focused on athlete growth, confidence, performance quality, and exciting progression."}
                 {t.id === "tball" &&
-                  "A fun and supportive baseball program that develops fundamentals, confidence, and sportsmanship."}
-              </div>
+                  "A beginner-friendly baseball program that teaches fundamentals, sportsmanship, confidence, and teamwork."}
+              </p>
 
               <div className="programActions" style={{ marginTop: 14 }}>
                 {t.registration ? (
@@ -202,26 +201,24 @@ export default function HomePage() {
                     Register
                   </a>
                 ) : (
-                  <span className="pill subtle">Registration link coming soon</span>
-                )}
-
-                {t.cashApp ? (
-                  <button className="btn ghost" onClick={() => navigator.clipboard.writeText(t.cashApp!)}>
-                    Copy CashApp
-                  </button>
-                ) : (
-                  <span className="pill subtle">CashApp coming soon</span>
+                  <span className="pill subtle">Registration coming soon</span>
                 )}
 
                 <Link className="btn ghost" href={`/gallery/${t.id}`}>
                   Photos
                 </Link>
+
+                {t.cashApp ? (
+                  <button className="btn ghost" onClick={() => navigator.clipboard.writeText(t.cashApp!)}>
+                    Copy CashApp
+                  </button>
+                ) : null}
               </div>
 
               <div className="divider" />
 
               <div>
-                <div style={{ fontWeight: 700, marginBottom: 8 }}>Contacts</div>
+                <div style={{ fontWeight: 800, marginBottom: 8 }}>Contacts</div>
                 <ul style={{ margin: 0, paddingLeft: 18 }}>
                   {t.contacts.map((c) => (
                     <li key={`${t.id}-${c.name}-${c.phone}`}>
@@ -232,33 +229,22 @@ export default function HomePage() {
                     </li>
                   ))}
                 </ul>
-
-                {t.cashApp ? (
-                  <p style={{ marginTop: 12, marginBottom: 0 }}>
-                    <b>CashApp:</b> {t.cashApp}
-                  </p>
-                ) : null}
               </div>
 
               {t.id === "tball" ? (
                 <>
                   <div className="divider" />
                   <div>
-                    <div style={{ fontWeight: 700, marginBottom: 8 }}>T-Ball Merch</div>
+                    <div style={{ fontWeight: 800, marginBottom: 8 }}>T-Ball Merch</div>
                     <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
                       <a className="btn ghost" href={org.tballMerch.players} target="_blank" rel="noreferrer">
-                        Players Order Form
+                        Players
                       </a>
-                      <a
-                        className="btn ghost"
-                        href={org.tballMerch.parentFamily}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        Parent / Family Order Form
+                      <a className="btn ghost" href={org.tballMerch.parentFamily} target="_blank" rel="noreferrer">
+                        Parent / Family
                       </a>
                       <a className="btn ghost" href={org.tballMerch.coach} target="_blank" rel="noreferrer">
-                        Coach Order Form
+                        Coaches
                       </a>
                     </div>
                   </div>
@@ -266,57 +252,115 @@ export default function HomePage() {
               ) : null}
             </div>
           ))}
-        </div>
+        </section>
 
-        <div className="sectionTitle" style={{ marginTop: 24 }}>
+        {/* WHY FAMILIES CHOOSE US */}
+        <section className="sectionTitle" style={{ marginTop: 28 }}>
           <div>
-            <h2>Latest Highlights</h2>
-            <p>Visit each gallery to see team photos, event moments, and uploaded media.</p>
+            <h2>Why Families Choose Stateline Renegades</h2>
+            <p>A positive youth sports organization built around family, growth, and opportunity.</p>
           </div>
-        </div>
+        </section>
 
-        <div
+        <section
+          style={{
+            display: "grid",
+            gap: 16,
+            gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+          }}
+        >
+          {[
+            ["Family First", "We create a supportive environment where athletes feel encouraged, valued, and confident."],
+            ["Affordable Programs", "We believe youth sports should be accessible without unnecessary hidden fees."],
+            ["Character Development", "Athletes build discipline, teamwork, responsibility, leadership, and confidence."],
+            ["Community Impact", "Sponsors, fundraisers, and family support help create more opportunities for every athlete."],
+          ].map(([title, text]) => (
+            <div key={title} className="card" style={{ padding: 18 }}>
+              <h3 style={{ marginTop: 0, marginBottom: 8 }}>{title}</h3>
+              <p style={{ margin: 0, opacity: 0.85, lineHeight: 1.7 }}>{text}</p>
+            </div>
+          ))}
+        </section>
+
+        {/* REGISTRATION */}
+        <section className="card" style={{ padding: 22, marginTop: 22 }}>
+          <h2 style={{ marginTop: 0 }}>Ready to Join?</h2>
+          <p style={{ opacity: 0.85, lineHeight: 1.7 }}>
+            Choose the program that fits your athlete and complete the registration form.
+          </p>
+
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
+            <a className="btn" href={org.karmaRiotRegistration} target="_blank" rel="noreferrer">
+              Karma / Riot Registration
+            </a>
+
+            {cheerTeams
+              .filter((t) => t.id === "anarchy" || t.id === "mayhem")
+              .map((t) =>
+                t.registration ? (
+                  <a key={t.id} className="btn ghost" href={t.registration} target="_blank" rel="noreferrer">
+                    {t.name} Registration
+                  </a>
+                ) : null
+              )}
+
+            <a className="btn ghost" href={org.tballRegistration} target="_blank" rel="noreferrer">
+              T-Ball Registration
+            </a>
+          </div>
+        </section>
+
+        {/* GALLERY */}
+        <section className="sectionTitle" style={{ marginTop: 28 }}>
+          <div>
+            <h2>Team Galleries</h2>
+            <p>View photos, highlights, events, and special moments from each team.</p>
+          </div>
+        </section>
+
+        <section
           style={{
             display: "grid",
             gap: 14,
             gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
           }}
         >
+          <Link
+            href="/gallery/org"
+            className="card"
+            style={{ padding: 16, textDecoration: "none", color: "inherit", borderRadius: 20 }}
+          >
+            <div style={{ fontWeight: 900 }}>Organization Gallery</div>
+            <div style={{ fontSize: 13, opacity: 0.8 }}>Events • Banquets • Community</div>
+          </Link>
+
           {teams.map((t) => (
             <Link
               key={`gallery-${t.id}`}
               href={`/gallery/${t.id}`}
               className="card"
-              style={{
-                padding: 16,
-                textDecoration: "none",
-                color: "inherit",
-                borderRadius: 20,
-              }}
+              style={{ padding: 16, textDecoration: "none", color: "inherit", borderRadius: 20 }}
             >
               <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
                 <Image src={t.logo} alt={t.name} width={54} height={54} style={{ borderRadius: 14 }} />
                 <div>
-                  <div style={{ fontWeight: 800 }}>{t.name}</div>
+                  <div style={{ fontWeight: 900 }}>{t.name}</div>
                   <div style={{ fontSize: 13, opacity: 0.8 }}>Open gallery</div>
                 </div>
               </div>
             </Link>
           ))}
-        </div>
+        </section>
 
+        {/* SPONSORS */}
         <SponsorShowcase sponsors={sponsors} sponsorForm={org.sponsorForm} />
 
-        <div className="card" style={{ padding: 18, marginTop: 18 }}>
-          <div className="sectionTitle" style={{ margin: 0 }}>
-            <div>
-              <h2 style={{ marginTop: 0 }}>Sponsors & Donations</h2>
-              <p style={{ marginBottom: 0 }}>
-                Support our athletes through sponsorships and donations that help with equipment,
-                opportunities, training resources, and program growth.
-              </p>
-            </div>
-          </div>
+        <section className="card" style={{ padding: 22, marginTop: 18 }}>
+          <h2 style={{ marginTop: 0 }}>Sponsors & Donations</h2>
+          <p style={{ opacity: 0.85, lineHeight: 1.7 }}>
+            Community support helps provide equipment, uniforms, events, training opportunities, and program
+            growth for our athletes.
+          </p>
 
           <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginTop: 12 }}>
             <a className="btn" href={org.sponsorForm} target="_blank" rel="noreferrer">
@@ -324,20 +368,50 @@ export default function HomePage() {
             </a>
 
             <button className="btn ghost" onClick={() => navigator.clipboard.writeText("$statelinerenegades")}>
-              Copy $statelinerenegades (Karma/Riot)
+              Copy $statelinerenegades
             </button>
 
             <button className="btn ghost" onClick={() => navigator.clipboard.writeText("$RenegadesBB")}>
-              Copy $RenegadesBB (T-Ball)
+              Copy $RenegadesBB
             </button>
 
             <button className="btn ghost" onClick={() => navigator.clipboard.writeText("$renegadescheerteam")}>
-              Copy $renegadescheerteam (Anarchy/Mayhem)
+              Copy $renegadescheerteam
             </button>
           </div>
-        </div>
+        </section>
 
-        <div
+        {/* FUNDRAISERS */}
+        <section className="card" style={{ padding: 22, marginTop: 18 }}>
+          <h2 style={{ marginTop: 0 }}>Current Fundraisers</h2>
+          <p style={{ opacity: 0.85, lineHeight: 1.7 }}>
+            Fundraisers help our athletes with uniforms, equipment, travel, events, and program needs.
+          </p>
+
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
+            {"jjFundraiser" in org ? (
+              <a className="btn" href={(org as any).jjFundraiser} target="_blank" rel="noreferrer">
+                JJ Carne Seca Fundraiser
+              </a>
+            ) : null}
+
+            <a className="btn ghost" href={org.sponsorForm} target="_blank" rel="noreferrer">
+              Support as a Sponsor
+            </a>
+          </div>
+        </section>
+
+        {/* MISSION */}
+        <section className="card" style={{ padding: 24, marginTop: 18 }}>
+          <h2 style={{ marginTop: 0 }}>Our Mission</h2>
+          <p style={{ opacity: 0.9, lineHeight: 1.8, fontSize: 17, marginBottom: 0 }}>
+            Stateline Renegades exists to provide youth athletes with a positive environment where they can
+            grow through sports, build confidence, develop leadership skills, and create lifelong friendships.
+          </p>
+        </section>
+
+        {/* CONTACT */}
+        <section
           style={{
             display: "grid",
             gap: 16,
@@ -346,10 +420,7 @@ export default function HomePage() {
           }}
         >
           <div className="card" style={{ padding: 18 }}>
-            <h3 style={{ marginTop: 0 }}>Coach Contacts</h3>
-            <p style={{ opacity: 0.85, lineHeight: 1.7, marginBottom: 10 }}>
-              Reach out directly for registration questions, program details, and team information.
-            </p>
+            <h3 style={{ marginTop: 0 }}>Cheer Contacts</h3>
             <div style={{ display: "grid", gap: 8 }}>
               <a href={phoneHref("915-352-9033")} style={{ textDecoration: "underline" }}>
                 Coach Celia — 915-352-9033
@@ -364,18 +435,22 @@ export default function HomePage() {
           </div>
 
           <div className="card" style={{ padding: 18 }}>
-            <h3 style={{ marginTop: 0 }}>Why Sponsors Matter</h3>
-            <p style={{ opacity: 0.85, lineHeight: 1.7, marginBottom: 0 }}>
-              Sponsorships help us create better opportunities for young athletes through facility support,
-              mats, uniforms, events, and program expansion.
-            </p>
+            <h3 style={{ marginTop: 0 }}>T-Ball Contacts</h3>
+            {tballTeam ? (
+              <div style={{ display: "grid", gap: 8 }}>
+                {tballTeam.contacts.map((c) => (
+                  <a key={c.phone} href={phoneHref(c.phone)} style={{ textDecoration: "underline" }}>
+                    {c.name} — {c.phone}
+                  </a>
+                ))}
+              </div>
+            ) : null}
           </div>
 
           <div className="card" style={{ padding: 18 }}>
             <h3 style={{ marginTop: 0 }}>Stay Connected</h3>
             <p style={{ opacity: 0.85, lineHeight: 1.7 }}>
-              Follow team highlights, community events, and gallery updates to stay connected with the
-              Stateline Renegades family.
+              Follow updates, photos, registration announcements, fundraisers, and community events.
             </p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
               <Link className="btn" href="/gallery">
@@ -386,8 +461,53 @@ export default function HomePage() {
               </a>
             </div>
           </div>
-        </div>
-      </div>
+        </section>
+
+        {/* FOOTER */}
+        <footer className="card" style={{ padding: 22, marginTop: 22, marginBottom: 20 }}>
+          <div
+            style={{
+              display: "grid",
+              gap: 18,
+              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+            }}
+          >
+            <div>
+              <h3 style={{ marginTop: 0 }}>Stateline Renegades</h3>
+              <p style={{ opacity: 0.8, lineHeight: 1.7, marginBottom: 0 }}>
+                T-Ball • Anarchy Cheer • Mayhem Cheer • Riot Cheer • Karma Cheer
+              </p>
+            </div>
+
+            <div>
+              <h3 style={{ marginTop: 0 }}>Quick Links</h3>
+              <div style={{ display: "grid", gap: 8 }}>
+                <Link href="/gallery">Gallery</Link>
+                <a href={org.sponsorForm} target="_blank" rel="noreferrer">
+                  Sponsors
+                </a>
+                <a href={org.karmaRiotRegistration} target="_blank" rel="noreferrer">
+                  Cheer Registration
+                </a>
+                <a href={org.tballRegistration} target="_blank" rel="noreferrer">
+                  T-Ball Registration
+                </a>
+              </div>
+            </div>
+
+            <div>
+              <h3 style={{ marginTop: 0 }}>Renegade Family</h3>
+              <p style={{ opacity: 0.8, lineHeight: 1.7, marginBottom: 0 }}>
+                Building strong athletes, confident kids, and a positive sports community.
+              </p>
+            </div>
+          </div>
+
+          <div className="divider" />
+
+          <p style={{ margin: 0, opacity: 0.7 }}>© 2026 Stateline Renegades. All rights reserved.</p>
+        </footer>
+      </main>
     </div>
   );
 }
