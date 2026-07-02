@@ -103,21 +103,46 @@ export default function HeroSlider() {
             Cheer • T-Ball • Baseball • Community • Family
           </p>
 
-          <div style={{ display: "flex", gap: "14px", justifyContent: "center", flexWrap: "wrap" }}>
-            <a className="btn" href="https://form.jotform.com/260336801253046">
-              Register Now
-            </a>
+         <div
+  style={{
+    display: "flex",
+    gap: "14px",
+    justifyContent: "center",
+    flexWrap: "wrap",
+  }}
+>
+  <a
+    className="btn"
+    href="https://form.jotform.com/260336801253046"
+    target="_blank"
+    rel="noreferrer"
+  >
+    Register for Riot / Karma
+  </a>
 
-            <a className="btn" href="https://form.jotform.com/celiadelacruz89/sponsorship-application-form">
-              Become A Sponsor
-            </a>
+  <a
+    className="btn"
+    href="https://forms.gle/6W6GNLNYwYCay7zXA"
+    target="_blank"
+    rel="noreferrer"
+  >
+    Register for Mayhem
+  </a>
 
-            <a className="btn" href="#teams">
-              Meet Our Teams
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
+  <a
+    className="btn"
+    href="https://form.jotform.com/celiadelacruz89/sponsorship-application-form"
+    target="_blank"
+    rel="noreferrer"
+  >
+    Become A Sponsor
+  </a>
+
+  <a className="btn" href="#teams">
+    Meet Our Teams
+  </a>
+</div>
+      )}
+    </>
   );
 }
