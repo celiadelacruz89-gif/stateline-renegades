@@ -25,6 +25,7 @@ export default function HomePage() {
             <Link href="/anarchy">Anarchy</Link>
             <Link href="/mayhem">Mayhem</Link>
             <Link href="/tball">T-Ball</Link>
+            <Link href="/coaches">Meet the Coaches</Link>
             <Link href="/sponsors">Sponsors</Link>
             <Link href="/gallery">Gallery</Link>
             <Link href="/admin">Admin</Link>
