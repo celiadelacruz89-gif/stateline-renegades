@@ -36,6 +36,7 @@ export default function HomePage() {
 
       <main className="wrap section">
         <HeroSlider />
+        <FeaturedVideo />
 <WhyChooseUs />
 
         {/* UPCOMING EVENTS */}
