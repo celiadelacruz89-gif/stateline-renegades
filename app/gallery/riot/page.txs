@@ -25,7 +25,11 @@ export default function RiotKarmaGalleryPage() {
         }}
       >
         {photos.map((photo, index) => (
-          <div key={photo} className="card" style={{ padding: 0, overflow: "hidden" }}>
+          <div
+            key={photo}
+            className="card"
+            style={{ padding: 0, overflow: "hidden", borderRadius: "22px" }}
+          >
             <Image
               src={photo}
               alt={`Riot Karma photo ${index + 1}`}
