@@ -9,7 +9,7 @@ const galleries = [
   {
     title: "🩷 Riot / Karma",
     description: "Practices • Competitions • Team Memories",
-    href: "/gallery/riot",
+    href: "/gallery/riot-karma",
   },
   {
     title: "❤️ Anarchy",
