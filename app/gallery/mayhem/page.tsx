@@ -1,35 +1,70 @@
+import Image from "next/image";
+
+const photos = [
+  "/gallery/mayhem/mayhem1.png",
+  "/gallery/mayhem/mayhem2.png",
+  "/gallery/mayhem/mayhem3.png",
+];
+
 export default function MayhemGallery() {
   return (
     <main className="wrap section">
-      <h1>💜 Mayhem Gallery</h1>
+      <div style={{ textAlign: "center", marginBottom: "28px" }}>
+        <h1
+          style={{
+            fontSize: "44px",
+            marginBottom: "10px",
+            color: "#9333ea",
+          }}
+        >
+          💜 Mayhem Gallery
+        </h1>
 
-      <p>
-        Full travel team highlights, competitions, practices, and team memories.
-      </p>
+        <p
+          style={{
+            opacity: 0.85,
+            lineHeight: 1.7,
+            maxWidth: "800px",
+            margin: "0 auto",
+          }}
+        >
+          Full travel team highlights, competitions, practices,
+          performances, and unforgettable Mayhem moments.
+        </p>
+      </div>
 
-      <div
+      <section
         style={{
           display: "grid",
           gap: "16px",
-          gridTemplateColumns: "repeat(auto-fit,minmax(250px,1fr))",
-          marginTop: "20px",
+          gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
         }}
       >
-        {[1,2,3,4,5,6].map((i) => (
+        {photos.map((photo, index) => (
           <div
-            key={i}
+            key={photo}
             className="card"
             style={{
-              height: "250px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
+              overflow: "hidden",
+              borderRadius: "22px",
+              padding: 0,
             }}
           >
-            Mayhem Photo {i}
+            <Image
+              src={photo}
+              alt={`Mayhem gallery photo ${index + 1}`}
+              width={900}
+              height={700}
+              style={{
+                width: "100%",
+                height: "300px",
+                objectFit: "cover",
+                display: "block",
+              }}
+            />
           </div>
         ))}
-      </div>
+      </section>
     </main>
   );
 }

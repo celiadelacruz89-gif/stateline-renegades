@@ -1,37 +1,64 @@
-import { org, teams } from "../lib/data";
-import { phoneHref } from "../lib/utils";
-import TeamHero from "../components/TeamHero";
+import Image from "next/image";
 
-export default function TBallPage() {
-  const tballTeam = teams.find((t) => t.id === "tball");
+const photos = [
+  "/gallery/tball/focused.jpg",
+  "/gallery/tball/tball1.jpg",
+  "/gallery/tball/tball2.png",
+  "/gallery/tball/tball3.png",
+  "/gallery/tball/tball10.png",
+  "/gallery/tball/tball11.png",
+  "/gallery/tball/tball12.jpg",
+  "/gallery/tball/tball13.jpg",
+  "/gallery/tball/tball14.jpg",
+  "/gallery/tball/team.png",
+  "/gallery/tball/win.png",
+];
 
+export default function TBallGallery() {
   return (
     <main className="wrap section">
-      <TeamHero
-        title="T-Ball"
-        subtitle="Building confidence, teamwork, and baseball fundamentals for young athletes."
-        colors="linear-gradient(135deg, #111827, #991b1b, #ef4444)"
-        logo="/logos/tball.png"
-      />
+      <div style={{ textAlign: "center", marginBottom: "28px" }}>
+        <h1 style={{ fontSize: "44px", marginBottom: "10px" }}>
+          ⚾ T-Ball Gallery
+        </h1>
 
-      <section className="grid2">
-        <div className="card" style={{ padding: 24 }}>
-          <h2>⚾ Program Focus</h2>
-          <ul style={{ lineHeight: 2 }}>
-            <li>Baseball fundamentals</li>
-            <li>Throwing, catching, and hitting basics</li>
-            <li>Teamwork and sportsmanship</li>
-            <li>Fun, beginner-friendly environment</li>
-          </ul>
-          <a className="btn" href={org.tballRegistration} target="_blank" rel="noreferrer">
-            Register for T-Ball
-          </a>
-        </div>
+        <p style={{ opacity: 0.85, lineHeight: 1.7 }}>
+          Games, practices, team moments, player highlights, and Renegades
+          memories.
+        </p>
+      </div>
 
-        <div className="card" style={{ padding: 24 }}>
-          <h2>👕 T-Ball Merch</h2>
-          <p>Shop team gear for players, parents, families, and coaches.</p>
-        </div>
+      <section
+        style={{
+          display: "grid",
+          gap: "16px",
+          gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+        }}
+      >
+        {photos.map((photo, index) => (
+          <div
+            key={photo}
+            className="card"
+            style={{
+              overflow: "hidden",
+              borderRadius: "22px",
+              padding: 0,
+            }}
+          >
+            <Image
+              src={photo}
+              alt={`T-Ball gallery photo ${index + 1}`}
+              width={900}
+              height={700}
+              style={{
+                width: "100%",
+                height: "300px",
+                objectFit: "cover",
+                display: "block",
+              }}
+            />
+          </div>
+        ))}
       </section>
     </main>
   );

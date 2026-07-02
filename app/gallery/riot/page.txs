@@ -1,13 +1,17 @@
 import Image from "next/image";
 
 const photos = [
-  "/gallery/anarchy/anarchy1.png",
-  "/gallery/anarchy/anarchy2.jpg",
-  "/gallery/anarchy/anarchy3.jpg",
-  "/gallery/anarchy/anarchy4.jpg",
+  "/gallery/riot/riot1.png",
+  "/gallery/riot/riot2.png",
+  "/gallery/riot/riot3.png",
+  "/gallery/riot/riot4.png",
+  "/gallery/riot/riot5.png",
+  "/gallery/riot/riot10.png",
+  "/gallery/riot/riot11.png",
+  "/gallery/riot/riot12.png",
 ];
 
-export default function AnarchyGallery() {
+export default function RiotGallery() {
   return (
     <main className="wrap section">
       <div style={{ textAlign: "center", marginBottom: "28px" }}>
@@ -15,10 +19,10 @@ export default function AnarchyGallery() {
           style={{
             fontSize: "44px",
             marginBottom: "10px",
-            color: "#dc2626",
+            color: "#ec4899",
           }}
         >
-          ❤️ Anarchy Gallery
+          🩷 Riot / Karma Gallery
         </h1>
 
         <p
@@ -29,8 +33,8 @@ export default function AnarchyGallery() {
             margin: "0 auto",
           }}
         >
-          Competition highlights, championship moments,
-          travel events, team bonding, and Anarchy memories.
+          Competition highlights, practices, performances, team bonding,
+          community events, and unforgettable Riot & Karma memories.
         </p>
       </div>
 
@@ -53,7 +57,7 @@ export default function AnarchyGallery() {
           >
             <Image
               src={photo}
-              alt={`Anarchy gallery photo ${index + 1}`}
+              alt={`Riot gallery photo ${index + 1}`}
               width={900}
               height={700}
               style={{
