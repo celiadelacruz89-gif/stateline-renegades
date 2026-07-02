@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 const slides = [
   "/Hero/hero1.jpg  (T-Ball).png",
-  "/Hero/hero2.jpg  (Karma).png",
+  "/logos/karma.png",
   "/Hero/hero3.jpg  (Riot).png",
   "/Hero/hero4.jpg  (Anarchy).png",
   "/Hero/hero5.jpg  (Mayhem).png",
@@ -103,46 +103,47 @@ export default function HeroSlider() {
             Cheer • T-Ball • Baseball • Community • Family
           </p>
 
-         <div
-  style={{
-    display: "flex",
-    gap: "14px",
-    justifyContent: "center",
-    flexWrap: "wrap",
-  }}
->
-  <a
-    className="btn"
-    href="https://form.jotform.com/260336801253046"
-    target="_blank"
-    rel="noreferrer"
-  >
-    Register for Riot / Karma
-  </a>
+          <div
+            style={{
+              display: "flex",
+              gap: "14px",
+              justifyContent: "center",
+              flexWrap: "wrap",
+            }}
+          >
+            <a
+              className="btn"
+              href="https://form.jotform.com/260336801253046"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Register for Riot / Karma
+            </a>
 
-  <a
-    className="btn"
-    href="https://forms.gle/6W6GNLNYwYCay7zXA"
-    target="_blank"
-    rel="noreferrer"
-  >
-    Register for Mayhem
-  </a>
+            <a
+              className="btn"
+              href="https://forms.gle/6W6GNLNYwYCay7zXA"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Register for Mayhem
+            </a>
 
-  <a
-    className="btn"
-    href="https://form.jotform.com/celiadelacruz89/sponsorship-application-form"
-    target="_blank"
-    rel="noreferrer"
-  >
-    Become A Sponsor
-  </a>
+            <a
+              className="btn"
+              href="https://form.jotform.com/celiadelacruz89/sponsorship-application-form"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Become A Sponsor
+            </a>
 
-  <a className="btn" href="#teams">
-    Meet Our Teams
-  </a>
-</div>
-      )}
-    </>
+            <a className="btn" href="#teams">
+              Meet Our Teams
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
