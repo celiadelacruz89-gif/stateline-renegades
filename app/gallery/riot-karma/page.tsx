@@ -1,0 +1,50 @@
+import Image from "next/image";
+
+const photos = [
+  "/gallery/riot/riot1.png",
+  "/gallery/riot/riot2.png",
+  "/gallery/riot/riot3.png",
+  "/gallery/riot/riot4.png",
+  "/gallery/riot/riot5.png",
+  "/gallery/riot/riot10.png",
+  "/gallery/riot/riot11.png",
+  "/gallery/riot/riot12.png",
+];
+
+export default function RiotKarmaGalleryPage() {
+  return (
+    <main className="wrap section">
+      <h1>🩷 Riot / Karma Gallery</h1>
+
+      <section
+        style={{
+          display: "grid",
+          gap: "16px",
+          gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+          marginTop: "24px",
+        }}
+      >
+        {photos.map((photo, index) => (
+          <div
+            key={photo}
+            className="card"
+            style={{ padding: 0, overflow: "hidden", borderRadius: "22px" }}
+          >
+            <Image
+              src={photo}
+              alt={`Riot Karma photo ${index + 1}`}
+              width={900}
+              height={700}
+              style={{
+                width: "100%",
+                height: "300px",
+                objectFit: "cover",
+                display: "block",
+              }}
+            />
+          </div>
+        ))}
+      </section>
+    </main>
+  );
+}
