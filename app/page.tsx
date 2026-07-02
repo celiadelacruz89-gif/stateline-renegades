@@ -38,41 +38,6 @@ export default function HomePage() {
         <HeroSlider />
 <WhyChooseUs />
 
-        {/* NOW REGISTERING */}
-        <section
-          className="card"
-          style={{
-            padding: "22px",
-            marginTop: "18px",
-            border: "1px solid rgba(255,255,255,0.14)",
-            background:
-              "linear-gradient(90deg, rgba(255,79,210,0.22), rgba(57,213,255,0.18))",
-          }}
-        >
-          <h2 style={{ marginTop: 0 }}>Riot & Karma Cheer Registration Open</h2>
-
-          <p style={{ lineHeight: 1.8 }}>
-            🩷 Karma Cheer Ages 3–5 — Only 4 Spots Available
-            <br />
-            💚 Riot Cheer Ages 10–12 — Only 3 Spots Available
-          </p>
-
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
-            <a
-              className="btn"
-              href="https://form.jotform.com/260336801253046"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Register for Riot / Karma
-            </a>
-
-            <Link className="btn ghost" href="/riot-karma">
-              View Riot / Karma
-            </Link>
-          </div>
-        </section>
-
         {/* UPCOMING EVENTS */}
         <section className="card" style={{ padding: "22px", marginTop: "14px" }}>
           <h2 style={{ marginTop: 0 }}>Upcoming Events</h2>

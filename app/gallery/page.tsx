@@ -1,77 +1,89 @@
 import Link from "next/link";
-import { org } from "../lib/data";
-
-export const dynamic = "force-dynamic";
 
 const galleries = [
-  { id: "org", name: "Organization" },
-  { id: "karma", name: "Karma" },
-  { id: "riot", name: "Riot" },
-  { id: "anarchy", name: "Anarchy" },
-  { id: "mayhem", name: "Blessed Mayhem" },
-  { id: "tball", name: "T-Ball" },
+  {
+    title: "📸 Organization Gallery",
+    description: "Events • Banquets • Community • Fundraisers",
+    href: "/gallery/org",
+  },
+  {
+    title: "🩷 Riot / Karma",
+    description: "Practices • Competitions • Team Memories",
+    href: "/gallery/riot",
+  },
+  {
+    title: "❤️ Anarchy",
+    description: "Travel Team Highlights • Events • Performances",
+    href: "/gallery/anarchy",
+  },
+  {
+    title: "💜 Mayhem",
+    description: "Full Travel Team Highlights • Practices • Competitions",
+    href: "/gallery/mayhem",
+  },
+  {
+    title: "⚾ T-Ball",
+    description: "Games • Practices • Player Highlights",
+    href: "/gallery/tball",
+  },
+  {
+    title: "🎥 Videos",
+    description: "Highlights • Reels • Team Performances",
+    href: "/gallery/videos",
+  },
 ];
 
-export default function GalleryIndexPage() {
+export default function GalleryPage() {
   return (
-    <div>
-      <nav>
-        <div className="wrap navInner">
-          <div className="brand">
-            <div className="brandMark" />
-            <div className="brandText">
-              <b>Gallery</b> <span>{org.name}</span>
-            </div>
-          </div>
+    <main className="wrap section">
+      <div style={{ textAlign: "center", marginBottom: "30px" }}>
+        <h1 style={{ fontSize: "48px", marginBottom: "10px" }}>
+          Gallery
+        </h1>
 
-          <div className="navLinks">
-            <Link className="btn ghost" href="/">
-              Home
-            </Link>
-            <Link className="btn" href="/admin/uploads">
-              Upload
-            </Link>
-          </div>
-        </div>
-      </nav>
+        <p style={{ opacity: 0.8 }}>
+          Explore photos, videos, events, competitions, and memories from
+          across the Stateline Renegades organization.
+        </p>
+      </div>
 
-      <div className="wrap section">
-        <div className="sectionTitle">
-          <div>
-            <h1 style={{ margin: 0 }}>All Galleries</h1>
-            <p style={{ marginTop: 6, opacity: 0.9 }}>
-              View uploaded media for each team and the organization.
-            </p>
-          </div>
-        </div>
+      <section
+        style={{
+          display: "grid",
+          gap: "18px",
+          gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+        }}
+      >
+        {galleries.map((gallery) => (
+          <Link
+            key={gallery.href}
+            href={gallery.href}
+            className="card"
+            style={{
+              padding: "24px",
+              textDecoration: "none",
+              color: "inherit",
+              borderRadius: "22px",
+            }}
+          >
+            <h2 style={{ marginTop: 0 }}>{gallery.title}</h2>
 
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-            gap: 16,
-            marginTop: 20,
-          }}
-        >
-          {galleries.map((gallery) => (
-            <Link
-              key={gallery.id}
-              href={`/gallery/${gallery.id}`}
-              className="card"
+            <p
               style={{
-                padding: 20,
-                borderRadius: 18,
-                textDecoration: "none",
-                color: "inherit",
-                display: "block",
+                opacity: 0.85,
+                lineHeight: 1.7,
+                marginBottom: "18px",
               }}
             >
-              <h3 style={{ marginTop: 0, marginBottom: 8 }}>{gallery.name}</h3>
-              <p style={{ margin: 0, opacity: 0.85 }}>Open gallery</p>
-            </Link>
-          ))}
-        </div>
-      </div>
-    </div>
+              {gallery.description}
+            </p>
+
+            <span className="btn">
+              View Gallery
+            </span>
+          </Link>
+        ))}
+      </section>
+    </main>
   );
 }
