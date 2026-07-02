@@ -40,42 +40,137 @@ export default function HomePage() {
 <WhyChooseUs />
 
         {/* UPCOMING EVENTS */}
-        <section className="card" style={{ padding: "22px", marginTop: "14px" }}>
-          <h2 style={{ marginTop: 0 }}>Upcoming Events</h2>
+<section className="card" style={{ padding: "22px", marginTop: "14px" }}>
+  <h2 style={{ marginTop: 0 }}>Upcoming Events</h2>
+  <p style={{ opacity: 0.8, marginTop: -8 }}>
+    Monthly calendar view with highlighted event dates.
+  </p>
+
+  {(() => {
+    const events = [
+      {
+        date: "2026-07-17",
+        day: 17,
+        team: "Stateline Renegades",
+        title: "Cheer Camp",
+        details: "Ages 2–14",
+      },
+      {
+        date: "2026-07-18",
+        day: 18,
+        team: "Stateline Renegades",
+        title: "Cheer Camp",
+        details: "Ages 2–14",
+      },
+      {
+        date: "2026-07-25",
+        day: 25,
+        team: "Riot / Karma Cheer",
+        title: "Back-to-School Raffle Drawing",
+        details: "12 Winners",
+      },
+    ];
+
+    const eventDays = events.map((event) => event.day);
+
+    const daysInJuly = Array.from({ length: 31 }, (_, i) => i + 1);
+    const blanksBeforeJuly = 3; // July 1, 2026 starts on Wednesday
+
+    return (
+      <div
+        style={{
+          display: "grid",
+          gap: "20px",
+          gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+          alignItems: "start",
+        }}
+      >
+        <div className="card" style={{ padding: "16px" }}>
+          <h3 style={{ marginTop: 0, textAlign: "center" }}>July 2026</h3>
 
           <div
             style={{
               display: "grid",
-              gap: "12px",
-              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+              gridTemplateColumns: "repeat(7, 1fr)",
+              gap: "8px",
+              textAlign: "center",
+              fontWeight: 800,
+              fontSize: "13px",
+              marginBottom: "8px",
             }}
           >
-            <div className="card" style={{ padding: "16px" }}>
-              <h3 style={{ marginTop: 0 }}>📣 Cheer Camp</h3>
-              <p style={{ marginBottom: 0 }}>
-                July 17–18
-                <br />
-                Ages 2–14
-              </p>
-            </div>
-
-            <div className="card" style={{ padding: "16px" }}>
-              <h3 style={{ marginTop: 0 }}>🎟️ Back-to-School Raffle</h3>
-              <p style={{ marginBottom: 0 }}>
-                Drawing July 25
-                <br />
-                12 Winners
-              </p>
-            </div>
-
-            <div className="card" style={{ padding: "16px" }}>
-              <h3 style={{ marginTop: 0 }}>🤝 Sponsors Needed</h3>
-              <p style={{ marginBottom: 0 }}>
-                Support local youth athletes and community programs.
-              </p>
-            </div>
+            {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
+              <div key={day}>{day}</div>
+            ))}
           </div>
-        </section>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(7, 1fr)",
+              gap: "8px",
+            }}
+          >
+            {Array.from({ length: blanksBeforeJuly }).map((_, index) => (
+              <div key={`blank-${index}`} />
+            ))}
+
+            {daysInJuly.map((day) => {
+              const isEvent = eventDays.includes(day);
+
+              return (
+                <div
+                  key={day}
+                  style={{
+                    padding: "10px 0",
+                    borderRadius: "12px",
+                    textAlign: "center",
+                    fontWeight: 900,
+                    background: isEvent
+                      ? "linear-gradient(135deg, #f9a8d4, #14b8a6)"
+                      : "rgba(255,255,255,0.08)",
+                    color: isEvent ? "#000" : "inherit",
+                    border: isEvent
+                      ? "2px solid rgba(255,255,255,0.8)"
+                      : "1px solid rgba(255,255,255,0.12)",
+                  }}
+                >
+                  {day}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="card" style={{ padding: "16px" }}>
+          <h3 style={{ marginTop: 0 }}>Event List</h3>
+
+          <div style={{ display: "grid", gap: "12px" }}>
+            {events.map((event) => (
+              <div
+                key={`${event.date}-${event.title}`}
+                style={{
+                  padding: "14px",
+                  borderRadius: "16px",
+                  background: "rgba(255,255,255,0.08)",
+                  border: "1px solid rgba(255,255,255,0.12)",
+                }}
+              >
+                <div style={{ fontWeight: 900 }}>
+                  July {event.day} — {event.team}
+                </div>
+                <div style={{ fontSize: "18px", fontWeight: 900 }}>
+                  {event.title}
+                </div>
+                <div style={{ opacity: 0.8 }}>{event.details}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  })()}
+</section>
 
         {/* STATS */}
         <section
