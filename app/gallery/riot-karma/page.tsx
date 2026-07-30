@@ -10,8 +10,8 @@ const photos = [
   "/gallery/riot/riot11.png",
   "/gallery/riot/riot12.png",
 
-  "/gallery/riot/karma1.png",
-  "/gallery/riot/karma2.png",
+  "/gallery/karma/karma1.png",
+  "/gallery/karma/karma2.png",
 ];
 
 export default function RiotKarmaGalleryPage() {
