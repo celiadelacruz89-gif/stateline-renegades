@@ -1179,3 +1179,312 @@ main > :nth-child(5) {
     animation: none;
   }
 }
+/* =========================================================
+   PROFESSIONAL SITE NAVIGATION
+   ========================================================= */
+
+.siteNav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+  background: rgba(7, 8, 18, 0.82);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.22);
+}
+
+.siteNav .navInner {
+  position: relative;
+  display: flex;
+  min-height: 76px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+}
+
+.siteNav .brand {
+  display: flex;
+  min-width: 0;
+  flex: 0 1 auto;
+  align-items: center;
+  gap: 12px;
+}
+
+.siteNav .brandMark {
+  position: relative;
+  display: grid;
+  flex: 0 0 auto;
+  width: 46px;
+  height: 46px;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 15px;
+  background:
+    radial-gradient(
+      circle at 30% 25%,
+      rgba(255, 255, 255, 0.2),
+      rgba(255, 255, 255, 0.04)
+    );
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28);
+}
+
+.siteNav .brandMark img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 4px;
+}
+
+.siteNav .brandText {
+  min-width: 0;
+}
+
+.siteNav .brandText b {
+  display: block;
+  overflow: hidden;
+  color: #ffffff;
+  font-size: 0.96rem;
+  font-weight: 950;
+  letter-spacing: 0.02em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.siteNav .brandText span {
+  display: block;
+  overflow: hidden;
+  margin-top: 2px;
+  color: rgba(247, 248, 255, 0.66);
+  font-size: 0.7rem;
+  letter-spacing: 0.015em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.siteNav .navLinks {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+}
+
+.siteNav .navLink {
+  position: relative;
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 10px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  color: rgba(247, 248, 255, 0.74);
+  font-size: 0.81rem;
+  font-weight: 800;
+  white-space: nowrap;
+  transition:
+    transform 180ms ease,
+    color 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease;
+}
+
+.siteNav .navLink:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.075);
+}
+
+.siteNav .navLink.active {
+  border-color: rgba(57, 213, 255, 0.26);
+  color: #ffffff;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 79, 210, 0.14),
+      rgba(57, 213, 255, 0.13)
+    );
+}
+
+.siteNav .navLink.active::after {
+  position: absolute;
+  right: 12px;
+  bottom: 4px;
+  left: 12px;
+  height: 2px;
+  border-radius: 999px;
+  content: "";
+  background: linear-gradient(90deg, #ff4fd2, #39d5ff);
+}
+
+.navRegisterButton {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: center;
+  margin-left: 7px;
+  padding: 10px 15px;
+  border: 1px solid transparent;
+  border-radius: 13px;
+  color: #ffffff;
+  background: linear-gradient(100deg, #ff4fd2, #39d5ff);
+  box-shadow: 0 12px 30px rgba(255, 79, 210, 0.22);
+  font-size: 0.83rem;
+  font-weight: 950;
+  white-space: nowrap;
+  transition:
+    transform 180ms ease,
+    filter 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.navRegisterButton:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+  box-shadow: 0 16px 34px rgba(255, 79, 210, 0.3);
+}
+
+.mobileMenuButton {
+  display: none;
+  width: 46px;
+  height: 44px;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 13px;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.07);
+  cursor: pointer;
+}
+
+.menuLine {
+  display: block;
+  width: 21px;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+  transition:
+    transform 180ms ease,
+    opacity 180ms ease;
+}
+
+.menuLineTop.open {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.menuLineMiddle.open {
+  opacity: 0;
+}
+
+.menuLineBottom.open {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+@media (max-width: 1080px) {
+  .siteNav .brandText span {
+    display: none;
+  }
+
+  .siteNav .navLink {
+    padding-inline: 8px;
+    font-size: 0.76rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .siteNav .navInner {
+    min-height: 68px;
+  }
+
+  .mobileMenuButton {
+    display: flex;
+  }
+
+  .siteNav .navLinks {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    left: 0;
+    display: none;
+    max-height: calc(100vh - 100px);
+    align-items: stretch;
+    flex-direction: column;
+    gap: 7px;
+    overflow-y: auto;
+    padding: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    border-radius: 18px;
+    background: rgba(10, 11, 24, 0.98);
+    box-shadow: 0 28px 70px rgba(0, 0, 0, 0.48);
+    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(18px);
+  }
+
+  .siteNav .navLinks.navLinksOpen {
+    display: flex;
+    animation: navMenuOpen 180ms ease both;
+  }
+
+  .siteNav .navLink,
+  .navRegisterButton {
+    width: 100%;
+    min-height: 48px;
+  }
+
+  .siteNav .navLink {
+    justify-content: flex-start;
+    padding-inline: 15px;
+    font-size: 0.9rem;
+  }
+
+  .siteNav .navLink.active::after {
+    top: 10px;
+    right: auto;
+    bottom: 10px;
+    left: 5px;
+    width: 3px;
+    height: auto;
+  }
+
+  .navRegisterButton {
+    margin-top: 4px;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 520px) {
+  .siteNav .brandMark {
+    width: 41px;
+    height: 41px;
+    border-radius: 13px;
+  }
+
+  .siteNav .brandText b {
+    max-width: 190px;
+    font-size: 0.88rem;
+  }
+
+  .siteNav .navLinks {
+    right: -2px;
+    left: -2px;
+  }
+}
+
+@keyframes navMenuOpen {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
