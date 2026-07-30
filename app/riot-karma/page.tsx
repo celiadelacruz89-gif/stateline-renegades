@@ -22,188 +22,353 @@ export default function RiotKarmaPage() {
           padding: "12px 20px",
           borderRadius: 999,
           display: "inline-block",
-          marginBottom: 20,
-          fontWeight: 700,
+          marginBottom: 24,
+          fontWeight: 800,
+          letterSpacing: "0.04em",
         }}
       >
         LOCAL TRAVEL TEAMS
       </div>
 
-      <section className="card" style={{ padding: 24, marginBottom: 24 }}>
-        <h2 style={{ marginTop: 0 }}>Renegades Cheer Pathway</h2>
-
-        <p style={{ fontSize: 18, lineHeight: 1.8 }}>
-          🩷 <b>Karma Ages 3–5</b> → Beginner Development
-          <br />
-          💚 <b>Riot Ages 9–12</b> → Local Travel Team
-          <br />
-          ⚡ <b>Anarchy</b> → Full Travel Team
-          <br />
-          🔥 <b>Mayhem</b> → Full Travel Team
-        </p>
-      </section>
-
-      <section className="grid2">
-        <div className="card" style={{ padding: 24 }}>
-          <h2 style={{ marginTop: 0 }}>💚 Riot Cheer</h2>
-
-          <p style={{ color: "#16a34a", fontWeight: 700 }}>
-            Local Travel Team
-          </p>
-
-          <p style={{ fontSize: 18 }}>
-            <b>Ages:</b> 9–12
-            <br />
-            <b>Spots Available:</b> 3
-          </p>
-
-          <ul style={{ lineHeight: 2 }}>
-            <li>Local travel competition team</li>
-            <li>Competition-style cheer training</li>
-            <li>Designed for athletes building advanced skills</li>
-            <li>Jumps, motions, dance, and performance</li>
-            <li>Teamwork and confidence building</li>
-          </ul>
-
-          {riot?.registration && (
-            <a
-              className="btn"
-              href={riot.registration}
-              target="_blank"
-              rel="noreferrer"
-            >
-              Register for Riot
-            </a>
-          )}
-        </div>
-
-        <div className="card" style={{ padding: 24 }}>
-          <h2 style={{ marginTop: 0 }}>🩷 Karma Cheer</h2>
-
-          <p style={{ color: "#ec4899", fontWeight: 700 }}>
-            Local Travel Team
-          </p>
-
-          <p style={{ fontSize: 18 }}>
-            <b>Ages:</b> 3–5
-            <br />
-            <b>Spots Available:</b> 4
-          </p>
-
-          <ul style={{ lineHeight: 2 }}>
-            <li>Mini cheer basics</li>
-            <li>Fun beginner motions and jumps</li>
-            <li>Confidence and listening skills</li>
-            <li>Local performances and competitions</li>
-            <li>Perfect introduction to competitive cheer</li>
-          </ul>
-
-          {karma?.registration && (
-            <a
-              className="btn"
-              href={karma.registration}
-              target="_blank"
-              rel="noreferrer"
-            >
-              Register for Karma
-            </a>
-          )}
-        </div>
-      </section>
-
-      <section className="card" style={{ padding: 24, marginTop: 24 }}>
-        <h2 style={{ marginTop: 0 }}>Registration & Team Costs</h2>
-
-        <p style={{ opacity: 0.85, lineHeight: 1.7 }}>
-          We strive to keep competitive cheer affordable while providing a
-          quality experience for every athlete. Returning members receive
-          discounted registration pricing.
-        </p>
-
-        <div
-          style={{
-            display: "grid",
-            gap: 18,
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-            marginTop: 20,
-          }}
-        >
-          <div className="card" style={{ padding: 20 }}>
-            <h3 style={{ marginTop: 0 }}>🩷 Karma</h3>
-
-            <p>
-              <strong>Ages:</strong> 3–5
-            </p>
-            <p>
-              <strong>New Member Registration:</strong> $250
-            </p>
-            <p>
-              <strong>Returning Member Registration:</strong> $85
-            </p>
-          </div>
-
-          <div className="card" style={{ padding: 20 }}>
-            <h3 style={{ marginTop: 0 }}>💚 Riot</h3>
-
-            <p>
-              <strong>Ages:</strong> 9–12
-            </p>
-            <p>
-              <strong>New Member Registration:</strong> $250
-            </p>
-            <p>
-              <strong>Returning Member Registration:</strong> $85
-            </p>
-          </div>
-        </div>
-
-        <div
+      <section
+        style={{
+          display: "grid",
+          gap: 22,
+          gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+        }}
+      >
+        {/* RIOT TEAM CARD */}
+        <article
           className="card"
           style={{
-            marginTop: 20,
-            padding: 20,
-            borderLeft: "5px solid #14b8a6",
+            overflow: "hidden",
+            borderRadius: 24,
+            border: "1px solid rgba(22, 163, 74, 0.35)",
           }}
         >
-          <h3 style={{ marginTop: 0 }}>🏆 Competition Fees</h3>
+          <div
+            style={{
+              padding: "24px",
+              background:
+                "linear-gradient(135deg, rgba(0,77,64,0.98), rgba(22,163,74,0.82))",
+              color: "white",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "flex-start",
+                gap: 12,
+              }}
+            >
+              <div>
+                <div
+                  style={{
+                    fontSize: 13,
+                    fontWeight: 900,
+                    letterSpacing: "0.08em",
+                    opacity: 0.9,
+                  }}
+                >
+                  LOCAL TRAVEL TEAM
+                </div>
 
-          <p style={{ marginBottom: 8 }}>
-            Competition entry fees are estimated at{" "}
-            <strong>$350 per competition</strong>.
-          </p>
+                <h2
+                  style={{
+                    margin: "8px 0 4px",
+                    fontSize: 34,
+                  }}
+                >
+                  💚 Riot Cheer
+                </h2>
 
-          <p style={{ marginBottom: 0 }}>
-            These fees are{" "}
-            <strong>shared among all athletes on the team</strong>, so each
-            family&apos;s portion depends on the number of athletes
-            participating.
-          </p>
-        </div>
+                <p style={{ margin: 0, opacity: 0.9 }}>
+                  Competitive training, teamwork, confidence, and performance.
+                </p>
+              </div>
 
-        <div
+              <div
+                style={{
+                  background: "rgba(255,255,255,0.18)",
+                  border: "1px solid rgba(255,255,255,0.35)",
+                  borderRadius: 999,
+                  padding: "8px 12px",
+                  fontWeight: 900,
+                  whiteSpace: "nowrap",
+                }}
+              >
+                3 Spots Left
+              </div>
+            </div>
+          </div>
+
+          <div style={{ padding: 24 }}>
+            <div
+              style={{
+                display: "grid",
+                gap: 12,
+                gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+              }}
+            >
+              <div
+                style={{
+                  padding: 14,
+                  borderRadius: 16,
+                  background: "rgba(22,163,74,0.08)",
+                }}
+              >
+                <div style={{ fontSize: 13, opacity: 0.7 }}>Ages</div>
+                <div style={{ fontSize: 20, fontWeight: 900 }}>6–14</div>
+              </div>
+
+              <div
+                style={{
+                  padding: 14,
+                  borderRadius: 16,
+                  background: "rgba(22,163,74,0.08)",
+                }}
+              >
+                <div style={{ fontSize: 13, opacity: 0.7 }}>Practice</div>
+                <div style={{ fontSize: 16, fontWeight: 900 }}>
+                  Tue–Thu
+                  <br />
+                  6–8 PM
+                </div>
+              </div>
+            </div>
+
+            <div style={{ marginTop: 20 }}>
+              <h3 style={{ marginBottom: 10 }}>What Athletes Learn</h3>
+
+              <ul style={{ lineHeight: 1.9, paddingLeft: 22 }}>
+                <li>Competition-style cheer training</li>
+                <li>Jumps, motions, dance, and performance</li>
+                <li>Teamwork and confidence building</li>
+                <li>Skill development for advanced opportunities</li>
+              </ul>
+            </div>
+
+            <div
+              style={{
+                marginTop: 20,
+                padding: 18,
+                borderRadius: 18,
+                background: "rgba(22,163,74,0.08)",
+              }}
+            >
+              <div style={{ fontWeight: 900, marginBottom: 8 }}>
+                Registration Cost
+              </div>
+
+              <div style={{ lineHeight: 1.8 }}>
+                <strong>New Members:</strong> $250
+                <br />
+                <strong>Returning Members:</strong> $85
+              </div>
+            </div>
+
+            {riot?.registration && (
+              <a
+                className="btn"
+                href={riot.registration}
+                target="_blank"
+                rel="noreferrer"
+                style={{
+                  display: "block",
+                  textAlign: "center",
+                  marginTop: 20,
+                  padding: "14px 18px",
+                }}
+              >
+                Register for Riot
+              </a>
+            )}
+          </div>
+        </article>
+
+        {/* KARMA TEAM CARD */}
+        <article
+          className="card"
           style={{
-            marginTop: 18,
-            textAlign: "center",
-            fontWeight: 600,
-            fontSize: "1.05rem",
+            overflow: "hidden",
+            borderRadius: 24,
+            border: "1px solid rgba(236,72,153,0.35)",
           }}
         >
-          💚 We believe every child deserves the opportunity to cheer.
-          Fundraising opportunities and payment options may be available for
-          families who need assistance.
-        </div>
+          <div
+            style={{
+              padding: "24px",
+              background:
+                "linear-gradient(135deg, rgba(236,72,153,0.95), rgba(20,184,166,0.82))",
+              color: "white",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "flex-start",
+                gap: 12,
+              }}
+            >
+              <div>
+                <div
+                  style={{
+                    fontSize: 13,
+                    fontWeight: 900,
+                    letterSpacing: "0.08em",
+                    opacity: 0.9,
+                  }}
+                >
+                  BEGINNER DEVELOPMENT TEAM
+                </div>
+
+                <h2
+                  style={{
+                    margin: "8px 0 4px",
+                    fontSize: 34,
+                  }}
+                >
+                  🩷 Karma Cheer
+                </h2>
+
+                <p style={{ margin: 0, opacity: 0.9 }}>
+                  A fun and supportive introduction to competitive cheer.
+                </p>
+              </div>
+
+              <div
+                style={{
+                  background: "rgba(255,255,255,0.18)",
+                  border: "1px solid rgba(255,255,255,0.35)",
+                  borderRadius: 999,
+                  padding: "8px 12px",
+                  fontWeight: 900,
+                  whiteSpace: "nowrap",
+                }}
+              >
+                4 Spots Left
+              </div>
+            </div>
+          </div>
+
+          <div style={{ padding: 24 }}>
+            <div
+              style={{
+                display: "grid",
+                gap: 12,
+                gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+              }}
+            >
+              <div
+                style={{
+                  padding: 14,
+                  borderRadius: 16,
+                  background: "rgba(236,72,153,0.08)",
+                }}
+              >
+                <div style={{ fontSize: 13, opacity: 0.7 }}>Ages</div>
+                <div style={{ fontSize: 20, fontWeight: 900 }}>3–5</div>
+              </div>
+
+              <div
+                style={{
+                  padding: 14,
+                  borderRadius: 16,
+                  background: "rgba(236,72,153,0.08)",
+                }}
+              >
+                <div style={{ fontSize: 13, opacity: 0.7 }}>Practice</div>
+                <div style={{ fontSize: 16, fontWeight: 900 }}>
+                  Tue–Thu
+                  <br />
+                  6–8 PM
+                </div>
+              </div>
+            </div>
+
+            <div style={{ marginTop: 20 }}>
+              <h3 style={{ marginBottom: 10 }}>What Athletes Learn</h3>
+
+              <ul style={{ lineHeight: 1.9, paddingLeft: 22 }}>
+                <li>Beginner motions, jumps, and dance</li>
+                <li>Listening skills and confidence</li>
+                <li>Teamwork and performance basics</li>
+                <li>Local performances and competitions</li>
+              </ul>
+            </div>
+
+            <div
+              style={{
+                marginTop: 20,
+                padding: 18,
+                borderRadius: 18,
+                background: "rgba(236,72,153,0.08)",
+              }}
+            >
+              <div style={{ fontWeight: 900, marginBottom: 8 }}>
+                Registration Cost
+              </div>
+
+              <div style={{ lineHeight: 1.8 }}>
+                <strong>New Members:</strong> $250
+                <br />
+                <strong>Returning Members:</strong> $85
+              </div>
+            </div>
+
+            {karma?.registration && (
+              <a
+                className="btn"
+                href={karma.registration}
+                target="_blank"
+                rel="noreferrer"
+                style={{
+                  display: "block",
+                  textAlign: "center",
+                  marginTop: 20,
+                  padding: "14px 18px",
+                }}
+              >
+                Register for Karma
+              </a>
+            )}
+          </div>
+        </article>
       </section>
 
+      {/* COMPETITION FEES */}
       <section className="card" style={{ padding: 24, marginTop: 24 }}>
-        <h2 style={{ marginTop: 0 }}>Practice Schedule</h2>
+        <h2 style={{ marginTop: 0 }}>🏆 Competition Fees</h2>
 
-        <p style={{ fontSize: 18, lineHeight: 1.8 }}>
-          <b>Days:</b> Tuesday – Thursday
-          <br />
-          <b>Time:</b> 6:00 PM – 8:00 PM
+        <p style={{ fontSize: 17, lineHeight: 1.8, marginBottom: 0 }}>
+          Competition entry fees are estimated at{" "}
+          <strong>$350 per competition</strong>. The fee is divided among the
+          athletes on the team, so each family&apos;s portion depends on the
+          number of athletes participating.
         </p>
       </section>
 
+      {/* FAMILY SUPPORT */}
+      <section
+        style={{
+          marginTop: 24,
+          padding: 22,
+          borderRadius: 20,
+          background:
+            "linear-gradient(135deg, rgba(15,118,110,0.16), rgba(236,72,153,0.14))",
+          textAlign: "center",
+          fontWeight: 700,
+          lineHeight: 1.8,
+        }}
+      >
+        We believe every child deserves the opportunity to cheer. Fundraising
+        opportunities and payment options may be available to help families
+        throughout the season.
+      </section>
+
+      {/* CONTACTS */}
       <section className="card" style={{ padding: 24, marginTop: 24 }}>
         <h2 style={{ marginTop: 0 }}>Contacts</h2>
 
