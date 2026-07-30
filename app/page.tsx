@@ -3,37 +3,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import HeroSlider from "./components/HeroSlider";
-import { org, teams } from "./lib/data";
+import { teams } from "./lib/data";
 import WhyChooseUs from "./components/WhyChooseUs";
 import FeaturedVideo from "./components/FeaturedVideo";
 
 export default function HomePage() {
   return (
     <>
-      <nav>
-        <div className="wrap navInner">
-          <div className="brand">
-            <div className="brandMark" />
-            <div className="brandText">
-              <b>{org.name}</b>
-              <span>One Organization. Five Teams. One Renegade Family.</span>
-            </div>
-          </div>
-
-          <div className="navLinks">
-            <Link href="/">Home</Link>
-            <Link href="/riot-karma">Riot / Karma</Link>
-            <Link href="/anarchy">Anarchy</Link>
-            <Link href="/mayhem">Mayhem</Link>
-            <Link href="/tball">T-Ball</Link>
-            <Link href="/coaches">Meet the Coaches</Link>
-            <Link href="/sponsors">Sponsors</Link>
-            <Link href="/gallery">Gallery</Link>
-            <Link href="/admin">Admin</Link>
-          </div>
-        </div>
-      </nav>
-
       <main className="wrap section">
         <HeroSlider />
         <FeaturedVideo />
@@ -180,7 +156,7 @@ export default function HomePage() {
             gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
             marginTop: 18,
           }}
-        >
+      >
           {[
             ["100+", "Athletes"],
             ["5", "Teams"],

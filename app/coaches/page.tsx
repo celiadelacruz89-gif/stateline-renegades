@@ -26,7 +26,7 @@ const coaches = [
     name: "Azalia Bertolli",
     role: "Karma Coach",
     team: "karma",
-    image: "/coaches/azalia.jpg",
+    image: "/coaches/azalia.png",
     bio: "Empowering athletes to shine with confidence, strength, and pride.",
   },
   {
@@ -40,21 +40,21 @@ const coaches = [
     name: "Julie Stitt",
     role: "Anarchy Coach",
     team: "anarchy",
-    image: "/coaches/julie.jpg",
+    image: "/coaches/julie.png",
     bio: "Creating confident athletes and unforgettable memories.",
   },
   {
     name: "Arlene Hinojosa",
     role: "Anarchy Coach",
     team: "anarchy",
-    image: "/coaches/arlene.jpg",
+    image: "/coaches/arlene.png",
     bio: "More than a team—we're a family committed to growth and success.",
   },
   {
     name: "Lizbeth Davis",
     role: "Mayhem Coach",
     team: "mayhem",
-    image: "/coaches/lizbeth.jpg",
+    image: "/coaches/lizbeth.png",
     bio: "Teaching young athletes to lead, believe, and achieve.",
   },
   {

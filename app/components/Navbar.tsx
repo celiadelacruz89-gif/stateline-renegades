@@ -76,13 +76,13 @@ export default function Navbar() {
             </Link>
           ))}
 
-          <Link
-            href="/riot-karma"
-            onClick={closeMenu}
-            className="navRegisterButton"
-          >
-            Register
-          </Link>
+         <Link
+  href="/register"
+  onClick={closeMenu}
+  className="navRegisterButton"
+>
+  Join Renegades
+</Link>
         </div>
       </div>
     </nav>
