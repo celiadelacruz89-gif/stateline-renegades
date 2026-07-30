@@ -12,7 +12,7 @@ export default function RiotKarmaPage() {
         title="Riot / Karma Cheer"
         subtitle="Our Local Travel Teams focused on athlete development, confidence, teamwork, and preparing athletes for advanced competition opportunities."
         colors="linear-gradient(135deg, #004d40, #0f766e, #f9a8d4)"
-         logo="/logos/riot-karma.png"
+        logo="/logos/riot-karma.png"
       />
 
       <div
@@ -35,7 +35,7 @@ export default function RiotKarmaPage() {
         <p style={{ fontSize: 18, lineHeight: 1.8 }}>
           🩷 <b>Karma Ages 3–5</b> → Beginner Development
           <br />
-          💚 <b>Riot Ages 6–14</b> → Local Travel Team
+          💚 <b>Riot Ages 9–12</b> → Local Travel Team
           <br />
           ⚡ <b>Anarchy</b> → Full Travel Team
           <br />
@@ -52,7 +52,7 @@ export default function RiotKarmaPage() {
           </p>
 
           <p style={{ fontSize: 18 }}>
-            <b>Ages:</b> 6–14
+            <b>Ages:</b> 9–12
             <br />
             <b>Spots Available:</b> 3
           </p>
@@ -108,6 +108,89 @@ export default function RiotKarmaPage() {
               Register for Karma
             </a>
           )}
+        </div>
+      </section>
+
+      <section className="card" style={{ padding: 24, marginTop: 24 }}>
+        <h2 style={{ marginTop: 0 }}>Registration & Team Costs</h2>
+
+        <p style={{ opacity: 0.85, lineHeight: 1.7 }}>
+          We strive to keep competitive cheer affordable while providing a
+          quality experience for every athlete. Returning members receive
+          discounted registration pricing.
+        </p>
+
+        <div
+          style={{
+            display: "grid",
+            gap: 18,
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+            marginTop: 20,
+          }}
+        >
+          <div className="card" style={{ padding: 20 }}>
+            <h3 style={{ marginTop: 0 }}>🩷 Karma</h3>
+
+            <p>
+              <strong>Ages:</strong> 3–5
+            </p>
+            <p>
+              <strong>New Member Registration:</strong> $250
+            </p>
+            <p>
+              <strong>Returning Member Registration:</strong> $85
+            </p>
+          </div>
+
+          <div className="card" style={{ padding: 20 }}>
+            <h3 style={{ marginTop: 0 }}>💚 Riot</h3>
+
+            <p>
+              <strong>Ages:</strong> 9–12
+            </p>
+            <p>
+              <strong>New Member Registration:</strong> $250
+            </p>
+            <p>
+              <strong>Returning Member Registration:</strong> $85
+            </p>
+          </div>
+        </div>
+
+        <div
+          className="card"
+          style={{
+            marginTop: 20,
+            padding: 20,
+            borderLeft: "5px solid #14b8a6",
+          }}
+        >
+          <h3 style={{ marginTop: 0 }}>🏆 Competition Fees</h3>
+
+          <p style={{ marginBottom: 8 }}>
+            Competition entry fees are estimated at{" "}
+            <strong>$350 per competition</strong>.
+          </p>
+
+          <p style={{ marginBottom: 0 }}>
+            These fees are{" "}
+            <strong>shared among all athletes on the team</strong>, so each
+            family&apos;s portion depends on the number of athletes
+            participating.
+          </p>
+        </div>
+
+        <div
+          style={{
+            marginTop: 18,
+            textAlign: "center",
+            fontWeight: 600,
+            fontSize: "1.05rem",
+          }}
+        >
+          💚 We believe every child deserves the opportunity to cheer.
+          Fundraising opportunities and payment options may be available for
+          families who need assistance.
         </div>
       </section>
 
