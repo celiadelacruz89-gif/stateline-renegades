@@ -162,7 +162,7 @@ export default function RiotKarmaPage() {
               </div>
 
               <div style={{ lineHeight: 1.8 }}>
-                <strong>New Members:</strong> $250
+                <strong>New Members:</strong> $/400
                 <br />
                 <strong>Returning Members:</strong> $85
               </div>
