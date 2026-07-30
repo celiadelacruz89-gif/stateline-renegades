@@ -19,32 +19,32 @@ export default function RiotKarmaPage() {
     {
       icon: "👕",
       title: "Competition Uniform",
-      description: "Official team competition uniform",
+      description: "Official team uniform worn at competitions.",
     },
     {
       icon: "🎽",
       title: "Two Practice Sets",
-      description: "Team practice clothing for weekly training",
-    },
-    {
-      icon: "🎀",
-      title: "Team Bows",
-      description: "Coordinating bows for team events",
+      description: "Coordinated practice clothing for weekly training.",
     },
     {
       icon: "🎒",
       title: "Team Backpack",
-      description: "Official backpack for practices and competitions",
+      description: "Official backpack for practices and competitions.",
     },
     {
       icon: "🏟️",
       title: "Team Jersey",
-      description: "Renegades jersey for team appearances",
+      description: "Renegades jersey for games and team appearances.",
+    },
+    {
+      icon: "🎀",
+      title: "Team Bows",
+      description: "Coordinating bows for performances and competitions.",
     },
     {
       icon: "📣",
       title: "Game/Fundraiser Uniform",
-      description: "Uniform for games, appearances, and fundraisers",
+      description: "Uniform for games, appearances, and fundraising events.",
     },
   ];
 
@@ -85,6 +85,7 @@ export default function RiotKarmaPage() {
         logo="/logos/riot-karma.png"
       />
 
+      {/* TEAM TYPE BADGE */}
       <div
         style={{
           display: "flex",
@@ -98,7 +99,6 @@ export default function RiotKarmaPage() {
             color: "white",
             padding: "12px 20px",
             borderRadius: 999,
-            display: "inline-block",
             fontWeight: 800,
             letterSpacing: "0.04em",
           }}
@@ -132,7 +132,7 @@ export default function RiotKarmaPage() {
           alignItems: "stretch",
         }}
       >
-        {/* RIOT */}
+        {/* RIOT CARD */}
         <article
           className="card"
           style={{
@@ -222,6 +222,7 @@ export default function RiotKarmaPage() {
                 }}
               >
                 <div style={{ fontSize: 13, opacity: 0.75 }}>Ages</div>
+
                 <div style={{ fontSize: 20, fontWeight: 900 }}>6–14</div>
               </div>
 
@@ -308,7 +309,7 @@ export default function RiotKarmaPage() {
           </div>
         </article>
 
-        {/* KARMA */}
+        {/* KARMA CARD */}
         <article
           className="card"
           style={{
@@ -398,6 +399,7 @@ export default function RiotKarmaPage() {
                 }}
               >
                 <div style={{ fontSize: 13, opacity: 0.75 }}>Ages</div>
+
                 <div style={{ fontSize: 20, fontWeight: 900 }}>3–5</div>
               </div>
 
@@ -485,63 +487,152 @@ export default function RiotKarmaPage() {
         </article>
       </section>
 
-      {/* SEASON INCLUDES */}
-      <section className="card" style={{ padding: 24, marginTop: 24 }}>
-        <div style={{ textAlign: "center", marginBottom: 22 }}>
+      {/* WHAT YOUR SEASON INCLUDES */}
+      <section
+        className="card"
+        style={{
+          padding: 28,
+          marginTop: 28,
+          borderRadius: 24,
+          overflow: "hidden",
+          position: "relative",
+        }}
+      >
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background:
+              "linear-gradient(135deg, rgba(15,118,110,0.08), rgba(236,72,153,0.08))",
+            pointerEvents: "none",
+          }}
+        />
+
+        <div style={{ position: "relative" }}>
           <div
             style={{
-              fontSize: 13,
-              fontWeight: 900,
-              letterSpacing: "0.1em",
-              color: "#0f766e",
+              textAlign: "center",
+              maxWidth: 760,
+              margin: "0 auto 26px",
             }}
           >
-            REGISTRATION VALUE
+            <div
+              style={{
+                display: "inline-block",
+                padding: "7px 13px",
+                borderRadius: 999,
+                background: "rgba(15,118,110,0.12)",
+                color: "#0f766e",
+                fontSize: 12,
+                fontWeight: 900,
+                letterSpacing: "0.12em",
+                marginBottom: 12,
+              }}
+            >
+              REGISTRATION VALUE
+            </div>
+
+            <h2
+              style={{
+                margin: "0 0 10px",
+                fontSize: "clamp(28px, 4vw, 40px)",
+              }}
+            >
+              What Your Season Includes
+            </h2>
+
+            <p
+              style={{
+                margin: 0,
+                lineHeight: 1.75,
+                fontSize: 17,
+                opacity: 0.78,
+              }}
+            >
+              Registration provides athletes with the essential apparel and
+              equipment needed for practices, competitions, team appearances,
+              and fundraising events.
+            </p>
           </div>
 
-          <h2 style={{ margin: "8px 0" }}>What Your Season Includes</h2>
+          <div
+            style={{
+              display: "grid",
+              gap: 16,
+              gridTemplateColumns:
+                "repeat(auto-fit, minmax(210px, 1fr))",
+            }}
+          >
+            {seasonItems.map((item) => (
+              <div
+                key={item.title}
+                style={{
+                  minHeight: 190,
+                  padding: 22,
+                  borderRadius: 20,
+                  background: "rgba(255,255,255,0.05)",
+                  border: "1px solid rgba(255,255,255,0.12)",
+                  boxShadow: "0 12px 30px rgba(0,0,0,0.12)",
+                  textAlign: "center",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <div
+                  style={{
+                    width: 64,
+                    height: 64,
+                    borderRadius: 18,
+                    display: "grid",
+                    placeItems: "center",
+                    marginBottom: 15,
+                    fontSize: 32,
+                    background:
+                      "linear-gradient(135deg, rgba(15,118,110,0.2), rgba(236,72,153,0.2))",
+                    border: "1px solid rgba(236,72,153,0.2)",
+                  }}
+                >
+                  {item.icon}
+                </div>
+
+                <h3
+                  style={{
+                    margin: "0 0 8px",
+                    fontSize: 18,
+                  }}
+                >
+                  {item.title}
+                </h3>
+
+                <p
+                  style={{
+                    margin: 0,
+                    lineHeight: 1.6,
+                    opacity: 0.72,
+                    fontSize: 14,
+                  }}
+                >
+                  {item.description}
+                </p>
+              </div>
+            ))}
+          </div>
 
           <p
             style={{
-              margin: "0 auto",
-              maxWidth: 700,
+              maxWidth: 780,
+              margin: "24px auto 0",
+              textAlign: "center",
               lineHeight: 1.7,
-              opacity: 0.78,
+              fontSize: 14,
+              opacity: 0.7,
             }}
           >
-            Athletes receive the essential team apparel and equipment needed
-            for practices, appearances, fundraisers, and competitions.
+            Competition entry fees, travel expenses, and other seasonal costs
+            are separate unless specifically stated otherwise.
           </p>
-        </div>
-
-        <div
-          style={{
-            display: "grid",
-            gap: 16,
-            gridTemplateColumns: "repeat(auto-fit, minmax(210px, 1fr))",
-          }}
-        >
-          {seasonItems.map((item) => (
-            <div
-              key={item.title}
-              style={{
-                padding: 20,
-                borderRadius: 18,
-                textAlign: "center",
-                background:
-                  "linear-gradient(135deg, rgba(15,118,110,0.08), rgba(236,72,153,0.08))",
-                border: "1px solid rgba(15,118,110,0.12)",
-              }}
-            >
-              <div style={{ fontSize: 34, marginBottom: 10 }}>{item.icon}</div>
-
-              <h3 style={{ margin: "0 0 8px" }}>{item.title}</h3>
-
-              <p style={{ margin: 0, lineHeight: 1.6, opacity: 0.75 }}>
-                {item.description}
-              </p>
-            </div>
-          ))}
         </div>
       </section>
 
