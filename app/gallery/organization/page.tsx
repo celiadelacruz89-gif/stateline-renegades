@@ -1,24 +1,21 @@
 import Image from "next/image";
 
-const photos = [
+ const photos = [
   "/gallery/organization/City.jpg",
   "/gallery/organization/field-trips.png",
-  "/gallery/organization/fundraing.png",
+  "/gallery/organization/fundraising.png",
   "/gallery/organization/intown.png",
-
-  "/gallery/org/multi.png",
-  "/gallery/org/org1.jpg",
-  "/gallery/org/org2.png",
-  "/gallery/org/org3.png",
-  "/gallery/org/org4.jpg",
-  "/gallery/org/org5.png",
-  "/gallery/org/org6.png",
-  "/gallery/org/org7.jpg",
-  "/gallery/org/org8.png",
-  "/gallery/org/out-of-town.png",
-  "/gallery/org/team-bonding.jpg",
+  "/gallery/organization/mcdonalds.png",
+  "/gallery/organization/memories.png",
+  "/gallery/organization/multi.png",
+  "/gallery/organization/org1.jpg",
+  "/gallery/organization/org2.png",
+  "/gallery/organization/org3.png",
+  "/gallery/organization/org4.jpg",
+  "/gallery/organization/org5.png",
+  "/gallery/organization/org6.png",
+  "/gallery/organization/org7.jpg",
 ];
-
 export default function OrganizationGallery() {
   return (
     <main className="wrap section">

@@ -15,6 +15,83 @@ export default function RiotKarmaPage() {
     ).values()
   );
 
+  const highlights = [
+    {
+      icon: "💚",
+      value: "3",
+      label: "Riot Spots Left",
+    },
+    {
+      icon: "🩷",
+      value: "4",
+      label: "Karma Spots Left",
+    },
+    {
+      icon: "🏆",
+      value: "Local",
+      label: "Travel Competitions",
+    },
+    {
+      icon: "📣",
+      value: "Tue–Thu",
+      label: "Weekly Practices",
+    },
+  ];
+
+  const riotSkills = [
+    {
+      icon: "🏆",
+      title: "Competition Training",
+      description:
+        "Athletes learn performance skills and competition-style routines.",
+    },
+    {
+      icon: "🤸",
+      title: "Skill Development",
+      description:
+        "Focused instruction in motions, jumps, dance, and cheer fundamentals.",
+    },
+    {
+      icon: "⭐",
+      title: "Confidence",
+      description:
+        "Athletes build confidence through preparation and performance.",
+    },
+    {
+      icon: "🤝",
+      title: "Teamwork",
+      description:
+        "Practices encourage communication, responsibility, and team unity.",
+    },
+  ];
+
+  const karmaSkills = [
+    {
+      icon: "🎀",
+      title: "Beginner Cheer",
+      description:
+        "A positive introduction to beginner motions, jumps, and dance.",
+    },
+    {
+      icon: "🎵",
+      title: "Performance Basics",
+      description:
+        "Athletes learn counts, timing, formations, and performance skills.",
+    },
+    {
+      icon: "🌟",
+      title: "Confidence",
+      description:
+        "Encouraging instruction helps young athletes feel proud and capable.",
+    },
+    {
+      icon: "💕",
+      title: "Friendships",
+      description:
+        "Athletes learn cooperation and create friendships in a team setting.",
+    },
+  ];
+
   const seasonItems = [
     {
       icon: "👕",
@@ -85,7 +162,7 @@ export default function RiotKarmaPage() {
         logo="/logos/riot-karma.png"
       />
 
-      {/* TEAM TYPE BADGE */}
+      {/* TEAM TYPE */}
       <div
         style={{
           display: "flex",
@@ -95,147 +172,499 @@ export default function RiotKarmaPage() {
       >
         <div
           style={{
-            background: "#0f766e",
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 9,
+            background:
+              "linear-gradient(135deg, rgba(15,118,110,0.95), rgba(20,184,166,0.88))",
             color: "white",
-            padding: "12px 20px",
+            padding: "11px 19px",
             borderRadius: 999,
-            fontWeight: 800,
-            letterSpacing: "0.04em",
+            fontWeight: 900,
+            letterSpacing: "0.08em",
+            fontSize: 13,
+            boxShadow: "0 12px 28px rgba(15,118,110,0.2)",
           }}
         >
+          <span
+            style={{
+              width: 9,
+              height: 9,
+              borderRadius: "50%",
+              background: "#f9a8d4",
+              boxShadow: "0 0 12px rgba(249,168,212,0.9)",
+            }}
+          />
           LOCAL TRAVEL TEAMS
         </div>
       </div>
 
-      {/* REGISTRATION STATUS */}
+      {/* REGISTRATION HERO */}
       <section
+        className="card"
         style={{
+          position: "relative",
+          overflow: "hidden",
           marginBottom: 24,
-          padding: "18px 20px",
-          borderRadius: 18,
+          padding: "clamp(24px, 5vw, 44px)",
+          borderRadius: 28,
+          border: "1px solid rgba(255,255,255,0.14)",
           background:
-            "linear-gradient(135deg, rgba(15,118,110,0.22), rgba(236,72,153,0.18))",
-          textAlign: "center",
-          fontWeight: 800,
-          fontSize: 18,
+            "linear-gradient(135deg, rgba(0,77,64,0.48), rgba(15,118,110,0.3), rgba(236,72,153,0.27))",
+          boxShadow: "0 24px 65px rgba(0,0,0,0.18)",
         }}
       >
-        Registration is open for Riot and Karma. Limited spots are available.
+        <div
+          style={{
+            position: "absolute",
+            width: 300,
+            height: 300,
+            borderRadius: "50%",
+            right: -100,
+            top: -160,
+            background: "rgba(249,168,212,0.2)",
+            filter: "blur(8px)",
+            pointerEvents: "none",
+          }}
+        />
+
+        <div
+          style={{
+            position: "absolute",
+            width: 220,
+            height: 220,
+            borderRadius: "50%",
+            left: -100,
+            bottom: -130,
+            background: "rgba(20,184,166,0.18)",
+            filter: "blur(8px)",
+            pointerEvents: "none",
+          }}
+        />
+
+        <div
+          style={{
+            position: "relative",
+            display: "grid",
+            gridTemplateColumns:
+              "repeat(auto-fit, minmax(min(100%, 290px), 1fr))",
+            gap: 30,
+            alignItems: "center",
+          }}
+        >
+          <div>
+            <div
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 8,
+                padding: "7px 12px",
+                borderRadius: 999,
+                background: "rgba(255,255,255,0.1)",
+                border: "1px solid rgba(255,255,255,0.16)",
+                fontSize: 12,
+                fontWeight: 900,
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                marginBottom: 16,
+              }}
+            >
+              <span
+                style={{
+                  width: 9,
+                  height: 9,
+                  borderRadius: "50%",
+                  background: "#4ade80",
+                  boxShadow: "0 0 14px rgba(74,222,128,0.9)",
+                }}
+              />
+              Registration Open
+            </div>
+
+            <h2
+              style={{
+                margin: 0,
+                maxWidth: 650,
+                fontSize: "clamp(30px, 5vw, 48px)",
+                lineHeight: 1.05,
+                letterSpacing: "-0.03em",
+              }}
+            >
+              Find the right cheer team for your athlete
+            </h2>
+
+            <p
+              style={{
+                margin: "16px 0 0",
+                maxWidth: 680,
+                lineHeight: 1.75,
+                opacity: 0.84,
+                fontSize: 17,
+              }}
+            >
+              Riot and Karma provide age-appropriate instruction, structured
+              practices, team experiences, performances, and local travel
+              competition opportunities.
+            </p>
+
+            <p
+              style={{
+                margin: "12px 0 0",
+                maxWidth: 680,
+                lineHeight: 1.7,
+                opacity: 0.78,
+                fontSize: 15,
+              }}
+            >
+              Payment arrangements and fundraising opportunities may be
+              available for families who need additional support.
+            </p>
+          </div>
+
+          <div
+            style={{
+              display: "grid",
+              gap: 14,
+              padding: 18,
+              borderRadius: 22,
+              background: "rgba(0,0,0,0.13)",
+              border: "1px solid rgba(255,255,255,0.12)",
+              backdropFilter: "blur(10px)",
+            }}
+          >
+            <div
+              style={{
+                textAlign: "center",
+                fontWeight: 900,
+                fontSize: 14,
+                letterSpacing: "0.08em",
+                textTransform: "uppercase",
+                opacity: 0.82,
+              }}
+            >
+              Choose Your Team
+            </div>
+
+            {riot?.registration && (
+              <a
+                href={riot.registration}
+                target="_blank"
+                rel="noreferrer"
+                className="btn btnPrimary"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  width: "100%",
+                  minHeight: 58,
+                  padding: "14px 18px",
+                  textAlign: "left",
+                }}
+              >
+                <span>
+                  <span style={{ display: "block", fontWeight: 900 }}>
+                    Register for Riot
+                  </span>
+
+                  <span
+                    style={{
+                      display: "block",
+                      marginTop: 2,
+                      fontSize: 12,
+                      opacity: 0.84,
+                    }}
+                  >
+                    Ages 6–14
+                  </span>
+                </span>
+
+                <span
+                  style={{
+                    padding: "6px 9px",
+                    borderRadius: 999,
+                    background: "rgba(255,255,255,0.16)",
+                    fontSize: 12,
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  3 Spots
+                </span>
+              </a>
+            )}
+
+            {karma?.registration && (
+              <a
+                href={karma.registration}
+                target="_blank"
+                rel="noreferrer"
+                className="btn btnPrimary"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  width: "100%",
+                  minHeight: 58,
+                  padding: "14px 18px",
+                  textAlign: "left",
+                }}
+              >
+                <span>
+                  <span style={{ display: "block", fontWeight: 900 }}>
+                    Register for Karma
+                  </span>
+
+                  <span
+                    style={{
+                      display: "block",
+                      marginTop: 2,
+                      fontSize: 12,
+                      opacity: 0.84,
+                    }}
+                  >
+                    Ages 3–5
+                  </span>
+                </span>
+
+                <span
+                  style={{
+                    padding: "6px 9px",
+                    borderRadius: 999,
+                    background: "rgba(255,255,255,0.16)",
+                    fontSize: 12,
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  4 Spots
+                </span>
+              </a>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* HIGHLIGHTS */}
+      <section
+        style={{
+          display: "grid",
+          gridTemplateColumns:
+            "repeat(auto-fit, minmax(min(100%, 180px), 1fr))",
+          gap: 14,
+          marginBottom: 28,
+        }}
+      >
+        {highlights.map((item) => (
+          <div
+            key={item.label}
+            className="card"
+            style={{
+              padding: "20px 16px",
+              borderRadius: 20,
+              textAlign: "center",
+              border: "1px solid rgba(15,118,110,0.14)",
+              background:
+                "linear-gradient(145deg, rgba(15,118,110,0.08), rgba(236,72,153,0.06))",
+            }}
+          >
+            <div style={{ fontSize: 28, marginBottom: 8 }}>{item.icon}</div>
+
+            <div
+              style={{
+                fontSize: 25,
+                fontWeight: 950,
+                lineHeight: 1,
+              }}
+            >
+              {item.value}
+            </div>
+
+            <div
+              style={{
+                marginTop: 8,
+                fontSize: 13,
+                fontWeight: 800,
+                opacity: 0.7,
+              }}
+            >
+              {item.label}
+            </div>
+          </div>
+        ))}
       </section>
 
       {/* TEAM CARDS */}
       <section
         style={{
           display: "grid",
-          gap: 22,
-          gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+          gridTemplateColumns:
+            "repeat(auto-fit, minmax(min(100%, 390px), 1fr))",
+          gap: 26,
           alignItems: "stretch",
         }}
       >
-        {/* RIOT CARD */}
+        {/* RIOT */}
         <article
           className="card"
           style={{
+            display: "flex",
+            flexDirection: "column",
             overflow: "hidden",
-            borderRadius: 24,
-            border: "1px solid rgba(22,163,74,0.35)",
+            borderRadius: 28,
+            border: "1px solid rgba(22,163,74,0.3)",
+            boxShadow: "0 24px 60px rgba(0,0,0,0.16)",
           }}
         >
-          <img
-            src="/images/riot-team.png"
-            alt="Stateline Renegades Riot Cheer Team"
-            style={{
-              width: "100%",
-              height: 300,
-              objectFit: "cover",
-              objectPosition: "center",
-              display: "block",
-            }}
-          />
+          <div style={{ position: "relative" }}>
+            <img
+              src="/images/riot-team.png"
+              alt="Stateline Renegades Riot Cheer Team"
+              style={{
+                width: "100%",
+                height: 320,
+                objectFit: "cover",
+                objectPosition: "center",
+                display: "block",
+              }}
+            />
+
+            <div
+              style={{
+                position: "absolute",
+                inset: 0,
+                background:
+                  "linear-gradient(to top, rgba(0,45,38,0.82), transparent 65%)",
+                pointerEvents: "none",
+              }}
+            />
+
+            <div
+              style={{
+                position: "absolute",
+                top: 18,
+                right: 18,
+                padding: "8px 12px",
+                borderRadius: 999,
+                background: "rgba(0,0,0,0.58)",
+                border: "1px solid rgba(249,168,212,0.7)",
+                color: "white",
+                fontWeight: 900,
+                fontSize: 13,
+                backdropFilter: "blur(8px)",
+              }}
+            >
+              3 Spots Left
+            </div>
+
+            <div
+              style={{
+                position: "absolute",
+                left: 22,
+                right: 22,
+                bottom: 20,
+                color: "white",
+              }}
+            >
+              <div
+                style={{
+                  fontSize: 12,
+                  fontWeight: 900,
+                  letterSpacing: "0.12em",
+                  textTransform: "uppercase",
+                  opacity: 0.84,
+                }}
+              >
+                Local Travel Team
+              </div>
+
+              <h2
+                style={{
+                  margin: "7px 0 4px",
+                  fontSize: "clamp(30px, 5vw, 43px)",
+                  lineHeight: 1,
+                }}
+              >
+                💚 Riot
+              </h2>
+
+              <p style={{ margin: 0, opacity: 0.88 }}>
+                Competitive training, teamwork, confidence, and performance.
+              </p>
+            </div>
+          </div>
 
           <div
             style={{
-              padding: 24,
-              background:
-                "linear-gradient(135deg, rgba(0,77,64,0.98), rgba(22,163,74,0.82))",
-              color: "white",
+              display: "flex",
+              flexDirection: "column",
+              flex: 1,
+              padding: "clamp(20px, 4vw, 28px)",
             }}
           >
             <div
               style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "flex-start",
+                display: "grid",
+                gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
                 gap: 12,
-                flexWrap: "wrap",
               }}
             >
-              <div>
+              <div
+                style={{
+                  padding: 16,
+                  borderRadius: 18,
+                  background: "rgba(22,163,74,0.1)",
+                  border: "1px solid rgba(22,163,74,0.14)",
+                }}
+              >
                 <div
                   style={{
-                    fontSize: 13,
-                    fontWeight: 900,
+                    fontSize: 12,
+                    fontWeight: 800,
+                    textTransform: "uppercase",
                     letterSpacing: "0.08em",
-                    opacity: 0.9,
+                    opacity: 0.65,
                   }}
                 >
-                  LOCAL TRAVEL TEAM
+                  Ages
                 </div>
 
-                <h2 style={{ margin: "8px 0 4px", fontSize: 34 }}>
-                  💚 Riot Cheer
-                </h2>
-
-                <p style={{ margin: 0, opacity: 0.9 }}>
-                  Competitive training, teamwork, confidence, and performance.
-                </p>
+                <div
+                  style={{
+                    marginTop: 5,
+                    fontSize: 22,
+                    fontWeight: 950,
+                  }}
+                >
+                  6–14
+                </div>
               </div>
 
               <div
                 style={{
-                  background: "rgba(255,255,255,0.18)",
-                  border: "1px solid rgba(247,146,227,0.9)",
-                  borderRadius: 999,
-                  padding: "8px 12px",
-                  fontWeight: 900,
-                  whiteSpace: "nowrap",
+                  padding: 16,
+                  borderRadius: 18,
+                  background: "rgba(22,163,74,0.1)",
+                  border: "1px solid rgba(22,163,74,0.14)",
                 }}
               >
-                3 Spots Left
-              </div>
-            </div>
-          </div>
+                <div
+                  style={{
+                    fontSize: 12,
+                    fontWeight: 800,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.08em",
+                    opacity: 0.65,
+                  }}
+                >
+                  Practice
+                </div>
 
-          <div style={{ padding: 24 }}>
-            <div
-              style={{
-                display: "grid",
-                gap: 12,
-                gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
-              }}
-            >
-              <div
-                style={{
-                  padding: 14,
-                  borderRadius: 16,
-                  background: "rgba(22,163,74,0.12)",
-                }}
-              >
-                <div style={{ fontSize: 13, opacity: 0.75 }}>Ages</div>
-
-                <div style={{ fontSize: 20, fontWeight: 900 }}>6–14</div>
-              </div>
-
-              <div
-                style={{
-                  padding: 14,
-                  borderRadius: 16,
-                  background: "rgba(22,163,74,0.12)",
-                }}
-              >
-                <div style={{ fontSize: 13, opacity: 0.75 }}>Practice</div>
-
-                <div style={{ fontSize: 16, fontWeight: 900 }}>
+                <div
+                  style={{
+                    marginTop: 5,
+                    fontSize: 17,
+                    fontWeight: 950,
+                    lineHeight: 1.35,
+                  }}
+                >
                   Tue–Thu
                   <br />
                   6–8 PM
@@ -243,48 +672,163 @@ export default function RiotKarmaPage() {
               </div>
             </div>
 
-            <div style={{ marginTop: 20 }}>
-              <h3 style={{ marginBottom: 10 }}>What Athletes Learn</h3>
+            <div style={{ marginTop: 24 }}>
+              <div
+                style={{
+                  marginBottom: 13,
+                  fontSize: 13,
+                  fontWeight: 950,
+                  letterSpacing: "0.1em",
+                  textTransform: "uppercase",
+                  color: "#16a34a",
+                }}
+              >
+                What Athletes Learn
+              </div>
 
-              <ul style={{ lineHeight: 1.9, paddingLeft: 22 }}>
-                <li>Competition-style cheer training</li>
-                <li>Jumps, motions, dance, and performance</li>
-                <li>Teamwork and confidence building</li>
-                <li>Skill development for advanced opportunities</li>
-              </ul>
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns:
+                    "repeat(auto-fit, minmax(min(100%, 160px), 1fr))",
+                  gap: 12,
+                }}
+              >
+                {riotSkills.map((skill) => (
+                  <div
+                    key={skill.title}
+                    style={{
+                      padding: 16,
+                      borderRadius: 17,
+                      background: "rgba(22,163,74,0.06)",
+                      border: "1px solid rgba(22,163,74,0.12)",
+                    }}
+                  >
+                    <div style={{ fontSize: 24 }}>{skill.icon}</div>
+
+                    <h3
+                      style={{
+                        margin: "9px 0 5px",
+                        fontSize: 15,
+                      }}
+                    >
+                      {skill.title}
+                    </h3>
+
+                    <p
+                      style={{
+                        margin: 0,
+                        lineHeight: 1.55,
+                        fontSize: 13,
+                        opacity: 0.72,
+                      }}
+                    >
+                      {skill.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
 
             <div
               style={{
-                marginTop: 20,
+                marginTop: 24,
+                padding: 20,
+                borderRadius: 20,
+                background:
+                  "linear-gradient(135deg, rgba(0,77,64,0.16), rgba(22,163,74,0.09))",
+                border: "1px solid rgba(22,163,74,0.18)",
+              }}
+            >
+              <div
+                style={{
+                  fontSize: 12,
+                  fontWeight: 950,
+                  letterSpacing: "0.1em",
+                  textTransform: "uppercase",
+                  opacity: 0.68,
+                }}
+              >
+                Registration
+              </div>
+
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+                  gap: 12,
+                  marginTop: 14,
+                }}
+              >
+                <div>
+                  <div
+                    style={{
+                      fontSize: 12,
+                      fontWeight: 800,
+                      opacity: 0.65,
+                    }}
+                  >
+                    New Members
+                  </div>
+
+                  <div
+                    style={{
+                      marginTop: 3,
+                      fontSize: 32,
+                      fontWeight: 950,
+                      lineHeight: 1,
+                    }}
+                  >
+                    $400
+                  </div>
+                </div>
+
+                <div>
+                  <div
+                    style={{
+                      fontSize: 12,
+                      fontWeight: 800,
+                      opacity: 0.65,
+                    }}
+                  >
+                    Returning
+                  </div>
+
+                  <div
+                    style={{
+                      marginTop: 3,
+                      fontSize: 32,
+                      fontWeight: 950,
+                      lineHeight: 1,
+                    }}
+                  >
+                    $85
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              style={{
+                marginTop: 16,
                 padding: 18,
                 borderRadius: 18,
-                background: "rgba(22,163,74,0.08)",
+                background: "rgba(22,163,74,0.05)",
+                border: "1px solid rgba(22,163,74,0.12)",
               }}
             >
-              <div style={{ fontWeight: 900, marginBottom: 8 }}>
-                Registration Cost
-              </div>
+              <h3 style={{ margin: "0 0 9px", fontSize: 16 }}>
+                Registration Includes
+              </h3>
 
-              <div style={{ lineHeight: 1.8 }}>
-                <strong>New Members:</strong> $400
-                <br />
-                <strong>Returning Members:</strong> $85
-              </div>
-            </div>
-
-            <div
-              style={{
-                marginTop: 18,
-                padding: 18,
-                borderRadius: 16,
-                background: "rgba(22,163,74,0.06)",
-                border: "1px solid rgba(22,163,74,0.16)",
-              }}
-            >
-              <h3 style={{ marginTop: 0 }}>What Registration Covers</h3>
-
-              <p style={{ marginBottom: 0, lineHeight: 1.8 }}>
+              <p
+                style={{
+                  margin: 0,
+                  lineHeight: 1.75,
+                  fontSize: 14,
+                  opacity: 0.78,
+                }}
+              >
                 Team enrollment, two practice sets, competition uniform,
                 backpack, jersey, bows, and a game/fundraiser uniform.
               </p>
@@ -292,15 +836,20 @@ export default function RiotKarmaPage() {
 
             {riot?.registration && (
               <a
-                className="btn"
+                className="btn btnPrimary"
                 href={riot.registration}
                 target="_blank"
                 rel="noreferrer"
                 style={{
-                  display: "block",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  width: "100%",
+                  minHeight: 56,
+                  marginTop: "auto",
+                  padding: "15px 18px",
                   textAlign: "center",
-                  marginTop: 20,
-                  padding: "14px 18px",
+                  fontWeight: 950,
                 }}
               >
                 Register for Riot
@@ -309,110 +858,170 @@ export default function RiotKarmaPage() {
           </div>
         </article>
 
-        {/* KARMA CARD */}
+        {/* KARMA */}
         <article
           className="card"
           style={{
+            display: "flex",
+            flexDirection: "column",
             overflow: "hidden",
-            borderRadius: 24,
-            border: "1px solid rgba(236,72,153,0.35)",
+            borderRadius: 28,
+            border: "1px solid rgba(236,72,153,0.3)",
+            boxShadow: "0 24px 60px rgba(0,0,0,0.16)",
           }}
         >
-          <img
-            src="/images/karma-team.png"
-            alt="Karma cheer athletes practicing together"
-            style={{
-              width: "100%",
-              height: 300,
-              objectFit: "cover",
-              objectPosition: "center",
-              display: "block",
-            }}
-          />
+          <div style={{ position: "relative" }}>
+            <img
+              src="/images/karma-team.png"
+              alt="Karma cheer athletes practicing together"
+              style={{
+                width: "100%",
+                height: 320,
+                objectFit: "cover",
+                objectPosition: "center",
+                display: "block",
+              }}
+            />
+
+            <div
+              style={{
+                position: "absolute",
+                inset: 0,
+                background:
+                  "linear-gradient(to top, rgba(101,22,68,0.82), transparent 65%)",
+                pointerEvents: "none",
+              }}
+            />
+
+            <div
+              style={{
+                position: "absolute",
+                top: 18,
+                right: 18,
+                padding: "8px 12px",
+                borderRadius: 999,
+                background: "rgba(0,0,0,0.58)",
+                border: "1px solid rgba(249,168,212,0.8)",
+                color: "white",
+                fontWeight: 900,
+                fontSize: 13,
+                backdropFilter: "blur(8px)",
+              }}
+            >
+              4 Spots Left
+            </div>
+
+            <div
+              style={{
+                position: "absolute",
+                left: 22,
+                right: 22,
+                bottom: 20,
+                color: "white",
+              }}
+            >
+              <div
+                style={{
+                  fontSize: 12,
+                  fontWeight: 900,
+                  letterSpacing: "0.12em",
+                  textTransform: "uppercase",
+                  opacity: 0.84,
+                }}
+              >
+                Beginner Development Team
+              </div>
+
+              <h2
+                style={{
+                  margin: "7px 0 4px",
+                  fontSize: "clamp(30px, 5vw, 43px)",
+                  lineHeight: 1,
+                }}
+              >
+                🩷 Karma
+              </h2>
+
+              <p style={{ margin: 0, opacity: 0.88 }}>
+                A fun and supportive introduction to competitive cheer.
+              </p>
+            </div>
+          </div>
 
           <div
             style={{
-              padding: 24,
-              background:
-                "linear-gradient(135deg, rgba(236,72,153,0.95), rgba(20,184,166,0.82))",
-              color: "white",
+              display: "flex",
+              flexDirection: "column",
+              flex: 1,
+              padding: "clamp(20px, 4vw, 28px)",
             }}
           >
             <div
               style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "flex-start",
+                display: "grid",
+                gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
                 gap: 12,
-                flexWrap: "wrap",
               }}
             >
-              <div>
+              <div
+                style={{
+                  padding: 16,
+                  borderRadius: 18,
+                  background: "rgba(236,72,153,0.08)",
+                  border: "1px solid rgba(236,72,153,0.14)",
+                }}
+              >
                 <div
                   style={{
-                    fontSize: 13,
-                    fontWeight: 900,
+                    fontSize: 12,
+                    fontWeight: 800,
+                    textTransform: "uppercase",
                     letterSpacing: "0.08em",
-                    opacity: 0.9,
+                    opacity: 0.65,
                   }}
                 >
-                  BEGINNER DEVELOPMENT TEAM
+                  Ages
                 </div>
 
-                <h2 style={{ margin: "8px 0 4px", fontSize: 34 }}>
-                  🩷 Karma Cheer
-                </h2>
-
-                <p style={{ margin: 0, opacity: 0.9 }}>
-                  A fun and supportive introduction to competitive cheer.
-                </p>
+                <div
+                  style={{
+                    marginTop: 5,
+                    fontSize: 22,
+                    fontWeight: 950,
+                  }}
+                >
+                  3–5
+                </div>
               </div>
 
               <div
                 style={{
-                  background: "rgba(255,255,255,0.18)",
-                  border: "1px solid rgba(255,255,255,0.35)",
-                  borderRadius: 999,
-                  padding: "8px 12px",
-                  fontWeight: 900,
-                  whiteSpace: "nowrap",
-                }}
-              >
-                4 Spots Left
-              </div>
-            </div>
-          </div>
-
-          <div style={{ padding: 24 }}>
-            <div
-              style={{
-                display: "grid",
-                gap: 12,
-                gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
-              }}
-            >
-              <div
-                style={{
-                  padding: 14,
-                  borderRadius: 16,
+                  padding: 16,
+                  borderRadius: 18,
                   background: "rgba(236,72,153,0.08)",
+                  border: "1px solid rgba(236,72,153,0.14)",
                 }}
               >
-                <div style={{ fontSize: 13, opacity: 0.75 }}>Ages</div>
+                <div
+                  style={{
+                    fontSize: 12,
+                    fontWeight: 800,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.08em",
+                    opacity: 0.65,
+                  }}
+                >
+                  Practice
+                </div>
 
-                <div style={{ fontSize: 20, fontWeight: 900 }}>3–5</div>
-              </div>
-
-              <div
-                style={{
-                  padding: 14,
-                  borderRadius: 16,
-                  background: "rgba(236,72,153,0.08)",
-                }}
-              >
-                <div style={{ fontSize: 13, opacity: 0.75 }}>Practice</div>
-
-                <div style={{ fontSize: 16, fontWeight: 900 }}>
+                <div
+                  style={{
+                    marginTop: 5,
+                    fontSize: 17,
+                    fontWeight: 950,
+                    lineHeight: 1.35,
+                  }}
+                >
                   Tue–Thu
                   <br />
                   6–8 PM
@@ -420,48 +1029,163 @@ export default function RiotKarmaPage() {
               </div>
             </div>
 
-            <div style={{ marginTop: 20 }}>
-              <h3 style={{ marginBottom: 10 }}>What Athletes Learn</h3>
+            <div style={{ marginTop: 24 }}>
+              <div
+                style={{
+                  marginBottom: 13,
+                  fontSize: 13,
+                  fontWeight: 950,
+                  letterSpacing: "0.1em",
+                  textTransform: "uppercase",
+                  color: "#ec4899",
+                }}
+              >
+                What Athletes Learn
+              </div>
 
-              <ul style={{ lineHeight: 1.9, paddingLeft: 22 }}>
-                <li>Beginner motions, jumps, and dance</li>
-                <li>Listening skills and confidence</li>
-                <li>Teamwork and performance basics</li>
-                <li>Local performances and competitions</li>
-              </ul>
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns:
+                    "repeat(auto-fit, minmax(min(100%, 160px), 1fr))",
+                  gap: 12,
+                }}
+              >
+                {karmaSkills.map((skill) => (
+                  <div
+                    key={skill.title}
+                    style={{
+                      padding: 16,
+                      borderRadius: 17,
+                      background: "rgba(236,72,153,0.05)",
+                      border: "1px solid rgba(236,72,153,0.12)",
+                    }}
+                  >
+                    <div style={{ fontSize: 24 }}>{skill.icon}</div>
+
+                    <h3
+                      style={{
+                        margin: "9px 0 5px",
+                        fontSize: 15,
+                      }}
+                    >
+                      {skill.title}
+                    </h3>
+
+                    <p
+                      style={{
+                        margin: 0,
+                        lineHeight: 1.55,
+                        fontSize: 13,
+                        opacity: 0.72,
+                      }}
+                    >
+                      {skill.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
 
             <div
               style={{
-                marginTop: 20,
+                marginTop: 24,
+                padding: 20,
+                borderRadius: 20,
+                background:
+                  "linear-gradient(135deg, rgba(236,72,153,0.13), rgba(20,184,166,0.08))",
+                border: "1px solid rgba(236,72,153,0.18)",
+              }}
+            >
+              <div
+                style={{
+                  fontSize: 12,
+                  fontWeight: 950,
+                  letterSpacing: "0.1em",
+                  textTransform: "uppercase",
+                  opacity: 0.68,
+                }}
+              >
+                Registration
+              </div>
+
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+                  gap: 12,
+                  marginTop: 14,
+                }}
+              >
+                <div>
+                  <div
+                    style={{
+                      fontSize: 12,
+                      fontWeight: 800,
+                      opacity: 0.65,
+                    }}
+                  >
+                    New Members
+                  </div>
+
+                  <div
+                    style={{
+                      marginTop: 3,
+                      fontSize: 32,
+                      fontWeight: 950,
+                      lineHeight: 1,
+                    }}
+                  >
+                    $250
+                  </div>
+                </div>
+
+                <div>
+                  <div
+                    style={{
+                      fontSize: 12,
+                      fontWeight: 800,
+                      opacity: 0.65,
+                    }}
+                  >
+                    Returning
+                  </div>
+
+                  <div
+                    style={{
+                      marginTop: 3,
+                      fontSize: 32,
+                      fontWeight: 950,
+                      lineHeight: 1,
+                    }}
+                  >
+                    $85
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              style={{
+                marginTop: 16,
                 padding: 18,
                 borderRadius: 18,
-                background: "rgba(236,72,153,0.08)",
+                background: "rgba(236,72,153,0.04)",
+                border: "1px solid rgba(236,72,153,0.12)",
               }}
             >
-              <div style={{ fontWeight: 900, marginBottom: 8 }}>
-                Registration Cost
-              </div>
+              <h3 style={{ margin: "0 0 9px", fontSize: 16 }}>
+                Registration Includes
+              </h3>
 
-              <div style={{ lineHeight: 1.8 }}>
-                <strong>New Members:</strong> $250
-                <br />
-                <strong>Returning Members:</strong> $85
-              </div>
-            </div>
-
-            <div
-              style={{
-                marginTop: 18,
-                padding: 18,
-                borderRadius: 16,
-                background: "rgba(236,72,153,0.06)",
-                border: "1px solid rgba(236,72,153,0.16)",
-              }}
-            >
-              <h3 style={{ marginTop: 0 }}>What Registration Covers</h3>
-
-              <p style={{ marginBottom: 0, lineHeight: 1.8 }}>
+              <p
+                style={{
+                  margin: 0,
+                  lineHeight: 1.75,
+                  fontSize: 14,
+                  opacity: 0.78,
+                }}
+              >
                 Team enrollment, two practice sets, competition uniform,
                 backpack, jersey, bows, and a game/fundraiser uniform.
               </p>
@@ -469,15 +1193,20 @@ export default function RiotKarmaPage() {
 
             {karma?.registration && (
               <a
-                className="btn"
+                className="btn btnPrimary"
                 href={karma.registration}
                 target="_blank"
                 rel="noreferrer"
                 style={{
-                  display: "block",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  width: "100%",
+                  minHeight: 56,
+                  marginTop: "auto",
+                  padding: "15px 18px",
                   textAlign: "center",
-                  marginTop: 20,
-                  padding: "14px 18px",
+                  fontWeight: 950,
                 }}
               >
                 Register for Karma
@@ -487,15 +1216,15 @@ export default function RiotKarmaPage() {
         </article>
       </section>
 
-      {/* WHAT YOUR SEASON INCLUDES */}
+      {/* SEASON INCLUDES */}
       <section
         className="card"
         style={{
-          padding: 28,
-          marginTop: 28,
-          borderRadius: 24,
-          overflow: "hidden",
           position: "relative",
+          overflow: "hidden",
+          marginTop: 30,
+          padding: "clamp(24px, 5vw, 38px)",
+          borderRadius: 28,
         }}
       >
         <div
@@ -511,9 +1240,9 @@ export default function RiotKarmaPage() {
         <div style={{ position: "relative" }}>
           <div
             style={{
-              textAlign: "center",
               maxWidth: 760,
-              margin: "0 auto 26px",
+              margin: "0 auto 28px",
+              textAlign: "center",
             }}
           >
             <div
@@ -524,18 +1253,19 @@ export default function RiotKarmaPage() {
                 background: "rgba(15,118,110,0.12)",
                 color: "#0f766e",
                 fontSize: 12,
-                fontWeight: 900,
+                fontWeight: 950,
                 letterSpacing: "0.12em",
+                textTransform: "uppercase",
                 marginBottom: 12,
               }}
             >
-              REGISTRATION VALUE
+              Registration Value
             </div>
 
             <h2
               style={{
-                margin: "0 0 10px",
-                fontSize: "clamp(28px, 4vw, 40px)",
+                margin: "0 0 11px",
+                fontSize: "clamp(28px, 4vw, 42px)",
               }}
             >
               What Your Season Includes
@@ -546,7 +1276,7 @@ export default function RiotKarmaPage() {
                 margin: 0,
                 lineHeight: 1.75,
                 fontSize: 17,
-                opacity: 0.78,
+                opacity: 0.77,
               }}
             >
               Registration provides athletes with the essential apparel and
@@ -558,21 +1288,21 @@ export default function RiotKarmaPage() {
           <div
             style={{
               display: "grid",
-              gap: 16,
               gridTemplateColumns:
-                "repeat(auto-fit, minmax(210px, 1fr))",
+                "repeat(auto-fit, minmax(min(100%, 210px), 1fr))",
+              gap: 16,
             }}
           >
             {seasonItems.map((item) => (
               <div
                 key={item.title}
                 style={{
-                  minHeight: 190,
+                  minHeight: 195,
                   padding: 22,
-                  borderRadius: 20,
+                  borderRadius: 21,
                   background: "rgba(255,255,255,0.05)",
                   border: "1px solid rgba(255,255,255,0.12)",
-                  boxShadow: "0 12px 30px rgba(0,0,0,0.12)",
+                  boxShadow: "0 12px 30px rgba(0,0,0,0.1)",
                   textAlign: "center",
                   display: "flex",
                   flexDirection: "column",
@@ -584,11 +1314,11 @@ export default function RiotKarmaPage() {
                   style={{
                     width: 64,
                     height: 64,
-                    borderRadius: 18,
                     display: "grid",
                     placeItems: "center",
                     marginBottom: 15,
-                    fontSize: 32,
+                    borderRadius: 19,
+                    fontSize: 31,
                     background:
                       "linear-gradient(135deg, rgba(15,118,110,0.2), rgba(236,72,153,0.2))",
                     border: "1px solid rgba(236,72,153,0.2)",
@@ -597,12 +1327,7 @@ export default function RiotKarmaPage() {
                   {item.icon}
                 </div>
 
-                <h3
-                  style={{
-                    margin: "0 0 8px",
-                    fontSize: 18,
-                  }}
-                >
+                <h3 style={{ margin: "0 0 8px", fontSize: 18 }}>
                   {item.title}
                 </h3>
 
@@ -610,7 +1335,7 @@ export default function RiotKarmaPage() {
                   style={{
                     margin: 0,
                     lineHeight: 1.6,
-                    opacity: 0.72,
+                    opacity: 0.7,
                     fontSize: 14,
                   }}
                 >
@@ -627,7 +1352,7 @@ export default function RiotKarmaPage() {
               textAlign: "center",
               lineHeight: 1.7,
               fontSize: 14,
-              opacity: 0.7,
+              opacity: 0.67,
             }}
           >
             Competition entry fees, travel expenses, and other seasonal costs
@@ -636,56 +1361,205 @@ export default function RiotKarmaPage() {
         </div>
       </section>
 
-      {/* AFTER REGISTRATION */}
-      <section className="card" style={{ padding: 24, marginTop: 24 }}>
-        <h2 style={{ marginTop: 0 }}>After You Register</h2>
+      {/* NEXT STEPS AND COMPETITION FEES */}
+      <section
+        style={{
+          display: "grid",
+          gridTemplateColumns:
+            "repeat(auto-fit, minmax(min(100%, 320px), 1fr))",
+          gap: 22,
+          marginTop: 24,
+        }}
+      >
+        <div
+          className="card"
+          style={{
+            padding: 26,
+            borderRadius: 24,
+          }}
+        >
+          <div
+            style={{
+              fontSize: 12,
+              fontWeight: 950,
+              letterSpacing: "0.12em",
+              textTransform: "uppercase",
+              color: "#0f766e",
+            }}
+          >
+            Next Steps
+          </div>
 
-        <ol style={{ lineHeight: 2, paddingLeft: 24, marginBottom: 0 }}>
-          <li>Complete the online registration form.</li>
-          <li>A coach will contact you with the next steps.</li>
-          <li>Receive practice, payment, and team information.</li>
-          <li>Attend your athlete&apos;s first scheduled practice.</li>
-        </ol>
-      </section>
+          <h2 style={{ margin: "8px 0 18px" }}>After You Register</h2>
 
-      {/* COMPETITION FEES */}
-      <section className="card" style={{ padding: 24, marginTop: 24 }}>
-        <h2 style={{ marginTop: 0 }}>🏆 Competition Fees</h2>
+          <div style={{ display: "grid", gap: 14 }}>
+            {[
+              "Complete the online registration form.",
+              "A coach will contact you with the next steps.",
+              "Receive practice, payment, and team information.",
+              "Attend your athlete’s first scheduled practice.",
+            ].map((step, index) => (
+              <div
+                key={step}
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "42px 1fr",
+                  gap: 13,
+                  alignItems: "center",
+                }}
+              >
+                <div
+                  style={{
+                    width: 42,
+                    height: 42,
+                    display: "grid",
+                    placeItems: "center",
+                    borderRadius: 14,
+                    background:
+                      "linear-gradient(135deg, rgba(15,118,110,0.2), rgba(236,72,153,0.16))",
+                    fontWeight: 950,
+                  }}
+                >
+                  {index + 1}
+                </div>
 
-        <p style={{ fontSize: 17, lineHeight: 1.8, marginBottom: 12 }}>
-          Competition entry fees are estimated at{" "}
-          <strong>$350 per competition</strong>. The fee is divided among the
-          athletes on the team, so each family&apos;s portion depends on the
-          number of participating athletes.
-        </p>
+                <div
+                  style={{
+                    lineHeight: 1.55,
+                    fontWeight: 750,
+                  }}
+                >
+                  {step}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
 
-        <p style={{ marginBottom: 0, fontSize: 14, opacity: 0.75 }}>
-          Competition costs are estimates and may change based on the event,
-          team size, travel requirements, and vendor pricing.
-        </p>
+        <div
+          className="card"
+          style={{
+            padding: 26,
+            borderRadius: 24,
+            background:
+              "linear-gradient(145deg, rgba(15,118,110,0.12), rgba(236,72,153,0.08))",
+          }}
+        >
+          <div
+            style={{
+              fontSize: 12,
+              fontWeight: 950,
+              letterSpacing: "0.12em",
+              textTransform: "uppercase",
+              color: "#ec4899",
+            }}
+          >
+            Additional Season Cost
+          </div>
+
+          <h2 style={{ margin: "8px 0 16px" }}>🏆 Competition Fees</h2>
+
+          <div
+            style={{
+              padding: 20,
+              borderRadius: 20,
+              background: "rgba(255,255,255,0.06)",
+              border: "1px solid rgba(255,255,255,0.12)",
+            }}
+          >
+            <div
+              style={{
+                fontSize: 13,
+                fontWeight: 800,
+                opacity: 0.68,
+              }}
+            >
+              Estimated Event Entry
+            </div>
+
+            <div
+              style={{
+                marginTop: 5,
+                fontSize: "clamp(34px, 6vw, 50px)",
+                fontWeight: 950,
+                lineHeight: 1,
+              }}
+            >
+              $350
+            </div>
+
+            <div style={{ marginTop: 7, fontWeight: 800 }}>
+              per competition
+            </div>
+          </div>
+
+          <p
+            style={{
+              margin: "17px 0 0",
+              fontSize: 15,
+              lineHeight: 1.75,
+              opacity: 0.78,
+            }}
+          >
+            The fee is divided among the athletes on the team, so each
+            family&apos;s portion depends on the number of participating
+            athletes.
+          </p>
+
+          <p
+            style={{
+              margin: "11px 0 0",
+              fontSize: 13,
+              lineHeight: 1.65,
+              opacity: 0.64,
+            }}
+          >
+            Competition costs are estimates and may change based on the event,
+            team size, travel requirements, and vendor pricing.
+          </p>
+        </div>
       </section>
 
       {/* FAMILY SUPPORT */}
       <section
         style={{
+          position: "relative",
+          overflow: "hidden",
           marginTop: 24,
-          padding: 24,
-          borderRadius: 20,
+          padding: "clamp(26px, 5vw, 42px)",
+          borderRadius: 26,
           background:
-            "linear-gradient(135deg, rgba(15,118,110,0.16), rgba(236,72,153,0.14))",
+            "linear-gradient(135deg, rgba(15,118,110,0.2), rgba(236,72,153,0.18))",
           textAlign: "center",
-          lineHeight: 1.8,
+          border: "1px solid rgba(15,118,110,0.16)",
         }}
       >
-        <h2 style={{ marginTop: 0, marginBottom: 8 }}>
+        <div
+          style={{
+            fontSize: 34,
+            marginBottom: 8,
+          }}
+        >
+          💚
+        </div>
+
+        <h2
+          style={{
+            margin: "0 0 10px",
+            fontSize: "clamp(26px, 4vw, 38px)",
+          }}
+        >
           Every Athlete Deserves an Opportunity
         </h2>
 
         <p
           style={{
-            margin: "0 auto",
             maxWidth: 760,
+            margin: "0 auto",
+            lineHeight: 1.8,
+            fontSize: 17,
             fontWeight: 700,
+            opacity: 0.8,
           }}
         >
           Fundraising opportunities and payment options may be available to
@@ -694,30 +1568,69 @@ export default function RiotKarmaPage() {
       </section>
 
       {/* FAQ */}
-      <section className="card" style={{ padding: 24, marginTop: 24 }}>
-        <div style={{ textAlign: "center", marginBottom: 22 }}>
+      <section
+        className="card"
+        style={{
+          padding: "clamp(24px, 5vw, 36px)",
+          marginTop: 24,
+          borderRadius: 26,
+        }}
+      >
+        <div
+          style={{
+            maxWidth: 700,
+            margin: "0 auto 24px",
+            textAlign: "center",
+          }}
+        >
           <div
             style={{
-              fontSize: 13,
-              fontWeight: 900,
-              letterSpacing: "0.1em",
+              fontSize: 12,
+              fontWeight: 950,
+              letterSpacing: "0.12em",
               color: "#0f766e",
+              textTransform: "uppercase",
             }}
           >
-            PARENT INFORMATION
+            Parent Information
           </div>
 
-          <h2 style={{ margin: "8px 0" }}>Frequently Asked Questions</h2>
+          <h2
+            style={{
+              margin: "8px 0 8px",
+              fontSize: "clamp(27px, 4vw, 39px)",
+            }}
+          >
+            Frequently Asked Questions
+          </h2>
+
+          <p
+            style={{
+              margin: 0,
+              lineHeight: 1.7,
+              opacity: 0.7,
+            }}
+          >
+            Helpful information for families considering Riot or Karma.
+          </p>
         </div>
 
-        <div style={{ display: "grid", gap: 12 }}>
+        <div
+          style={{
+            display: "grid",
+            gap: 12,
+            maxWidth: 900,
+            margin: "0 auto",
+          }}
+        >
           {faqs.map((faq) => (
             <details
               key={faq.question}
               style={{
-                padding: "16px 18px",
-                borderRadius: 16,
-                background: "rgba(15,118,110,0.06)",
+                padding: "18px 20px",
+                borderRadius: 18,
+                background:
+                  "linear-gradient(135deg, rgba(15,118,110,0.06), rgba(236,72,153,0.04))",
                 border: "1px solid rgba(15,118,110,0.12)",
               }}
             >
@@ -733,9 +1646,9 @@ export default function RiotKarmaPage() {
 
               <p
                 style={{
-                  margin: "12px 0 0",
-                  lineHeight: 1.7,
-                  opacity: 0.8,
+                  margin: "13px 0 0",
+                  lineHeight: 1.75,
+                  opacity: 0.78,
                 }}
               >
                 {faq.answer}
@@ -745,40 +1658,158 @@ export default function RiotKarmaPage() {
         </div>
       </section>
 
-      {/* GALLERY */}
-      <div style={{ textAlign: "center", marginTop: 24 }}>
-        <Link href="/gallery/riot-karma" className="btn">
-          View Riot &amp; Karma Gallery
-        </Link>
-      </div>
+      {/* GALLERY CTA */}
+      <section
+        style={{
+          marginTop: 24,
+          padding: "clamp(25px, 5vw, 38px)",
+          borderRadius: 26,
+          textAlign: "center",
+          background:
+            "linear-gradient(135deg, rgba(0,77,64,0.34), rgba(236,72,153,0.2))",
+          border: "1px solid rgba(255,255,255,0.12)",
+        }}
+      >
+        <div style={{ fontSize: 34 }}>📸</div>
 
-      {/* CONTACTS */}
-      <section className="card" style={{ padding: 24, marginTop: 24 }}>
-        <h2 style={{ marginTop: 0 }}>Questions Before Registering?</h2>
+        <h2 style={{ margin: "9px 0 8px" }}>See Riot and Karma in Action</h2>
 
-        <p style={{ lineHeight: 1.7 }}>
-          Contact one of our coaches for help with registration, pricing,
-          practices, or fundraising opportunities.
+        <p
+          style={{
+            maxWidth: 650,
+            margin: "0 auto 18px",
+            lineHeight: 1.7,
+            opacity: 0.76,
+          }}
+        >
+          View team moments, practices, performances, competitions, and
+          Renegades memories.
         </p>
 
-        <div style={{ display: "grid", gap: 12, marginTop: 18 }}>
-          {contacts.map((contact) => (
-            <a
-              key={contact.phone}
-              href={phoneHref(contact.phone)}
+        <Link
+          href="/gallery/riot-karma"
+          className="btn btnPrimary"
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            minWidth: 250,
+            minHeight: 52,
+          }}
+        >
+          View Riot &amp; Karma Gallery
+        </Link>
+      </section>
+
+      {/* CONTACTS */}
+      <section
+        className="card"
+        style={{
+          padding: "clamp(24px, 5vw, 36px)",
+          marginTop: 24,
+          borderRadius: 26,
+        }}
+      >
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns:
+              "repeat(auto-fit, minmax(min(100%, 270px), 1fr))",
+            gap: 24,
+            alignItems: "center",
+          }}
+        >
+          <div>
+            <div
               style={{
-                padding: "14px 16px",
-                borderRadius: 14,
-                textDecoration: "none",
-                fontSize: 17,
-                fontWeight: 800,
-                background: "rgba(15,118,110,0.08)",
-                border: "1px solid rgba(15,118,110,0.15)",
+                fontSize: 12,
+                fontWeight: 950,
+                letterSpacing: "0.12em",
+                color: "#ec4899",
+                textTransform: "uppercase",
               }}
             >
-              📞 {contact.name} — {contact.phone}
-            </a>
-          ))}
+              We Are Here to Help
+            </div>
+
+            <h2
+              style={{
+                margin: "8px 0 10px",
+                fontSize: "clamp(26px, 4vw, 38px)",
+              }}
+            >
+              Questions Before Registering?
+            </h2>
+
+            <p
+              style={{
+                margin: 0,
+                maxWidth: 600,
+                lineHeight: 1.75,
+                opacity: 0.76,
+              }}
+            >
+              Contact one of our coaches for help with registration, pricing,
+              practices, or fundraising opportunities.
+            </p>
+          </div>
+
+          <div style={{ display: "grid", gap: 12 }}>
+            {contacts.map((contact) => (
+              <a
+                key={contact.phone}
+                href={phoneHref(contact.phone)}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 13,
+                  padding: "15px 17px",
+                  borderRadius: 17,
+                  textDecoration: "none",
+                  background:
+                    "linear-gradient(135deg, rgba(15,118,110,0.1), rgba(236,72,153,0.06))",
+                  border: "1px solid rgba(15,118,110,0.15)",
+                }}
+              >
+                <span
+                  style={{
+                    width: 42,
+                    height: 42,
+                    display: "grid",
+                    placeItems: "center",
+                    flexShrink: 0,
+                    borderRadius: 14,
+                    background: "rgba(15,118,110,0.14)",
+                    fontSize: 19,
+                  }}
+                >
+                  📞
+                </span>
+
+                <span>
+                  <span
+                    style={{
+                      display: "block",
+                      fontWeight: 900,
+                    }}
+                  >
+                    {contact.name}
+                  </span>
+
+                  <span
+                    style={{
+                      display: "block",
+                      marginTop: 2,
+                      fontSize: 14,
+                      opacity: 0.7,
+                    }}
+                  >
+                    {contact.phone}
+                  </span>
+                </span>
+              </a>
+            ))}
+          </div>
         </div>
       </section>
     </main>
