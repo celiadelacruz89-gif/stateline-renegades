@@ -1,10 +1,19 @@
+import Link from "next/link";
 import { teams } from "../lib/data";
 import { phoneHref } from "../lib/utils";
 import TeamHero from "../components/TeamHero";
 
 export default function RiotKarmaPage() {
-  const riot = teams.find((t) => t.id === "riot");
-  const karma = teams.find((t) => t.id === "karma");
+  const riot = teams.find((team) => team.id === "riot");
+  const karma = teams.find((team) => team.id === "karma");
+
+  const contacts = Array.from(
+    new Map(
+      [...(riot?.contacts || []), ...(karma?.contacts || [])].map(
+        (contact) => [contact.phone, contact]
+      )
+    ).values()
+  );
 
   return (
     <main className="wrap section">
@@ -22,7 +31,7 @@ export default function RiotKarmaPage() {
           padding: "12px 20px",
           borderRadius: 999,
           display: "inline-block",
-          marginBottom: 24,
+          marginBottom: 20,
           fontWeight: 800,
           letterSpacing: "0.04em",
         }}
@@ -30,25 +39,43 @@ export default function RiotKarmaPage() {
         LOCAL TRAVEL TEAMS
       </div>
 
+      {/* REGISTRATION STATUS */}
+      <section
+        style={{
+          marginBottom: 24,
+          padding: "16px 20px",
+          borderRadius: 18,
+          background:
+            "linear-gradient(135deg, rgba(15,118,110,0.22), rgba(236,72,153,0.18))",
+          textAlign: "center",
+          fontWeight: 800,
+          fontSize: 18,
+        }}
+      >
+        Registration is open for Riot and Karma. Limited spots are available.
+      </section>
+
+      {/* TEAM CARDS */}
       <section
         style={{
           display: "grid",
           gap: 22,
           gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+          alignItems: "stretch",
         }}
       >
-        {/* RIOT TEAM CARD */}
+        {/* RIOT */}
         <article
           className="card"
           style={{
             overflow: "hidden",
             borderRadius: 24,
-            border: "1px solid rgba(22, 163, 74, 0.35)",
+            border: "1px solid rgba(22,163,74,0.35)",
           }}
         >
           <div
             style={{
-              padding: "24px",
+              padding: 24,
               background:
                 "linear-gradient(135deg, rgba(0,77,64,0.98), rgba(22,163,74,0.82))",
               color: "white",
@@ -60,6 +87,7 @@ export default function RiotKarmaPage() {
                 justifyContent: "space-between",
                 alignItems: "flex-start",
                 gap: 12,
+                flexWrap: "wrap",
               }}
             >
               <div>
@@ -74,12 +102,7 @@ export default function RiotKarmaPage() {
                   LOCAL TRAVEL TEAM
                 </div>
 
-                <h2
-                  style={{
-                    margin: "8px 0 4px",
-                    fontSize: 34,
-                  }}
-                >
+                <h2 style={{ margin: "8px 0 4px", fontSize: 34 }}>
                   💚 Riot Cheer
                 </h2>
 
@@ -91,7 +114,7 @@ export default function RiotKarmaPage() {
               <div
                 style={{
                   background: "rgba(255,255,255,0.18)",
-                  border: "1px solid rgba(255,255,255,0.35)",
+                  border: "1px solid rgba(247,146,227,0.99)",
                   borderRadius: 999,
                   padding: "8px 12px",
                   fontWeight: 900,
@@ -115,10 +138,10 @@ export default function RiotKarmaPage() {
                 style={{
                   padding: 14,
                   borderRadius: 16,
-                  background: "rgba(22,163,74,0.08)",
+                  background: "rgba(22,163,74,0.12)",
                 }}
               >
-                <div style={{ fontSize: 13, opacity: 0.7 }}>Ages</div>
+                <div style={{ fontSize: 13, opacity: 0.75 }}>Ages</div>
                 <div style={{ fontSize: 20, fontWeight: 900 }}>6–14</div>
               </div>
 
@@ -126,10 +149,10 @@ export default function RiotKarmaPage() {
                 style={{
                   padding: 14,
                   borderRadius: 16,
-                  background: "rgba(22,163,74,0.08)",
+                  background: "rgba(22,163,74,0.12)",
                 }}
               >
-                <div style={{ fontSize: 13, opacity: 0.7 }}>Practice</div>
+                <div style={{ fontSize: 13, opacity: 0.75 }}>Practice</div>
                 <div style={{ fontSize: 16, fontWeight: 900 }}>
                   Tue–Thu
                   <br />
@@ -162,10 +185,26 @@ export default function RiotKarmaPage() {
               </div>
 
               <div style={{ lineHeight: 1.8 }}>
-                <strong>New Members:</strong> $/400
+                <strong>New Members:</strong> $400
                 <br />
                 <strong>Returning Members:</strong> $85
               </div>
+            </div>
+
+            <div
+              style={{
+                marginTop: 18,
+                padding: 18,
+                borderRadius: 16,
+                background: "rgba(255,255,255,0.06)",
+              }}
+            >
+              <h3 style={{ marginTop: 0 }}>What Registration Covers</h3>
+
+              <p style={{ marginBottom: 0, lineHeight: 1.8 }}>
+                Team enrollment, two practice sets, competition uniform,
+                backpack, jersey, bows, and a game/fundraiser uniform.
+              </p>
             </div>
 
             {riot?.registration && (
@@ -187,7 +226,7 @@ export default function RiotKarmaPage() {
           </div>
         </article>
 
-        {/* KARMA TEAM CARD */}
+        {/* KARMA */}
         <article
           className="card"
           style={{
@@ -198,7 +237,7 @@ export default function RiotKarmaPage() {
         >
           <div
             style={{
-              padding: "24px",
+              padding: 24,
               background:
                 "linear-gradient(135deg, rgba(236,72,153,0.95), rgba(20,184,166,0.82))",
               color: "white",
@@ -210,6 +249,7 @@ export default function RiotKarmaPage() {
                 justifyContent: "space-between",
                 alignItems: "flex-start",
                 gap: 12,
+                flexWrap: "wrap",
               }}
             >
               <div>
@@ -224,12 +264,7 @@ export default function RiotKarmaPage() {
                   BEGINNER DEVELOPMENT TEAM
                 </div>
 
-                <h2
-                  style={{
-                    margin: "8px 0 4px",
-                    fontSize: 34,
-                  }}
-                >
+                <h2 style={{ margin: "8px 0 4px", fontSize: 34 }}>
                   🩷 Karma Cheer
                 </h2>
 
@@ -268,7 +303,7 @@ export default function RiotKarmaPage() {
                   background: "rgba(236,72,153,0.08)",
                 }}
               >
-                <div style={{ fontSize: 13, opacity: 0.7 }}>Ages</div>
+                <div style={{ fontSize: 13, opacity: 0.75 }}>Ages</div>
                 <div style={{ fontSize: 20, fontWeight: 900 }}>3–5</div>
               </div>
 
@@ -279,7 +314,7 @@ export default function RiotKarmaPage() {
                   background: "rgba(236,72,153,0.08)",
                 }}
               >
-                <div style={{ fontSize: 13, opacity: 0.7 }}>Practice</div>
+                <div style={{ fontSize: 13, opacity: 0.75 }}>Practice</div>
                 <div style={{ fontSize: 16, fontWeight: 900 }}>
                   Tue–Thu
                   <br />
@@ -318,6 +353,22 @@ export default function RiotKarmaPage() {
               </div>
             </div>
 
+            <div
+              style={{
+                marginTop: 18,
+                padding: 18,
+                borderRadius: 16,
+                background: "rgba(255,255,255,0.06)",
+              }}
+            >
+              <h3 style={{ marginTop: 0 }}>What Registration Covers</h3>
+
+              <p style={{ marginBottom: 0, lineHeight: 1.8 }}>
+                Team enrollment, two practice sets, competition uniform,
+                backpack, jersey, bows, and a game/fundraiser uniform.
+              </p>
+            </div>
+
             {karma?.registration && (
               <a
                 className="btn"
@@ -338,15 +389,32 @@ export default function RiotKarmaPage() {
         </article>
       </section>
 
+      {/* AFTER REGISTRATION */}
+      <section className="card" style={{ padding: 24, marginTop: 24 }}>
+        <h2 style={{ marginTop: 0 }}>After You Register</h2>
+
+        <ol style={{ lineHeight: 2, paddingLeft: 24, marginBottom: 0 }}>
+          <li>Complete the online registration form.</li>
+          <li>A coach will contact you with the next steps.</li>
+          <li>Receive practice, payment, and team information.</li>
+          <li>Attend your athlete&apos;s first scheduled practice.</li>
+        </ol>
+      </section>
+
       {/* COMPETITION FEES */}
       <section className="card" style={{ padding: 24, marginTop: 24 }}>
         <h2 style={{ marginTop: 0 }}>🏆 Competition Fees</h2>
 
-        <p style={{ fontSize: 17, lineHeight: 1.8, marginBottom: 0 }}>
+        <p style={{ fontSize: 17, lineHeight: 1.8, marginBottom: 12 }}>
           Competition entry fees are estimated at{" "}
           <strong>$350 per competition</strong>. The fee is divided among the
           athletes on the team, so each family&apos;s portion depends on the
-          number of athletes participating.
+          number of participating athletes.
+        </p>
+
+        <p style={{ marginBottom: 0, fontSize: 14, opacity: 0.75 }}>
+          Competition costs are estimates and may change based on the event,
+          team size, travel requirements, and vendor pricing.
         </p>
       </section>
 
@@ -368,18 +436,30 @@ export default function RiotKarmaPage() {
         throughout the season.
       </section>
 
+      {/* GALLERY */}
+      <div style={{ textAlign: "center", marginTop: 24 }}>
+        <Link href="/gallery/riot-karma" className="btn">
+          View Riot &amp; Karma Gallery
+        </Link>
+      </div>
+
       {/* CONTACTS */}
       <section className="card" style={{ padding: 24, marginTop: 24 }}>
-        <h2 style={{ marginTop: 0 }}>Contacts</h2>
+        <h2 style={{ marginTop: 0 }}>Questions Before Registering?</h2>
 
-        <div style={{ display: "grid", gap: 10 }}>
-          {[...(riot?.contacts || []), ...(karma?.contacts || [])].map((c) => (
+        <p style={{ lineHeight: 1.7 }}>
+          Contact one of our coaches for help with registration, pricing,
+          practices, or fundraising opportunities.
+        </p>
+
+        <div style={{ display: "grid", gap: 12, marginTop: 18 }}>
+          {contacts.map((contact) => (
             <a
-              key={`${c.name}-${c.phone}`}
-              href={phoneHref(c.phone)}
-              style={{ textDecoration: "underline" }}
+              key={contact.phone}
+              href={phoneHref(contact.phone)}
+              style={{ textDecoration: "underline", fontSize: 17 }}
             >
-              {c.name} — {c.phone}
+              {contact.name} — {contact.phone}
             </a>
           ))}
         </div>
