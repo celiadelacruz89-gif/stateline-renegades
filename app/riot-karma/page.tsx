@@ -15,6 +15,67 @@ export default function RiotKarmaPage() {
     ).values()
   );
 
+  const seasonItems = [
+    {
+      icon: "👕",
+      title: "Competition Uniform",
+      description: "Official team competition uniform",
+    },
+    {
+      icon: "🎽",
+      title: "Two Practice Sets",
+      description: "Team practice clothing for weekly training",
+    },
+    {
+      icon: "🎀",
+      title: "Team Bows",
+      description: "Coordinating bows for team events",
+    },
+    {
+      icon: "🎒",
+      title: "Team Backpack",
+      description: "Official backpack for practices and competitions",
+    },
+    {
+      icon: "🏟️",
+      title: "Team Jersey",
+      description: "Renegades jersey for team appearances",
+    },
+    {
+      icon: "📣",
+      title: "Game/Fundraiser Uniform",
+      description: "Uniform for games, appearances, and fundraisers",
+    },
+  ];
+
+  const faqs = [
+    {
+      question: "Does my child need previous cheer experience?",
+      answer:
+        "No previous experience is required. Athletes are taught skills based on their age, ability, and team placement.",
+    },
+    {
+      question: "What should athletes wear to practice?",
+      answer:
+        "Athletes should wear fitted athletic clothing, cheer shoes or clean athletic shoes, and have their hair secured away from their face.",
+    },
+    {
+      question: "Are competition fees included in registration?",
+      answer:
+        "No. Competition entry fees are separate from registration and are divided among the participating athletes on the team.",
+    },
+    {
+      question: "Are payment options available?",
+      answer:
+        "Payment arrangements and fundraising opportunities may be available. Contact a coach to discuss your family’s needs.",
+    },
+    {
+      question: "Can an athlete join after the season begins?",
+      answer:
+        "Late registration may be available when the team has open positions. Contact a coach to confirm availability.",
+    },
+  ];
+
   return (
     <main className="wrap section">
       <TeamHero
@@ -26,24 +87,31 @@ export default function RiotKarmaPage() {
 
       <div
         style={{
-          background: "#0f766e",
-          color: "white",
-          padding: "12px 20px",
-          borderRadius: 999,
-          display: "inline-block",
+          display: "flex",
+          justifyContent: "center",
           marginBottom: 20,
-          fontWeight: 800,
-          letterSpacing: "0.04em",
         }}
       >
-        LOCAL TRAVEL TEAMS
+        <div
+          style={{
+            background: "#0f766e",
+            color: "white",
+            padding: "12px 20px",
+            borderRadius: 999,
+            display: "inline-block",
+            fontWeight: 800,
+            letterSpacing: "0.04em",
+          }}
+        >
+          LOCAL TRAVEL TEAMS
+        </div>
       </div>
 
       {/* REGISTRATION STATUS */}
       <section
         style={{
           marginBottom: 24,
-          padding: "16px 20px",
+          padding: "18px 20px",
           borderRadius: 18,
           background:
             "linear-gradient(135deg, rgba(15,118,110,0.22), rgba(236,72,153,0.18))",
@@ -60,7 +128,7 @@ export default function RiotKarmaPage() {
         style={{
           display: "grid",
           gap: 22,
-          gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+          gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
           alignItems: "stretch",
         }}
       >
@@ -73,6 +141,18 @@ export default function RiotKarmaPage() {
             border: "1px solid rgba(22,163,74,0.35)",
           }}
         >
+          <img
+            src="/images/riot-team.png"
+            alt="Stateline Renegades Riot Cheer Team"
+            style={{
+              width: "100%",
+              height: 300,
+              objectFit: "cover",
+              objectPosition: "center",
+              display: "block",
+            }}
+          />
+
           <div
             style={{
               padding: 24,
@@ -114,7 +194,7 @@ export default function RiotKarmaPage() {
               <div
                 style={{
                   background: "rgba(255,255,255,0.18)",
-                  border: "1px solid rgba(247,146,227,0.99)",
+                  border: "1px solid rgba(247,146,227,0.9)",
                   borderRadius: 999,
                   padding: "8px 12px",
                   fontWeight: 900,
@@ -153,6 +233,7 @@ export default function RiotKarmaPage() {
                 }}
               >
                 <div style={{ fontSize: 13, opacity: 0.75 }}>Practice</div>
+
                 <div style={{ fontSize: 16, fontWeight: 900 }}>
                   Tue–Thu
                   <br />
@@ -196,7 +277,8 @@ export default function RiotKarmaPage() {
                 marginTop: 18,
                 padding: 18,
                 borderRadius: 16,
-                background: "rgba(255,255,255,0.06)",
+                background: "rgba(22,163,74,0.06)",
+                border: "1px solid rgba(22,163,74,0.16)",
               }}
             >
               <h3 style={{ marginTop: 0 }}>What Registration Covers</h3>
@@ -235,6 +317,18 @@ export default function RiotKarmaPage() {
             border: "1px solid rgba(236,72,153,0.35)",
           }}
         >
+          <img
+            src="/images/karma-team.png"
+            alt="Karma cheer athletes practicing together"
+            style={{
+              width: "100%",
+              height: 300,
+              objectFit: "cover",
+              objectPosition: "center",
+              display: "block",
+            }}
+          />
+
           <div
             style={{
               padding: 24,
@@ -315,6 +409,7 @@ export default function RiotKarmaPage() {
                 }}
               >
                 <div style={{ fontSize: 13, opacity: 0.75 }}>Practice</div>
+
                 <div style={{ fontSize: 16, fontWeight: 900 }}>
                   Tue–Thu
                   <br />
@@ -358,7 +453,8 @@ export default function RiotKarmaPage() {
                 marginTop: 18,
                 padding: 18,
                 borderRadius: 16,
-                background: "rgba(255,255,255,0.06)",
+                background: "rgba(236,72,153,0.06)",
+                border: "1px solid rgba(236,72,153,0.16)",
               }}
             >
               <h3 style={{ marginTop: 0 }}>What Registration Covers</h3>
@@ -387,6 +483,66 @@ export default function RiotKarmaPage() {
             )}
           </div>
         </article>
+      </section>
+
+      {/* SEASON INCLUDES */}
+      <section className="card" style={{ padding: 24, marginTop: 24 }}>
+        <div style={{ textAlign: "center", marginBottom: 22 }}>
+          <div
+            style={{
+              fontSize: 13,
+              fontWeight: 900,
+              letterSpacing: "0.1em",
+              color: "#0f766e",
+            }}
+          >
+            REGISTRATION VALUE
+          </div>
+
+          <h2 style={{ margin: "8px 0" }}>What Your Season Includes</h2>
+
+          <p
+            style={{
+              margin: "0 auto",
+              maxWidth: 700,
+              lineHeight: 1.7,
+              opacity: 0.78,
+            }}
+          >
+            Athletes receive the essential team apparel and equipment needed
+            for practices, appearances, fundraisers, and competitions.
+          </p>
+        </div>
+
+        <div
+          style={{
+            display: "grid",
+            gap: 16,
+            gridTemplateColumns: "repeat(auto-fit, minmax(210px, 1fr))",
+          }}
+        >
+          {seasonItems.map((item) => (
+            <div
+              key={item.title}
+              style={{
+                padding: 20,
+                borderRadius: 18,
+                textAlign: "center",
+                background:
+                  "linear-gradient(135deg, rgba(15,118,110,0.08), rgba(236,72,153,0.08))",
+                border: "1px solid rgba(15,118,110,0.12)",
+              }}
+            >
+              <div style={{ fontSize: 34, marginBottom: 10 }}>{item.icon}</div>
+
+              <h3 style={{ margin: "0 0 8px" }}>{item.title}</h3>
+
+              <p style={{ margin: 0, lineHeight: 1.6, opacity: 0.75 }}>
+                {item.description}
+              </p>
+            </div>
+          ))}
+        </div>
       </section>
 
       {/* AFTER REGISTRATION */}
@@ -422,18 +578,80 @@ export default function RiotKarmaPage() {
       <section
         style={{
           marginTop: 24,
-          padding: 22,
+          padding: 24,
           borderRadius: 20,
           background:
             "linear-gradient(135deg, rgba(15,118,110,0.16), rgba(236,72,153,0.14))",
           textAlign: "center",
-          fontWeight: 700,
           lineHeight: 1.8,
         }}
       >
-        We believe every child deserves the opportunity to cheer. Fundraising
-        opportunities and payment options may be available to help families
-        throughout the season.
+        <h2 style={{ marginTop: 0, marginBottom: 8 }}>
+          Every Athlete Deserves an Opportunity
+        </h2>
+
+        <p
+          style={{
+            margin: "0 auto",
+            maxWidth: 760,
+            fontWeight: 700,
+          }}
+        >
+          Fundraising opportunities and payment options may be available to
+          help families throughout the season.
+        </p>
+      </section>
+
+      {/* FAQ */}
+      <section className="card" style={{ padding: 24, marginTop: 24 }}>
+        <div style={{ textAlign: "center", marginBottom: 22 }}>
+          <div
+            style={{
+              fontSize: 13,
+              fontWeight: 900,
+              letterSpacing: "0.1em",
+              color: "#0f766e",
+            }}
+          >
+            PARENT INFORMATION
+          </div>
+
+          <h2 style={{ margin: "8px 0" }}>Frequently Asked Questions</h2>
+        </div>
+
+        <div style={{ display: "grid", gap: 12 }}>
+          {faqs.map((faq) => (
+            <details
+              key={faq.question}
+              style={{
+                padding: "16px 18px",
+                borderRadius: 16,
+                background: "rgba(15,118,110,0.06)",
+                border: "1px solid rgba(15,118,110,0.12)",
+              }}
+            >
+              <summary
+                style={{
+                  cursor: "pointer",
+                  fontWeight: 900,
+                  lineHeight: 1.5,
+                }}
+              >
+                {faq.question}
+              </summary>
+
+              <p
+                style={{
+                  margin: "12px 0 0",
+                  lineHeight: 1.7,
+                  opacity: 0.8,
+                }}
+              >
+                {faq.answer}
+              </p>
+            </details>
+          ))}
+        </div>
       </section>
 
       {/* GALLERY */}
@@ -457,9 +675,17 @@ export default function RiotKarmaPage() {
             <a
               key={contact.phone}
               href={phoneHref(contact.phone)}
-              style={{ textDecoration: "underline", fontSize: 17 }}
+              style={{
+                padding: "14px 16px",
+                borderRadius: 14,
+                textDecoration: "none",
+                fontSize: 17,
+                fontWeight: 800,
+                background: "rgba(15,118,110,0.08)",
+                border: "1px solid rgba(15,118,110,0.15)",
+              }}
             >
-              {contact.name} — {contact.phone}
+              📞 {contact.name} — {contact.phone}
             </a>
           ))}
         </div>
